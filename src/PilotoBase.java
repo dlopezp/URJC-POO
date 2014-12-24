@@ -10,7 +10,7 @@
  */
 public class PilotoBase {
     
-    private String nombre;
+    private String NOMBRE;
     private String apellidos;
     private Integer edad;
     private Double altura;
