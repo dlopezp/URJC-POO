@@ -36,6 +36,8 @@ public class PilotoLibre extends PilotoBase implements Serializable {
         this.valentia = getValorCaracteristicaEnLimite(valentia);
     }
     
+
+    
     private Double getValorCaracteristicaEnLimite(Double valor) {
         Double valorSeguro;
         if (valor < 0) {
