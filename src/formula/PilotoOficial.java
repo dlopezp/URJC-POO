@@ -1,4 +1,3 @@
-
 package formula;
 
 public class PilotoOficial extends PilotoDecorador {

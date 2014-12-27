@@ -1,13 +1,8 @@
-
 package formula;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import static org.hamcrest.core.Is.is;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,23 +17,11 @@ public class PilotoLibreTest {
     private Double agresividad = 2.5;
     private Double paciencia = 4.5;
     private Double valentia = 3.3;
-    private PilotoLibre pilotoLibre;
-    
-    public PilotoLibreTest() {
-    }
-       
-    @Before
-    public void setUp() {
-        pilotoLibre = new PilotoLibre(nombre, apellidos, edad, altura, peso, reflejos, agresividad, paciencia, valentia);
-    }
-    
-    @After
-    public void tearDown() {
-    }
+    private PilotoLibre pilotoLibre = new PilotoLibre(nombre, apellidos, edad, altura, peso, reflejos, agresividad, paciencia, valentia);
     
     @Test
     public void test_getValorCaracteristicaEnLimite() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        Double valorMinimo = 0.0;
+        Double valorMinimo = PilotoBase.VALOR_MINIMO_CARACTERISTICAS;
         Double valorMaximo = PilotoBase.VALOR_MAXIMO_CARACTERISTICAS;
         Class clase = pilotoLibre.getClass();
         Method metodo = null;

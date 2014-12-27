@@ -1,4 +1,3 @@
-
 package formula;
 
 import java.io.Serializable;
