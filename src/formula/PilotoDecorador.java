@@ -10,6 +10,7 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
         this.piloto = piloto;
     }
     
+    public abstract void entrenar();
 
     public PilotoLibre getPiloto() {
         return piloto;
@@ -51,19 +52,19 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
         piloto.setEdad(edad);
     }
 
-    public Double getAltura() {
+    public Integer getAltura() {
         return piloto.getAltura();
     }
 
-    public void setAltura(Double altura) {
+    public void setAltura(Integer altura) {
         piloto.setAltura(altura);
     }
 
-    public Double getPeso() {
+    public Integer getPeso() {
         return piloto.getPeso();
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(Integer peso) {
         piloto.setPeso(peso);
     }
 
@@ -107,5 +108,4 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
         piloto.setValentia(valentia);
     }
    
-    public abstract void entrenar();
 }

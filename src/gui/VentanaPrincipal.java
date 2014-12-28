@@ -1,6 +1,27 @@
 package gui;
 
 import formula.*;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,7 +33,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
+        try {
+            cargarDatos();            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
+        asignarEventosEnVentana();
         this.jPanelAdministrador.setVisible(false);
     }
 
@@ -25,19 +52,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jPanelPrincipal = new javax.swing.JPanel();
         jBtAccesoAdministrador = new javax.swing.JButton();
         jPanelAdministrador = new javax.swing.JPanel();
         jBtAdminVolver = new javax.swing.JButton();
         jTbAdministrador = new javax.swing.JTabbedPane();
         jPanelAdminPilotos = new javax.swing.JPanel();
-        jBtCargarPilotos = new javax.swing.JButton();
-        jBtCrearPiloto = new javax.swing.JButton();
+        jBtShowCrearPiloto = new javax.swing.JButton();
         jPanelCrearPiloto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTxtFieldPilotoNombre = new javax.swing.JTextField();
@@ -50,24 +71,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTxtFieldPilotoPeso = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTxtFieldPilotoReflejos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTxtFieldPilotoAgresividad = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTxtFieldPilotoPaciencia = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTxtFieldPilotoValentia = new javax.swing.JTextField();
         jBtCaracteristicasPilotoAleatorias = new javax.swing.JButton();
-
-        jTextField2.setText("jTextField2");
-
-        jLabel4.setText("jLabel4");
-
-        jLabel8.setText("jLabel8");
-
-        jTextField9.setText("jTextField9");
-
-        jLabel11.setText("jLabel11");
+        jBtCrearPiloto = new javax.swing.JButton();
+        jSlReflejos = new javax.swing.JSlider();
+        jLblReflejos = new javax.swing.JLabel();
+        jSlAgresividad = new javax.swing.JSlider();
+        jSlPaciencia = new javax.swing.JSlider();
+        jSlValentia = new javax.swing.JSlider();
+        jLblAgresividad = new javax.swing.JLabel();
+        jLblPaciencia = new javax.swing.JLabel();
+        jLblValentia = new javax.swing.JLabel();
+        jBtAdministradorVerPilotos = new javax.swing.JButton();
+        jPanelAdministradorVerPilotos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTbAdminVerPilotos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,14 +109,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addGap(145, 145, 145)
                 .addComponent(jBtAccesoAdministrador)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(643, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBtAccesoAdministrador)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(642, Short.MAX_VALUE))
         );
 
         jBtAdminVolver.setText("Volver");
@@ -104,29 +126,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBtCargarPilotos.setText("Cargar");
-        jBtCargarPilotos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtCargarPilotosActionPerformed(evt);
-            }
-        });
+        jPanelAdminPilotos.setPreferredSize(new java.awt.Dimension(329, 253));
 
-        jBtCrearPiloto.setText("Crear");
-        jBtCrearPiloto.addActionListener(new java.awt.event.ActionListener() {
+        jBtShowCrearPiloto.setText("Crear");
+        jBtShowCrearPiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtCrearPilotoActionPerformed(evt);
+                jBtShowCrearPilotoActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Nombre");
 
+        jTxtFieldPilotoNombre.setInputVerifier(new NotEmptyVerifier());
+        jTxtFieldPilotoNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldPilotoNombreFocusLost(evt);
+            }
+        });
+        jTxtFieldPilotoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFieldPilotoNombreActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Apellidos");
+
+        jTxtFieldPilotoApellidos.setInputVerifier(new NotEmptyVerifier());
+        jTxtFieldPilotoApellidos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldPilotoApellidosFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("Edad");
 
+        jTxtFieldPilotoEdad.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldPilotoEdad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldPilotoEdadFocusLost(evt);
+            }
+        });
+
         jLabel5.setText("Altura");
 
+        jTxtFieldPilotoAltura.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldPilotoAltura.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldPilotoAlturaFocusLost(evt);
+            }
+        });
+
         jLabel6.setText("Peso");
+
+        jTxtFieldPilotoPeso.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldPilotoPeso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldPilotoPesoFocusLost(evt);
+            }
+        });
 
         jLabel7.setText("Reflejos");
 
@@ -143,43 +200,100 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jBtCrearPiloto.setText("Guardar");
+        jBtCrearPiloto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCrearPilotoActionPerformed(evt);
+            }
+        });
+
+        jSlReflejos.setMaximum(500);
+        jSlReflejos.setValue(0);
+        jSlReflejos.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlReflejosStateChanged(evt);
+            }
+        });
+
+        jLblReflejos.setText("0.0");
+
+        jSlAgresividad.setMaximum(500);
+        jSlAgresividad.setValue(0);
+        jSlAgresividad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlAgresividadStateChanged(evt);
+            }
+        });
+
+        jSlPaciencia.setMaximum(500);
+        jSlPaciencia.setValue(0);
+        jSlPaciencia.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlPacienciaStateChanged(evt);
+            }
+        });
+
+        jSlValentia.setMaximum(500);
+        jSlValentia.setValue(0);
+        jSlValentia.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlValentiaStateChanged(evt);
+            }
+        });
+
+        jLblAgresividad.setText("0.0");
+
+        jLblPaciencia.setText("0.0");
+
+        jLblValentia.setText("0.0");
+
         javax.swing.GroupLayout jPanelCrearPilotoLayout = new javax.swing.GroupLayout(jPanelCrearPiloto);
         jPanelCrearPiloto.setLayout(jPanelCrearPilotoLayout);
         jPanelCrearPilotoLayout.setHorizontalGroup(
             jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(56, 56, 56)
                 .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtFieldPilotoNombre)
-                    .addComponent(jTxtFieldPilotoApellidos)
-                    .addComponent(jTxtFieldPilotoEdad)
-                    .addComponent(jTxtFieldPilotoAltura)
-                    .addComponent(jTxtFieldPilotoPeso)
-                    .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
-                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTxtFieldPilotoReflejos, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                            .addComponent(jTxtFieldPilotoAgresividad)
-                            .addComponent(jTxtFieldPilotoPaciencia)
-                            .addComponent(jTxtFieldPilotoValentia))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtCaracteristicasPilotoAleatorias, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTxtFieldPilotoApellidos, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtFieldPilotoEdad, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtFieldPilotoAltura, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCrearPilotoLayout.createSequentialGroup()
+                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBtCrearPiloto)
+                            .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
+                                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSlPaciencia, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                    .addComponent(jSlReflejos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jSlAgresividad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jSlValentia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLblReflejos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblAgresividad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblPaciencia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLblValentia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBtCaracteristicasPilotoAleatorias)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTxtFieldPilotoPeso, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtFieldPilotoNombre))
                 .addContainerGap())
         );
         jPanelCrearPilotoLayout.setVerticalGroup(
             jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTxtFieldPilotoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,26 +313,114 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTxtFieldPilotoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(3, 3, 3)
+                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
-                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTxtFieldPilotoReflejos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBtCaracteristicasPilotoAleatorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTxtFieldPilotoAgresividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBtCrearPiloto)
+                        .addContainerGap())
+                    .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
+                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
+                                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
+                                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jSlReflejos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLblReflejos, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSlAgresividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLblAgresividad, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
+                                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSlPaciencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel12))
+                                    .addComponent(jLblPaciencia, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLblValentia, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSlValentia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(39, 39, 39))))
+        );
+
+        jBtAdministradorVerPilotos.setText("Ver");
+        jBtAdministradorVerPilotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAdministradorVerPilotosActionPerformed(evt);
+            }
+        });
+
+        jTbAdminVerPilotos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre Completo", "Valoración"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTbAdminVerPilotos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jTbAdminVerPilotos);
+
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelAdministradorVerPilotosLayout = new javax.swing.GroupLayout(jPanelAdministradorVerPilotos);
+        jPanelAdministradorVerPilotos.setLayout(jPanelAdministradorVerPilotosLayout);
+        jPanelAdministradorVerPilotosLayout.setHorizontalGroup(
+            jPanelAdministradorVerPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAdministradorVerPilotosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAdministradorVerPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanelAdministradorVerPilotosLayout.createSequentialGroup()
+                        .addGap(0, 193, Short.MAX_VALUE)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jTxtFieldPilotoPaciencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelCrearPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTxtFieldPilotoValentia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jBtCaracteristicasPilotoAleatorias, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                        .addComponent(jButton1))))
+        );
+        jPanelAdministradorVerPilotosLayout.setVerticalGroup(
+            jPanelAdministradorVerPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAdministradorVerPilotosLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelAdministradorVerPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelAdminPilotosLayout = new javax.swing.GroupLayout(jPanelAdminPilotos);
@@ -227,21 +429,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtCargarPilotos)
-                    .addComponent(jBtCrearPiloto))
-                .addGap(18, 18, 18)
-                .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtShowCrearPiloto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                    .addComponent(jBtAdministradorVerPilotos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
+                    .addGap(83, 83, 83)
+                    .addComponent(jPanelAdministradorVerPilotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(109, Short.MAX_VALUE)))
         );
         jPanelAdminPilotosLayout.setVerticalGroup(
             jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jBtCargarPilotos)
-                .addGap(18, 18, 18)
-                .addComponent(jBtCrearPiloto)
-                .addContainerGap(229, Short.MAX_VALUE))
-            .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
+                .addComponent(jBtAdministradorVerPilotos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtShowCrearPiloto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
+                .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 103, Short.MAX_VALUE))
+            .addGroup(jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addComponent(jPanelAdministradorVerPilotos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(6, 6, 6)))
         );
 
         jTbAdministrador.addTab("Pilotos", jPanelAdminPilotos);
@@ -251,7 +466,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelAdministradorLayout.setHorizontalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(463, Short.MAX_VALUE)
                 .addComponent(jBtAdminVolver)
                 .addContainerGap())
             .addComponent(jTbAdministrador)
@@ -259,7 +474,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelAdministradorLayout.setVerticalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorLayout.createSequentialGroup()
-                .addComponent(jTbAdministrador)
+                .addComponent(jTbAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtAdminVolver)
                 .addContainerGap())
@@ -269,7 +484,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -278,7 +493,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -291,27 +506,94 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jBtAdminVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAdminVolverActionPerformed
         this.jPanelPrincipal.setVisible(true);
-        this.jPanelAdministrador.setVisible(false);        
+        this.jPanelAdministrador.setVisible(false);
     }//GEN-LAST:event_jBtAdminVolverActionPerformed
 
     private void jBtAccesoAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAccesoAdministradorActionPerformed
         this.jPanelPrincipal.setVisible(false);
         this.jPanelAdministrador.setVisible(true);
+        this.jPanelCrearPiloto.setVisible(false);
+        this.jPanelAdministradorVerPilotos.setVisible(true);
+        cargarPilotosLibresEnTabla(this.jTbAdminVerPilotos);
     }//GEN-LAST:event_jBtAccesoAdministradorActionPerformed
 
     private void jBtCaracteristicasPilotoAleatoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCaracteristicasPilotoAleatoriasActionPerformed
-        Double valorMaximo = PilotoLibre.VALOR_MAXIMO_CARACTERISTICAS;
-        Double reflejos = Math.random() * valorMaximo;
-        this.jTxtFieldPilotoReflejos.setText(reflejos.toString());
+        colocarCaracteristicasAleatoriasParaPiloto();
     }//GEN-LAST:event_jBtCaracteristicasPilotoAleatoriasActionPerformed
 
-    private void jBtCargarPilotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCargarPilotosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtCargarPilotosActionPerformed
-
     private void jBtCrearPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCrearPilotoActionPerformed
-        // TODO add your handling code here:
+        crearPilotoLibre();        
     }//GEN-LAST:event_jBtCrearPilotoActionPerformed
+
+    private void jBtShowCrearPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtShowCrearPilotoActionPerformed
+        mostarPanelEditarPiloto();
+    }//GEN-LAST:event_jBtShowCrearPilotoActionPerformed
+
+    private void jBtAdministradorVerPilotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAdministradorVerPilotosActionPerformed
+        cargarPilotosLibresEnTabla(this.jTbAdminVerPilotos);
+        this.jPanelCrearPiloto.setVisible(false);
+        this.jPanelAdministradorVerPilotos.setVisible(true);        
+    }//GEN-LAST:event_jBtAdministradorVerPilotosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JTable tabla = this.jTbAdminVerPilotos;
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        int filaSeleccionada = tabla.getSelectedRow();
+        if (filaSeleccionada != -1) {          
+            modelo.removeRow(filaSeleccionada);
+            pilotosLibres.remove(filaSeleccionada);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int filaSeleccionada = this.jTbAdminVerPilotos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            PilotoLibre piloto = pilotosLibres.get(filaSeleccionada);
+            pilotosLibres.remove(filaSeleccionada);
+            editarPiloto(piloto);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jSlReflejosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlReflejosStateChanged
+        ponerValorEnEtiquetaSlider(this.jSlReflejos, this.jLblReflejos);
+    }//GEN-LAST:event_jSlReflejosStateChanged
+
+    private void jSlAgresividadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlAgresividadStateChanged
+        ponerValorEnEtiquetaSlider(this.jSlAgresividad, this.jLblAgresividad);
+    }//GEN-LAST:event_jSlAgresividadStateChanged
+
+    private void jSlPacienciaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlPacienciaStateChanged
+        ponerValorEnEtiquetaSlider(this.jSlPaciencia, this.jLblPaciencia);
+    }//GEN-LAST:event_jSlPacienciaStateChanged
+
+    private void jSlValentiaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlValentiaStateChanged
+        ponerValorEnEtiquetaSlider(this.jSlValentia, this.jLblValentia);
+    }//GEN-LAST:event_jSlValentiaStateChanged
+
+    private void jTxtFieldPilotoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFieldPilotoNombreActionPerformed
+
+    private void jTxtFieldPilotoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoNombreFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldPilotoNombreFocusLost
+
+    private void jTxtFieldPilotoApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoApellidosFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldPilotoApellidosFocusLost
+
+    private void jTxtFieldPilotoEdadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoEdadFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldPilotoEdadFocusLost
+
+    private void jTxtFieldPilotoAlturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoAlturaFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldPilotoAlturaFocusLost
+
+    private void jTxtFieldPilotoPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoPesoFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldPilotoPesoFocusLost
 
     /**
      * @param args the command line arguments
@@ -351,36 +633,246 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtAccesoAdministrador;
     private javax.swing.JButton jBtAdminVolver;
+    private javax.swing.JButton jBtAdministradorVerPilotos;
     private javax.swing.JButton jBtCaracteristicasPilotoAleatorias;
-    private javax.swing.JButton jBtCargarPilotos;
     private javax.swing.JButton jBtCrearPiloto;
+    private javax.swing.JButton jBtShowCrearPiloto;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblAgresividad;
+    private javax.swing.JLabel jLblPaciencia;
+    private javax.swing.JLabel jLblReflejos;
+    private javax.swing.JLabel jLblValentia;
     private javax.swing.JPanel jPanelAdminPilotos;
     private javax.swing.JPanel jPanelAdministrador;
+    private javax.swing.JPanel jPanelAdministradorVerPilotos;
     private javax.swing.JPanel jPanelCrearPiloto;
     private javax.swing.JPanel jPanelPrincipal;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSlAgresividad;
+    private javax.swing.JSlider jSlPaciencia;
+    private javax.swing.JSlider jSlReflejos;
+    private javax.swing.JSlider jSlValentia;
+    private javax.swing.JTable jTbAdminVerPilotos;
     private javax.swing.JTabbedPane jTbAdministrador;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTxtFieldPilotoAgresividad;
     private javax.swing.JTextField jTxtFieldPilotoAltura;
     private javax.swing.JTextField jTxtFieldPilotoApellidos;
     private javax.swing.JTextField jTxtFieldPilotoEdad;
     private javax.swing.JTextField jTxtFieldPilotoNombre;
-    private javax.swing.JTextField jTxtFieldPilotoPaciencia;
     private javax.swing.JTextField jTxtFieldPilotoPeso;
-    private javax.swing.JTextField jTxtFieldPilotoReflejos;
-    private javax.swing.JTextField jTxtFieldPilotoValentia;
     // End of variables declaration//GEN-END:variables
+
+    private static final String FICHERO_PILOTOS = "ficheros" + System.getProperty("file.separator") + "PilotosLibres.dat";
+    private ArrayList <PilotoLibre> pilotosLibres = new ArrayList<>();
+    
+    private void cargarDatos() throws ClassNotFoundException {
+        cargarPilotosLibresDesdeFichero();
+    }
+    
+    private void cargarPilotosLibresDesdeFichero() throws ClassNotFoundException {
+        File fichero = new File(FICHERO_PILOTOS);
+        try {
+            FileInputStream fis = new FileInputStream(fichero);
+            try {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                
+                PilotoLibre piloto = null;
+                while ((piloto = (PilotoLibre) ois.readObject()) != null) {
+                    pilotosLibres.add(piloto);
+                }
+                ois.close();
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+            fis.close();
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    private void guardarPilotosLibresHaciaFichero() throws IOException {
+        File fichero = new File(FICHERO_PILOTOS);
+        if(!fichero.exists()) {
+            fichero.createNewFile();
+        } 
+        try {
+            FileOutputStream out = new FileOutputStream(fichero);
+            try {
+                ObjectOutputStream so = new ObjectOutputStream(out);
+                Iterator<PilotoLibre> pilotos = pilotosLibres.iterator();
+                while (pilotos.hasNext()) {
+                    PilotoLibre piloto = pilotos.next();
+                    so.writeObject(piloto);
+                }
+                so.close();
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+            out.close();
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    private void marcarComoErroneo(JTextField field) {
+        field.setBackground(Color.red);
+    }
+
+    private void cargarPilotosLibresEnTabla(JTable tabla) {
+        Iterator<PilotoLibre> pilotos = pilotosLibres.iterator();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        limpiarTabla(modelo);        
+        while (pilotos.hasNext()) {
+            PilotoLibre piloto = pilotos.next();
+            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
+            modelo.addRow(fila);
+        }
+    }
+
+    private void guardarDatosAdministrador() throws IOException {
+        guardarPilotosLibresHaciaFichero();
+    }
+
+    private void limpiarTabla(DefaultTableModel modelo) {
+        int cantidadFilas = modelo.getRowCount();
+        for (int i = cantidadFilas - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    private void ponerValorEnEtiquetaSlider(JSlider slider, JLabel label) {
+        Double valor = slider.getValue() * 0.01;
+        DecimalFormat df = new DecimalFormat("#.##");
+        label.setText(df.format(valor));
+    }
+
+    private void limpiarFormularioNuevoPiloto() {
+        this.jTxtFieldPilotoNombre.setText("");
+        this.jTxtFieldPilotoApellidos.setText("");
+        this.jTxtFieldPilotoEdad.setText("");
+        this.jTxtFieldPilotoAltura.setText("");
+        this.jTxtFieldPilotoPeso.setText("");
+        this.jSlAgresividad.setValue(0);
+        this.jSlPaciencia.setValue(0);
+        this.jSlReflejos.setValue(0);
+        this.jSlValentia.setValue(0);
+    }
+
+    private Boolean validarFormularioNuevoPiloto() {
+        Boolean correcto = true;
+        if (!this.jTxtFieldPilotoNombre.getInputVerifier().verify(this.jTxtFieldPilotoNombre)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldPilotoNombre);
+        }
+        if (!this.jTxtFieldPilotoApellidos.getInputVerifier().verify(this.jTxtFieldPilotoApellidos)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldPilotoApellidos);
+        }
+        if (!this.jTxtFieldPilotoEdad.getInputVerifier().verify(this.jTxtFieldPilotoEdad)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldPilotoEdad);
+        }
+        if (!this.jTxtFieldPilotoAltura.getInputVerifier().verify(this.jTxtFieldPilotoAltura)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldPilotoAltura);
+        }
+        if (!this.jTxtFieldPilotoPeso.getInputVerifier().verify(this.jTxtFieldPilotoPeso)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldPilotoPeso);
+        }
+        return correcto;
+    }
+
+    private void marcarComoValido(FocusEvent evt) {
+        evt.getComponent().setBackground(Color.white);
+    }
+
+    private void editarPiloto(PilotoLibre piloto) {
+        mostarPanelEditarPiloto();
+        colocarDatosPilotoEnFormulario(piloto);
+    }
+
+    private void mostarPanelEditarPiloto() {
+        this.jPanelAdministradorVerPilotos.setVisible(false);
+        this.jPanelCrearPiloto.setVisible(true);
+    }
+
+    private void colocarDatosPilotoEnFormulario(PilotoLibre piloto) {
+        this.jTxtFieldPilotoNombre.setText(piloto.getNombre());
+        this.jTxtFieldPilotoApellidos.setText(piloto.getApellidos());
+        this.jTxtFieldPilotoAltura.setText(piloto.getAltura().toString());
+        this.jTxtFieldPilotoPeso.setText(piloto.getPeso().toString());
+        this.jTxtFieldPilotoEdad.setText(piloto.getEdad().toString());
+        Double reflejos = piloto.getReflejos() * 100;
+        this.jSlReflejos.setValue(reflejos.intValue());
+        Double agresividad = piloto.getAgresividad() * 100;
+        this.jSlAgresividad.setValue(agresividad.intValue());
+        Double paciencia = piloto.getPaciencia() * 100;
+        this.jSlPaciencia.setValue(paciencia.intValue());
+        Double valentia = piloto.getValentia()* 100;
+        this.jSlValentia.setValue(valentia.intValue());
+    }
+
+    private void crearPilotoLibre() {
+        Boolean correcto = validarFormularioNuevoPiloto();
+        if (correcto) {
+            PilotoLibre piloto = obtenerPilotoLibreDesdeFormulario();
+            pilotosLibres.add(piloto);
+            limpiarFormularioNuevoPiloto();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void colocarCaracteristicasAleatoriasParaPiloto() {
+        Double valorMaximo = PilotoLibre.VALOR_MAXIMO_CARACTERISTICAS;
+        DecimalFormat df = new DecimalFormat("#.##");
+        Double reflejos = Math.random() * valorMaximo * 100;
+        this.jSlReflejos.setValue(reflejos.intValue());
+        Double agresividad = Math.random() * valorMaximo * 100;
+        this.jSlAgresividad.setValue(agresividad.intValue());
+        Double paciencia = Math.random() * valorMaximo * 100;
+        this.jSlPaciencia.setValue(paciencia.intValue());
+        Double valentia = Math.random() * valorMaximo * 100;
+        this.jSlValentia.setValue(valentia.intValue());
+    }
+
+    private void asignarEventosEnVentana() {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                try {
+                    guardarDatosAdministrador();
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
+    private PilotoLibre obtenerPilotoLibreDesdeFormulario() {
+        String nombre = this.jTxtFieldPilotoNombre.getText();
+        String apellidos = this.jTxtFieldPilotoApellidos.getText();
+        Integer edad = Integer.parseInt(this.jTxtFieldPilotoEdad.getText());
+        Integer altura = Integer.parseInt(this.jTxtFieldPilotoAltura.getText());
+        Integer peso = Integer.parseInt(this.jTxtFieldPilotoPeso.getText());
+        Double reflejos = this.jSlReflejos.getValue() * 0.01;
+        Double agresividad = this.jSlAgresividad.getValue() * 0.01;
+        Double paciencia = this.jSlPaciencia.getValue() * 0.01;
+        Double valentia = this.jSlValentia.getValue() * 0.01;
+
+        PilotoLibre piloto = new PilotoLibre(nombre, apellidos, edad, altura, peso, reflejos, agresividad, paciencia, valentia);
+        return piloto;
+    }
+
+    
 }
