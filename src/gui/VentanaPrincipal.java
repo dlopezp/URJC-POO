@@ -105,8 +105,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jBtCargarPilotos.setText("Cargar");
+        jBtCargarPilotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCargarPilotosActionPerformed(evt);
+            }
+        });
 
         jBtCrearPiloto.setText("Crear");
+        jBtCrearPiloto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCrearPilotoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre");
 
@@ -294,6 +304,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Double reflejos = Math.random() * valorMaximo;
         this.jTxtFieldPilotoReflejos.setText(reflejos.toString());
     }//GEN-LAST:event_jBtCaracteristicasPilotoAleatoriasActionPerformed
+
+    private void jBtCargarPilotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCargarPilotosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtCargarPilotosActionPerformed
+
+    private void jBtCrearPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCrearPilotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtCrearPilotoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -107,4 +107,5 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
         piloto.setValentia(valentia);
     }
    
+    public abstract void entrenar();
 }

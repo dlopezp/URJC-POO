@@ -1,5 +1,6 @@
 package formula;
 import java.util.*;
+import javax.swing.JFrame;
 
 /**
  *  Hay que revisar el algoritmo de sonIntercambiables, 
@@ -11,9 +12,9 @@ public class Escuderia {
     private Integer año;
     private double presup;
     private Integer puntos;
-    Set<PilotoOficial> p_oficiales;
-    Set<Coche> coches;
-    Set<PilotoProbador> p_probadores;
+    private Set<PilotoOficial> p_oficiales;
+    private Set<Coche> coches;
+    private Set<PilotoProbador> p_probadores;
     String dueño;
     
     public Escuderia( 
@@ -77,24 +78,44 @@ public class Escuderia {
         this.puntos = puntos;
     }
     
+    public Set<PilotoOficial> getP_oficiales() {
+        return p_oficiales;
+    }
+
+    public void setP_oficiales(Set<PilotoOficial> p_oficiales) {
+        this.p_oficiales = p_oficiales;
+    }
+
+    public Set<Coche> getCoches() {
+        return coches;
+    }
+
+    public void setCoches(Set<Coche> coches) {
+        this.coches = coches;
+    }
+
+    public Set<PilotoProbador> getP_probadores() {
+        return p_probadores;
+    }
+
+    public void setP_probadores(Set<PilotoProbador> p_probadores) {
+        this.p_probadores = p_probadores;
+    }
+
 
     
-    
-    
-
     public boolean puedeFicharPiloto(PilotoOficial p){
-        return ((this.presup - p.getSueldo()) > 0) & (this.p_oficiales.size() <2);
+        return ((this.presup - p.getSueldo()) > 0) & (this.getP_oficiales().size() <2);
     }
     
     public boolean puedeFicharPiloto(PilotoProbador p){
-        return ((this.presup - p.getSueldo()) > 0) & (this.p_probadores.size() <2);
+        return ((this.presup - p.getSueldo()) > 0) & (this.getP_probadores().size() <2);
     }
-    
     
     
     
     public boolean puedeFabricarCoche(){
-       return coches.size() < 2;
+       return getCoches().size() < 2;
         
     }
     
@@ -102,7 +123,7 @@ public class Escuderia {
     public void ficharPiloto(PilotoOficial p){
         
         if (puedeFicharPiloto(p)){
-            this.p_oficiales.add(p);
+            this.getP_oficiales().add(p);
             pagarSueldoAPiloto(p);}
         else
             System.out.println("No puede fichar a este piloto");
@@ -119,24 +140,27 @@ public class Escuderia {
     
     public void intercambiarPiloto(PilotoDecorador p_vendido, PilotoProbador p_comprado){
         if (puedeIntercambiarPiloto(p_vendido, p_comprado)){
-            Iterator<PilotoOficial> it_poficial = p_oficiales.iterator();
-            while (it_poficial.hasNext()){
-                    if (it_poficial.equals(p_vendido.getPiloto())){
-                        this.p_oficiales.add(new PilotoOficial(p_comprado.getPiloto()));
-                        it_poficial.remove();
+            Iterator<PilotoOficial> it_oficiales = getP_oficiales().iterator();
+            boolean encontrado = false;
+            while (it_oficiales.hasNext() & !encontrado){
+                    if (it_oficiales.equals(p_vendido.getPiloto())){
+                        this.getP_oficiales().add(new PilotoOficial(p_comprado.getPiloto()));
+                        it_oficiales.remove();
+                        encontrado = true;
                     }
-                    it_poficial.next();
+                    it_oficiales.next();
+            }
+            
+            Iterator<PilotoProbador> it_probadores = getP_probadores().iterator();
+            while (it_probadores.hasNext() & !encontrado){
+                    if (it_probadores.equals(p_vendido.getPiloto())){
+                        this.getP_probadores().add(new PilotoProbador(p_comprado.getPiloto()));
+                        it_probadores.remove();
+                        encontrado = true;
                     }
-            Iterator<PilotoProbador> it_pruebas = p_probadores.iterator();
-            while (it_pruebas.hasNext()){
-                    if (it_pruebas.equals(p_vendido.getPiloto())){
-                        this.p_probadores.add(new PilotoProbador(p_comprado.getPiloto()));
-                        it_pruebas.remove();
-                    }
-                    it_pruebas.next();
-                    }
+                    it_probadores.next();
+            }
         }
-
     }
         
     public void pagarSueldoAPiloto(PilotoDecorador p){
@@ -147,15 +171,38 @@ public class Escuderia {
     
     
     public void tienePresupuestoSuficiente(){}
-    public void puedeDescartarPilotoOficial(){};
-    public void fabricarCoche(){}
-    public void entrenar(){} 
+    
+    public boolean puedeDescartarPilotoOficial(){
+        return this.getP_oficiales().size()>1;
+    }
+    
+    
+    public void fabricarCoche(){
+        if (puedeFabricarCoche()){
+           Coche co = new Coche(String modelo, Double potencia, Double aerodinamica, Double neumaticos);
+            getCoches().add(co);
+        }
+    }
+    
+    public boolean puedeEntrenar(Circuito c){
+        return (getPresup() - c.getCanon()) > 0;
+    }
+    
+    public void entrenar(Circuito circuit, PilotoDecorador p, Coche c ){
+        c.mejorar();
+        p.entrenar();
+    } 
+    
     public void configurarCarrera(){}
     public void sumarPuntos(){}
     public void puedeParticiparEnCarrera(){}
-    public void puedeEntrenar(){}
+    
+
     public void obtenerPremio(){}
-    public void descartarPiloto(){}
+    public void descartarPiloto(){
+    }
+
+    
     
     
     
