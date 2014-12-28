@@ -56,7 +56,7 @@ public class PilotoLibreTest {
     public void test_GetSueldo() {
         Double valoracionGlobal = pilotoLibre.getValoraciónGlobal();
         Double sueldoEstimado = (valoracionGlobal * PilotoLibre.EUROS_POR_VALORACION);
-        assertThat(sueldoEstimado, is(pilotoLibre.getSueldo()));
+        assertThat(sueldoEstimado.intValue(), is(pilotoLibre.getSueldo()));
     }
     
 }

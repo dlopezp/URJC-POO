@@ -20,7 +20,7 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
         return piloto.getValoraciónGlobal();
     }
     
-    public Double getSueldo() {
+    public Integer getSueldo() {
         return piloto.getSueldo();
     }
     

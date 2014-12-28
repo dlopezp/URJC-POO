@@ -42,8 +42,8 @@ public class CocheTest {
     }
     
     @Test
-    public void test_Mejorar() {
-        coche.mejorar();
+    public void test_Entrenar() {
+        coche.entrenar();
         Double potenciaEsperada = potencia + Coche.INCREMENTO_MEJORA;
         assertThat(potenciaEsperada, is(coche.getPotencia()));
         Double aerodinamicaEsperada = aerodinamica + Coche.INCREMENTO_MEJORA;

@@ -50,7 +50,7 @@ public class Coche {
         return velocidad;
     }
     
-    public void mejorar() {
+    public void entrenar() {
         setPotencia(potencia + INCREMENTO_MEJORA);
         setAerodinamica(aerodinamica + INCREMENTO_MEJORA);
         setNeumaticos(neumaticos + INCREMENTO_MEJORA);

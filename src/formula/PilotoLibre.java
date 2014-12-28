@@ -48,11 +48,11 @@ public class PilotoLibre extends PilotoBase implements Serializable {
         return valorSeguro;
     }
     
-    public Double getSueldo() {
+    public Integer getSueldo() {
         Double sueldo;
         sueldo = reflejos + agresividad + paciencia + valentia;
         sueldo *= EUROS_POR_VALORACION;
-        return sueldo;
+        return sueldo.intValue();
     }
     
     public Double getValoraciónGlobal() {

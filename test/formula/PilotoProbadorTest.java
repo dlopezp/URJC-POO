@@ -36,7 +36,7 @@ public class PilotoProbadorTest {
     public void test_GetSueldo() {
         Double valoracionGlobal = pilotoProbador.getValoraciónGlobal();
         Double sueldoEstimado = (valoracionGlobal * PilotoProbador.EUROS_POR_VALORACION);
-        assertThat(sueldoEstimado, is(pilotoProbador.getSueldo()));
+        assertThat(sueldoEstimado.intValue(), is(pilotoProbador.getSueldo()));
     }
     
     @Test

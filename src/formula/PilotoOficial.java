@@ -15,7 +15,7 @@ public class PilotoOficial extends PilotoDecorador {
     }
 
     @Override
-    public Double getSueldo() {
+    public Integer getSueldo() {
         return piloto.getSueldo() + PLUS_PELIGROSIDAD;
     }
 }
