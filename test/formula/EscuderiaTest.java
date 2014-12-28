@@ -7,44 +7,71 @@ import static org.hamcrest.core.Is.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Eduardo Benito Fernández
- */
 public class EscuderiaTest {
-    private String nombre ="Ferrari";
-    private String pais = "Italia";
-    private Integer año = 1930;
-    private double presup = 1500;
-    private Integer puntos = 0;
-    
-    
-    private Set<PilotoOficial> p_oficiales;
+    private String nombreEscuderia ="Ferrari";
+    private String paisEscuderia = "Italia";
+    private Integer añoEscuderia = 1930;
+    private Integer presupuestoEscuderia = 50000;    
+    private Set<PilotoOficial> pilotosOficiales;
     private Set<Coche> coches;
-    private Set<PilotoProbador> p_probadores;
-    String dueño;
-
-    
-    private Escuderia escuderia = new Escuderia(nombre, pais, año, presup, puntos, p_oficiales, coches, p_probadores, dueño);
-    
-    // Datos Piloto Libre1
-    private String[] nom = {"Jim","Pepe"};
-    private String[] apellidos = {"Clark","Pérez"};
-    private Integer[] edad = {24, 30};
-    private Integer[] altura = {160, 170};
-    private Integer[] peso = {60, 72};
-    private Double[] reflejos = {4.0, 3.1};
-    private Double[] agresividad = {2.5, 4.7};
-    private Double[] paciencia = {4.5, 1.0};
-    private Double[] valentia = {3.3, 4.0};
-    private PilotoLibre[] pilotoLibre = new PilotoLibre(nombre, apellidos, edad, altura, peso, reflejos, agresividad, paciencia, valentia);
+    private Set<PilotoProbador> pilotosProbadores;
+    private String dueñoEscuderia = "Maurizio Arrivarrene";
    
-
+    // Datos Piloto Libre1
+    private String nombrePiloto1 = "Jim";
+    private String apellidosPiloto1 = "Clark";
+    private Integer edadPiloto1 = 24;
+    private Integer alturaPiloto1 = 160;
+    private Integer pesoPiloto1 = 60;
+    private Double reflejosPiloto1 = 4.0;
+    private Double agresividadPiloto1 = 2.5;
+    private Double pacienciaPiloto1 = 4.5;
+    private Double valentiaPiloto1 = 3.3;
+    private PilotoLibre pilotoLibre1 = new PilotoLibre(nombrePiloto1, apellidosPiloto1, edadPiloto1, alturaPiloto1, pesoPiloto1, reflejosPiloto1, agresividadPiloto1, pacienciaPiloto1, valentiaPiloto1);
     
+    private String nombrePiloto2 = "Jim";
+    private String apellidosPiloto2 = "Clark";
+    private Integer edadPiloto2 = 24;
+    private Integer alturaPiloto2 = 160;
+    private Integer pesoPiloto2 = 60;
+    private Double reflejosPiloto2 = 4.0;
+    private Double agresividadPiloto2 = 2.5;
+    private Double pacienciaPiloto2 = 4.5;
+    private Double valentiaPiloto2 = 3.3;    
+    private PilotoLibre pilotoLibre2 = new PilotoLibre(nombrePiloto2, apellidosPiloto2, edadPiloto2, alturaPiloto2, pesoPiloto2, reflejosPiloto2, agresividadPiloto2, pacienciaPiloto2, valentiaPiloto2);
+   
+    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, dueñoEscuderia, pilotoLibre1);
 
-
-
-@Test
- public void test_puedeIntercambiarPiloto(){
+    @Test
+    public void test_puedeFicharPilotoOficial() {
+        assertTrue(escuderia.puedeFicharPilotoOficial());
+        escuderia.ficharPiloto(new PilotoOficial(pilotoLibre2));
+        assertFalse(escuderia.puedeFicharPilotoOficial());
+    }
     
+    @Test
+    public void test_puedeFicharPilotoProbador() {
+        assertTrue(escuderia.puedeFicharPilotoProbador());
+        escuderia.ficharPiloto(new PilotoProbador(pilotoLibre1));
+        assertTrue(escuderia.puedeFicharPilotoProbador());
+        escuderia.ficharPiloto(new PilotoProbador(pilotoLibre2));
+        assertFalse(escuderia.puedeFicharPilotoProbador());
+    }
+    
+    @Test
+    public void test_tienePresupuestoSuficiente() {
+        assertTrue(escuderia.tienePresupuestoSuficiente(presupuestoEscuderia - 1));
+        assertTrue(escuderia.tienePresupuestoSuficiente(presupuestoEscuderia));
+        assertFalse(escuderia.tienePresupuestoSuficiente(presupuestoEscuderia + 1));
+    }
+    
+    @Test
+    public void test_ficharPilotoOficial() {
+        PilotoOficial piloto = new PilotoOficial(pilotoLibre2);
+        Set<PilotoOficial> pilotosOficiales = escuderia.getPilotosOficiales();
+        assertFalse(pilotosOficiales.contains(piloto));
+        escuderia.ficharPiloto(piloto);
+        pilotosOficiales = escuderia.getPilotosOficiales();
+        assertTrue(pilotosOficiales.contains(piloto));
+    }
 }

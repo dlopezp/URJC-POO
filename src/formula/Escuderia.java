@@ -24,17 +24,20 @@ public class Escuderia {
             Integer año,
             Integer presupuesto,
             String dueño,
-            Set<PilotoOficial> pilotosOficiales
+            PilotoLibre piloto
     ) {
         this.nombre = nombre;
         this.pais = pais;
         this.año = año;
         this.presupuesto = presupuesto;
         this.dueño = dueño;
-        this.pilotosOficiales = pilotosOficiales;
+        pilotosOficiales = new HashSet<PilotoOficial>();
+        pilotosProbadores = new HashSet<PilotoProbador>();
+        coches = new HashSet<Coche>();
+        pilotosOficiales.add(new PilotoOficial(piloto));
     }
     
-    public boolean puedeFicharPilotoOficial(){
+    public boolean puedeFicharPilotoOficial() {
         return (pilotosOficiales.size() < MAXIMA_CANTIDAD_DE_PILOTOS_OFICIALES);
     }
     
@@ -43,7 +46,7 @@ public class Escuderia {
     }    
     
     public boolean tienePresupuestoSuficiente(Integer gasto){
-            return (presupuesto >= gasto);
+        return (presupuesto >= gasto);
     }    
     
     public void ficharPiloto(PilotoOficial piloto) {
@@ -54,7 +57,7 @@ public class Escuderia {
     }
     
     public void ficharPiloto(PilotoProbador piloto) {
-        if (puedeFicharPilotoProbador()&& tienePresupuestoSuficiente(piloto.getSueldo())) {
+        if (puedeFicharPilotoProbador() && tienePresupuestoSuficiente(piloto.getSueldo())) {
             pilotosProbadores.add(piloto);
             pagarSueldoAPiloto(piloto);
         }
@@ -85,7 +88,7 @@ public class Escuderia {
     
     public void pagarSueldoAPiloto(PilotoDecorador piloto){
         this.presupuesto = this.presupuesto - piloto.getSueldo();
-    }    
+    }
     
     public boolean puedeDescartarPilotoOficial(){
         return pilotosOficiales.size() > MINIMA_CANTIDAD_DE_PILOTOS_OFICIALES;
