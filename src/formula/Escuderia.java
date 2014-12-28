@@ -2,10 +2,6 @@ package formula;
 import java.util.*;
 import javax.swing.JFrame;
 
-/**
- *  Hay que revisar el algoritmo de sonIntercambiables, 
- * @author Universidad
- */
 public class Escuderia {
     private String nombre;
     private String pais;
@@ -159,11 +155,11 @@ public class Escuderia {
         if (puedeIntercambiarPiloto(p_venta, p_compra)){
             if (esOficial(p_venta)){
                 if(puedeFicharPilotoOficial() ){
-                   PilotoOficial p_vendido = new PilotoOficial(p_venta); 
+                   PilotoOficial p_vendido = new PilotoOficial(p_venta);
                    Iterator<PilotoOficial> it_oficiales = this.p_oficiales.iterator();
                    boolean borrado = false;
                    while (it_oficiales.hasNext() & !borrado){
-                       if (it_oficiales.equals(p_vendido)){
+                       if (it_oficiales.next().equals(p_vendido)){
                            it_oficiales.remove();
                            borrado = true;
                        }    
@@ -180,7 +176,7 @@ public class Escuderia {
                    Iterator<PilotoProbador> it_probador = this.p_probadores.iterator();
                    boolean borrado = false;
                    while (it_probador.hasNext() & !borrado)
-                       if (it_probador.equals(p_vendido)){
+                       if (it_probador.next().equals(p_vendido)){
                            it_probador.remove();
                            borrado = true;
                        }    
@@ -230,19 +226,48 @@ public class Escuderia {
     }
     
     
-    public void configurarCarrera(){}
-    public void sumarPuntos(){}
-    public void puedeParticiparEnCarrera(){}
-    public void obtenerPremio(){}
+    public void descartarPiloto(PilotoOficial p){
+        if (puedeDescartarPilotoOficial())
+                this.p_oficiales.remove(p);
+        else
+            System.err.println("No se puede descartar");
+    }
     
-    
+    public void descartarPiloto(PilotoProbador p){
+        this.p_probadores.remove(p);
+    }
 
     
-    public void descartarPiloto(PilotoLibre p){
-        if ( esOficial(p))
-            if (puedeDescartarPilotoOficial())
-                descartarPiloto(p);
-        
+    public void sumarPuntos(Integer puntos){
+        setPuntos(this.puntos + puntos); 
     }
-   
+    
+    public Participante configurarCarrera(Carrera race, PilotoOficial piloto, Coche c){
+        Participante parti = new Participante(this,piloto, c); 
+        return parti;
+    }
+    
+    public ArrayList<Participante> configurarCarrera(Carrera race){
+       ArrayList<Participante> participantes = new ArrayList<>();
+       Iterator<PilotoOficial> it_oficiales = this.p_oficiales.iterator();
+       Iterator<Coche> it_coches = this.coches.iterator();
+       
+       int total = Math.min(this.coches.size(), this.p_oficiales.size());
+       for (int i=0; i<total; i++){
+           participantes.add(Participante(it_oficiales.next(),it_coches.next()));
+           i++;
+       }
+       return participantes;
+    }
+    
+    public void obtenerPremio()
+
+    public boolean puedeParticiparEnCarrera(Carrera race){
+        
+        }
+
+    
+    
 }
+    
+
