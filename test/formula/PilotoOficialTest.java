@@ -13,8 +13,8 @@ public class PilotoOficialTest {
     private String nombre = "Jim";
     private String apellidos = "Clark";
     private Integer edad = 24;
-    private Double altura = 1.6;
-    private Double peso = 60.0;
+    private Integer altura = 160;
+    private Integer peso = 60;
     private Double reflejos = 4.0;
     private Double agresividad = 2.5;
     private Double paciencia = 4.5;

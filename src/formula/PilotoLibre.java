@@ -7,8 +7,8 @@ public class PilotoLibre extends PilotoBase implements Serializable {
     protected String nombre;
     protected String apellidos;
     protected Integer edad;
-    protected Double altura;
-    protected Double peso;
+    protected Integer altura;
+    protected Integer peso;
     protected Integer puntos;
     protected Double reflejos;
     protected Double agresividad;
@@ -19,8 +19,8 @@ public class PilotoLibre extends PilotoBase implements Serializable {
             String nombre, 
             String apellidos, 
             Integer edad, 
-            Double altura, 
-            Double peso, 
+            Integer altura, 
+            Integer peso, 
             Double reflejos, 
             Double agresividad, 
             Double paciencia, 
@@ -70,6 +70,10 @@ public class PilotoLibre extends PilotoBase implements Serializable {
         setValentia(valentia + mejora);
     }
     
+    public String getNombreCompleto() {
+        return nombre + " " + apellidos;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -94,19 +98,19 @@ public class PilotoLibre extends PilotoBase implements Serializable {
         this.edad = edad;
     }
 
-    public Double getAltura() {
+    public Integer getAltura() {
         return altura;
     }
 
-    public void setAltura(Double altura) {
+    public void setAltura(Integer altura) {
         this.altura = altura;
     }
 
-    public Double getPeso() {
+    public Integer getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(Integer peso) {
         this.peso = peso;
     }
 
