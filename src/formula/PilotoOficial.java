@@ -9,6 +9,7 @@ public class PilotoOficial extends PilotoDecorador {
         super(piloto);
     }
     
+    @Override
     public void entrenar() {
         piloto.mejorar(INCREMENTO_MEJORA);
     }

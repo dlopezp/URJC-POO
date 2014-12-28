@@ -9,6 +9,8 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
     public PilotoDecorador(PilotoLibre piloto) {
         this.piloto = piloto;
     }
+    
+    public abstract void entrenar();
 
     public PilotoLibre getPiloto() {
         return piloto;

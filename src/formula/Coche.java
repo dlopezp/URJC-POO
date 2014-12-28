@@ -16,7 +16,7 @@ public class Coche {
     public static final Integer FACTOR_NEUMATICOS_CURVA = 10;
     public static final Double INCREMENTO_MEJORA = 0.1;
 
-    Coche(String modelo, Double potencia, Double aerodinamica, Double neumaticos) {
+    public Coche(String modelo, Double potencia, Double aerodinamica, Double neumaticos) {
         this.modelo = modelo;
         this.potencia = getValorCaracteristicaEnLimite(potencia);
         this.aerodinamica = getValorCaracteristicaEnLimite(aerodinamica);
