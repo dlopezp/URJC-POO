@@ -182,28 +182,12 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-<<<<<<< HEAD
                 <Component class="javax.swing.JButton" name="jBtShowCrearPiloto">
-=======
-                <Component class="javax.swing.JButton" name="jBtCargarPilotos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cargar"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtCargarPilotosActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="jBtCrearPiloto">
->>>>>>> 8276f588fd61f6aa1c0cfb90d3cd47fc4d35d436
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear"/>
                   </Properties>
                   <Events>
-<<<<<<< HEAD
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtShowCrearPilotoActionPerformed"/>
-=======
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtCrearPilotoActionPerformed"/>
->>>>>>> 8276f588fd61f6aa1c0cfb90d3cd47fc4d35d436
                   </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanelCrearPiloto">
