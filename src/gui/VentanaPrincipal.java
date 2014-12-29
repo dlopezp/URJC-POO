@@ -618,7 +618,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                             .addComponent(jTxtFieldCircuitoNumRectas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTxtFieldCircuitoCurvas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(163, 163, 163)))))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
         jPanelCrearCircuitoLayout.setVerticalGroup(
             jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -710,32 +710,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelAdministradorVerCircuitos.setLayout(jPanelAdministradorVerCircuitosLayout);
         jPanelAdministradorVerCircuitosLayout.setHorizontalGroup(
             jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCircuitoEditar)
-                .addGap(858, 858, 858))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
-                    .addGap(278, 278, 278)
-                    .addComponent(jButtonCircuitoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(443, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCircuitoEliminar)
+                .addContainerGap())
         );
         jPanelAdministradorVerCircuitosLayout.setVerticalGroup(
             jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCircuitoEditar)
-                .addGap(0, 558, Short.MAX_VALUE))
-            .addGroup(jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
-                    .addGap(247, 247, 247)
-                    .addComponent(jButtonCircuitoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(250, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCircuitoEliminar)
+                    .addComponent(jButtonCircuitoEditar))
+                .addGap(54, 54, 54))
         );
 
         javax.swing.GroupLayout jPanelGestionCircuitosLayout = new javax.swing.GroupLayout(jPanelGestionCircuitos);
@@ -752,9 +744,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelGestionCircuitosLayout.createSequentialGroup()
-                    .addGap(83, 83, 83)
-                    .addComponent(jPanelAdministradorVerCircuitos, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(109, Short.MAX_VALUE)))
+                    .addGap(91, 91, 91)
+                    .addComponent(jPanelAdministradorVerCircuitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanelGestionCircuitosLayout.setVerticalGroup(
             jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -763,7 +755,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtAdministradorVerCircuitos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtShowCrearCircuito)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestionCircuitosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelCrearCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -771,7 +763,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelGestionCircuitosLayout.createSequentialGroup()
                     .addGap(5, 5, 5)
-                    .addComponent(jPanelAdministradorVerCircuitos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelAdministradorVerCircuitos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(6, 6, 6)))
         );
 
@@ -790,7 +782,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelAdministradorLayout.setVerticalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorLayout.createSequentialGroup()
-                .addComponent(jTbAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE)
+                .addComponent(jTbAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtAdminVolver)
                 .addContainerGap())
@@ -802,12 +794,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(304, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
