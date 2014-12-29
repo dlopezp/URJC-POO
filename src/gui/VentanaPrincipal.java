@@ -964,7 +964,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtCrearCircuitoActionPerformed
 
     private void jBtAdministradorVerCircuitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAdministradorVerCircuitosActionPerformed
-        // TODO add your handling code here:
+        cargarCircuitosEnTabla(this.jTbAdminVerCircuitos);
+        this.jPanelCrearCircuito.setVisible(false);
+        this.jPanelAdministradorVerCircuitos.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jBtAdministradorVerCircuitosActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
