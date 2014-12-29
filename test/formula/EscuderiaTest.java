@@ -117,30 +117,71 @@ public class EscuderiaTest {
     }
     
     @Test
-    public void test_intercambiarPiloto() {
+    public void test_intercambiarProbadorProbador() {
         PilotoProbador pilotoP1 = new PilotoProbador(pilotoLibre1);
         PilotoProbador pilotoP2 = new PilotoProbador(pilotoLibre2);
-        PilotoOficial pilotoO1 = new PilotoOficial(pilotoLibre1);
-        PilotoOficial pilotoO2 = new PilotoOficial(pilotoLibre2);
-        PilotoOficial pilotoO3 = new PilotoOficial(pilotoLibre2);
-        escuderia.intercambiarPiloto(pilotoP1, pilotoP2);
-        assertFalse(escuderia.getPilotosProbadores().contains(pilotoP2));
-        
         escuderia.ficharPiloto(pilotoP1);
         assertTrue(escuderia.getPilotosProbadores().contains(pilotoP1));
+        assertFalse(escuderia.getPilotosProbadores().contains(pilotoP2));
         escuderia.intercambiarPiloto(pilotoP1, pilotoP2);
-        assertTrue(escuderia.getPilotosProbadores().contains(pilotoP2));
+        assertFalse(escuderia.getPilotosProbadores().contains(pilotoP1));
+        assertTrue(escuderia.getPilotosProbadores().contains(pilotoP2));  
+    }
+    
+    @Test
+    public void test_intercambiarOficialOficial() {
+        Set<PilotoOficial> oficiales; 
+        PilotoOficial pilotoO1 = new PilotoOficial(pilotoLibre1);
+        PilotoOficial pilotoO2 = new PilotoOficial(pilotoLibre2);
+        escuderia.ficharPiloto(pilotoO1);
+        oficiales = escuderia.getPilotosOficiales();
+        assertTrue(oficiales.contains(pilotoO1));
+        assertFalse(oficiales.contains(pilotoO2));
+        escuderia.intercambiarPiloto(pilotoO1, pilotoO2);
+        oficiales = escuderia.getPilotosOficiales();
+        assertFalse(oficiales.contains(pilotoO1));
+        assertTrue(oficiales.contains(pilotoO2));       
+    }
+    
+    @Test
+    public void test_intercambiarOficialProbador() {
+ 
+        PilotoOficial pilotoO1 = new PilotoOficial(pilotoLibre1);
+        PilotoOficial pilotoO2 = new PilotoOficial(pilotoLibre2);
+        PilotoProbador pilotoP1 = new PilotoProbador(pilotoLibre1);
+        PilotoProbador pilotoP2 = new PilotoProbador(pilotoLibre2);
+        PilotoProbador pilotoP3 = new PilotoProbador(pilotoLibre2);
+        
+        // si solo hay un piloto oficial en nuestra escuderia no se puede intercambiar
+        escuderia.ficharPiloto(pilotoO1);
+        escuderia.intercambiarPiloto(pilotoO1, pilotoP1);
+        assertTrue(escuderia.getPilotosOficiales().contains(pilotoO1));
         assertFalse(escuderia.getPilotosProbadores().contains(pilotoP1));
         
+        // si hay 2 pilotos oficiales en nuestra escuderia se puede intercambiar
+        escuderia.getPilotosOficiales().clear();
+        escuderia.getPilotosProbadores().clear();
         escuderia.ficharPiloto(pilotoO1);
         escuderia.ficharPiloto(pilotoO2);
-        escuderia.intercambiarPiloto(pilotoP2, pilotoO3);
-        assertFalse(escuderia.getPilotosOficiales().contains(pilotoO3));
+        escuderia.intercambiarPiloto(pilotoO1, pilotoP1);
+        assertFalse(escuderia.getPilotosOficiales().contains(pilotoO1));
+        assertTrue(escuderia.getPilotosProbadores().contains(pilotoP1));
+        
+        // si ya hay 2 pilotos probadores en nuestra escudería no se puede intercambiar
+        escuderia.getPilotosOficiales().clear();
+        escuderia.getPilotosProbadores().clear();
+        escuderia.ficharPiloto(pilotoO1);
+        escuderia.ficharPiloto(pilotoO2);
+        escuderia.ficharPiloto(pilotoP1);
+        escuderia.ficharPiloto(pilotoP2);
+        escuderia.intercambiarPiloto(pilotoO1, pilotoP3);
+        assertTrue(escuderia.getPilotosOficiales().contains(pilotoO1));
+        assertFalse(escuderia.getPilotosProbadores().contains(pilotoP3));
         
         
-        
-
-       
     }
+    
+   // @Test
+   // public void test_intercambiarProbadorOficial() {}
 
 }
