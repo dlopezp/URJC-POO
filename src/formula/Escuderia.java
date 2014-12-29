@@ -78,7 +78,6 @@ public class Escuderia {
                PilotoProbador pilotoProbador = new PilotoProbador(pilotoCompra.getPiloto());
                pilotosProbadores.add(pilotoProbador);
            }
-           
         }
     }
    

@@ -39,7 +39,20 @@ public class EscuderiaTest {
     private Double pacienciaPiloto2 = 4.5;
     private Double valentiaPiloto2 = 3.3;    
     private PilotoLibre pilotoLibre2 = new PilotoLibre(nombrePiloto2, apellidosPiloto2, edadPiloto2, alturaPiloto2, pesoPiloto2, reflejosPiloto2, agresividadPiloto2, pacienciaPiloto2, valentiaPiloto2);
-   
+
+    
+    private String nombrePiloto3 = "Pep";
+    private String apellidosPiloto3 = "Dee";
+    private Integer edadPiloto3 = 30;
+    private Integer alturaPiloto3 = 170;
+    private Integer pesoPiloto3 = 80;
+    private Double reflejosPiloto3 = 1.0;
+    private Double agresividadPiloto3 = 1.5;
+    private Double pacienciaPiloto3 = 1.5;
+    private Double valentiaPiloto3 = 1.3;    
+    private PilotoLibre pilotoLibre3 = new PilotoLibre(nombrePiloto3, apellidosPiloto3, edadPiloto3, alturaPiloto3, pesoPiloto3, reflejosPiloto3, agresividadPiloto3, pacienciaPiloto3, valentiaPiloto3);
+    
+    
     private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, dueñoEscuderia, pilotoLibre1);
 
     @Test
@@ -74,4 +87,60 @@ public class EscuderiaTest {
         pilotosOficiales = escuderia.getPilotosOficiales();
         assertTrue(pilotosOficiales.contains(piloto));
     }
+
+    @Test
+    public void test_ficharPilotoProbador() {
+        PilotoProbador piloto = new PilotoProbador(pilotoLibre2);
+        Set<PilotoProbador> pilotosProbadores = escuderia.getPilotosProbadores();
+        assertFalse(pilotosProbadores.contains(piloto));
+        escuderia.ficharPiloto(piloto);
+        pilotosProbadores = escuderia.getPilotosProbadores();
+        assertTrue(pilotosProbadores.contains(piloto));
+        PilotoProbador piloto2 = new PilotoProbador(pilotoLibre2);
+        escuderia.ficharPiloto(piloto2);
+        pilotosProbadores = escuderia.getPilotosProbadores();
+        assertTrue(pilotosProbadores.contains(piloto2));
+        PilotoProbador piloto3 = new PilotoProbador(pilotoLibre2);
+        escuderia.ficharPiloto(piloto3);
+        pilotosProbadores = escuderia.getPilotosProbadores();
+        assertFalse(pilotosProbadores.contains(piloto3));
+    }
+    
+    @Test
+    public void test_sonPilotosIntercambiables(){
+        PilotoOficial pilotoOficial1 = new PilotoOficial(pilotoLibre2);
+        PilotoProbador pilotoProbador2 =  new PilotoProbador(pilotoLibre2);
+        PilotoProbador pilotoProbador3 =  new PilotoProbador(pilotoLibre3);
+        assertTrue(Escuderia.sonPilotosIntercambiables(pilotoOficial1, pilotoProbador2));
+        assertFalse(Escuderia.sonPilotosIntercambiables(pilotoOficial1, pilotoProbador3));
+        assertFalse(Escuderia.sonPilotosIntercambiables(pilotoProbador2, pilotoProbador3));
+    }
+    
+    @Test
+    public void test_intercambiarPiloto() {
+        PilotoProbador pilotoP1 = new PilotoProbador(pilotoLibre1);
+        PilotoProbador pilotoP2 = new PilotoProbador(pilotoLibre2);
+        PilotoOficial pilotoO1 = new PilotoOficial(pilotoLibre1);
+        PilotoOficial pilotoO2 = new PilotoOficial(pilotoLibre2);
+        PilotoOficial pilotoO3 = new PilotoOficial(pilotoLibre2);
+        escuderia.intercambiarPiloto(pilotoP1, pilotoP2);
+        assertFalse(escuderia.getPilotosProbadores().contains(pilotoP2));
+        
+        escuderia.ficharPiloto(pilotoP1);
+        assertTrue(escuderia.getPilotosProbadores().contains(pilotoP1));
+        escuderia.intercambiarPiloto(pilotoP1, pilotoP2);
+        assertTrue(escuderia.getPilotosProbadores().contains(pilotoP2));
+        assertFalse(escuderia.getPilotosProbadores().contains(pilotoP1));
+        
+        escuderia.ficharPiloto(pilotoO1);
+        escuderia.ficharPiloto(pilotoO2);
+        escuderia.intercambiarPiloto(pilotoP2, pilotoO3);
+        assertFalse(escuderia.getPilotosOficiales().contains(pilotoO3));
+        
+        
+        
+
+       
+    }
+
 }
