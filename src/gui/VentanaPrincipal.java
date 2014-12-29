@@ -90,6 +90,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTbAdminVerPilotos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanelGestionCircuitos = new javax.swing.JPanel();
+        jBtShowCrearCircuito = new javax.swing.JButton();
+        jPanelCrearCircuito = new javax.swing.JPanel();
+        jLabelCircuitoNombre = new javax.swing.JLabel();
+        jTxtFieldCircuitoNombre = new javax.swing.JTextField();
+        jLabelCircuitoAforo = new javax.swing.JLabel();
+        jTxtFieldCircuitoAforo = new javax.swing.JTextField();
+        jLabelCircuitoCanon = new javax.swing.JLabel();
+        jTxtFieldCircuitoCanon = new javax.swing.JTextField();
+        jLabelCircuitoRectas = new javax.swing.JLabel();
+        jTxtFieldCircuitoRectas = new javax.swing.JTextField();
+        jLabelCircuitoCurvas = new javax.swing.JLabel();
+        jTxtFieldCircuitoCurvas = new javax.swing.JTextField();
+        jBtCrearCircuito = new javax.swing.JButton();
+        jLabelCircuitoNumRectas = new javax.swing.JLabel();
+        jTxtFieldCircuitoNumRectas = new javax.swing.JTextField();
+        jLabelCircuitoNumCurvas = new javax.swing.JLabel();
+        jTxtFieldCircuitoNumCurvas = new javax.swing.JTextField();
+        jBtAdministradorVerCircuitos = new javax.swing.JButton();
+        jPanelAdministradorVerCircuitos = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTbAdminVerCircuitos = new javax.swing.JTable();
+        jButtonCircuitoEditar = new javax.swing.JButton();
+        jButtonCircuitoEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,14 +133,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addGap(145, 145, 145)
                 .addComponent(jBtAccesoAdministrador)
-                .addContainerGap(643, Short.MAX_VALUE))
+                .addContainerGap(570, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBtAccesoAdministrador)
-                .addContainerGap(642, Short.MAX_VALUE))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
 
         jBtAdminVolver.setText("Volver");
@@ -451,7 +475,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
                 .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 103, Short.MAX_VALUE))
+                .addGap(0, 62, Short.MAX_VALUE))
             .addGroup(jPanelAdminPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAdminPilotosLayout.createSequentialGroup()
                     .addGap(5, 5, 5)
@@ -461,20 +485,312 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTbAdministrador.addTab("Pilotos", jPanelAdminPilotos);
 
+        jPanelGestionCircuitos.setPreferredSize(new java.awt.Dimension(329, 253));
+
+        jBtShowCrearCircuito.setText("Crear");
+        jBtShowCrearCircuito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtShowCrearCircuitoActionPerformed(evt);
+            }
+        });
+
+        jPanelCrearCircuito.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jPanelCrearCircuitoInputMethodTextChanged(evt);
+            }
+        });
+
+        jLabelCircuitoNombre.setText("Nombre");
+
+        jTxtFieldCircuitoNombre.setInputVerifier(new NotEmptyVerifier());
+        jTxtFieldCircuitoNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoNombreFocusLost(evt);
+            }
+        });
+        jTxtFieldCircuitoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFieldCircuitoNombreActionPerformed(evt);
+            }
+        });
+
+        jLabelCircuitoAforo.setText("Aforo");
+
+        jTxtFieldCircuitoAforo.setInputVerifier(new NotEmptyVerifier());
+        jTxtFieldCircuitoAforo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoAforoFocusLost(evt);
+            }
+        });
+
+        jLabelCircuitoCanon.setText("Canon");
+
+        jTxtFieldCircuitoCanon.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldCircuitoCanon.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoCanonFocusLost(evt);
+            }
+        });
+
+        jLabelCircuitoRectas.setText("Distancia Rectas");
+
+        jTxtFieldCircuitoRectas.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldCircuitoRectas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoRectasFocusLost(evt);
+            }
+        });
+
+        jLabelCircuitoCurvas.setText("Distancia Curvas");
+
+        jTxtFieldCircuitoCurvas.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldCircuitoCurvas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoCurvasFocusLost(evt);
+            }
+        });
+
+        jBtCrearCircuito.setText("Guardar");
+        jBtCrearCircuito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtCrearCircuitoActionPerformed(evt);
+            }
+        });
+
+        jLabelCircuitoNumRectas.setText("Número de Rectas");
+
+        jTxtFieldCircuitoNumRectas.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldCircuitoNumRectas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoNumRectasFocusLost(evt);
+            }
+        });
+
+        jLabelCircuitoNumCurvas.setText("Número de Curvas");
+
+        jTxtFieldCircuitoNumCurvas.setInputVerifier(new IsIntegerVerifier());
+        jTxtFieldCircuitoNumCurvas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtFieldCircuitoNumCurvasFocusLost(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCrearCircuitoLayout = new javax.swing.GroupLayout(jPanelCrearCircuito);
+        jPanelCrearCircuito.setLayout(jPanelCrearCircuitoLayout);
+        jPanelCrearCircuitoLayout.setHorizontalGroup(
+            jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                                .addComponent(jLabelCircuitoNombre)
+                                .addGap(1, 1, 1))
+                            .addComponent(jLabelCircuitoCanon, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCircuitoAforo, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtFieldCircuitoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTxtFieldCircuitoAforo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTxtFieldCircuitoCanon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBtCrearCircuito)
+                            .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                                        .addComponent(jLabelCircuitoNumCurvas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTxtFieldCircuitoNumCurvas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                                        .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabelCircuitoNumRectas)
+                                            .addComponent(jLabelCircuitoRectas)
+                                            .addComponent(jLabelCircuitoCurvas))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTxtFieldCircuitoRectas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTxtFieldCircuitoNumRectas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTxtFieldCircuitoCurvas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(163, 163, 163)))))
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+        jPanelCrearCircuitoLayout.setVerticalGroup(
+            jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCrearCircuitoLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCircuitoNombre)
+                    .addComponent(jTxtFieldCircuitoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCircuitoAforo)
+                    .addComponent(jTxtFieldCircuitoAforo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCircuitoCanon)
+                    .addComponent(jTxtFieldCircuitoCanon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCircuitoRectas)
+                    .addComponent(jTxtFieldCircuitoRectas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCircuitoNumRectas)
+                    .addComponent(jTxtFieldCircuitoNumRectas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtFieldCircuitoCurvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCircuitoCurvas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCrearCircuitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtFieldCircuitoNumCurvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCircuitoNumCurvas))
+                .addGap(39, 39, 39)
+                .addComponent(jBtCrearCircuito)
+                .addGap(48, 48, 48))
+        );
+
+        jTxtFieldCircuitoNombre.getAccessibleContext().setAccessibleDescription("");
+        jTxtFieldCircuitoNombre.getAccessibleContext().setAccessibleParent(jPanelGestionCircuitos);
+
+        jBtAdministradorVerCircuitos.setText("Ver");
+        jBtAdministradorVerCircuitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAdministradorVerCircuitosActionPerformed(evt);
+            }
+        });
+
+        jTbAdminVerCircuitos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Aforo", "Canon", "Rectas", "Curvas"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTbAdminVerCircuitos);
+
+        jButtonCircuitoEditar.setText("Editar");
+        jButtonCircuitoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCircuitoEditarActionPerformed(evt);
+            }
+        });
+
+        jButtonCircuitoEliminar.setText("Eliminar");
+        jButtonCircuitoEliminar.setOpaque(false);
+        jButtonCircuitoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCircuitoEliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelAdministradorVerCircuitosLayout = new javax.swing.GroupLayout(jPanelAdministradorVerCircuitos);
+        jPanelAdministradorVerCircuitos.setLayout(jPanelAdministradorVerCircuitosLayout);
+        jPanelAdministradorVerCircuitosLayout.setHorizontalGroup(
+            jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCircuitoEditar)
+                .addGap(858, 858, 858))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
+                    .addGap(278, 278, 278)
+                    .addComponent(jButtonCircuitoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(443, Short.MAX_VALUE)))
+        );
+        jPanelAdministradorVerCircuitosLayout.setVerticalGroup(
+            jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCircuitoEditar)
+                .addGap(0, 558, Short.MAX_VALUE))
+            .addGroup(jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAdministradorVerCircuitosLayout.createSequentialGroup()
+                    .addGap(247, 247, 247)
+                    .addComponent(jButtonCircuitoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(250, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jPanelGestionCircuitosLayout = new javax.swing.GroupLayout(jPanelGestionCircuitos);
+        jPanelGestionCircuitos.setLayout(jPanelGestionCircuitosLayout);
+        jPanelGestionCircuitosLayout.setHorizontalGroup(
+            jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGestionCircuitosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtShowCrearCircuito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                    .addComponent(jBtAdministradorVerCircuitos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCrearCircuito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelGestionCircuitosLayout.createSequentialGroup()
+                    .addGap(83, 83, 83)
+                    .addComponent(jPanelAdministradorVerCircuitos, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(109, Short.MAX_VALUE)))
+        );
+        jPanelGestionCircuitosLayout.setVerticalGroup(
+            jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGestionCircuitosLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jBtAdministradorVerCircuitos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtShowCrearCircuito)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGestionCircuitosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelCrearCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(595, 595, 595))
+            .addGroup(jPanelGestionCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelGestionCircuitosLayout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addComponent(jPanelAdministradorVerCircuitos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(6, 6, 6)))
+        );
+
+        jTbAdministrador.addTab("Circuitos", jPanelGestionCircuitos);
+
         javax.swing.GroupLayout jPanelAdministradorLayout = new javax.swing.GroupLayout(jPanelAdministrador);
         jPanelAdministrador.setLayout(jPanelAdministradorLayout);
         jPanelAdministradorLayout.setHorizontalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorLayout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtAdminVolver)
                 .addContainerGap())
-            .addComponent(jTbAdministrador)
+            .addComponent(jTbAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
         jPanelAdministradorLayout.setVerticalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorLayout.createSequentialGroup()
-                .addComponent(jTbAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addComponent(jTbAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtAdminVolver)
                 .addContainerGap())
@@ -484,7 +800,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 73, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -493,7 +811,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -515,6 +833,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jPanelCrearPiloto.setVisible(false);
         this.jPanelAdministradorVerPilotos.setVisible(true);
         cargarPilotosLibresEnTabla(this.jTbAdminVerPilotos);
+        cargarCircuitosEnTabla(this.jTbAdminVerCircuitos);
     }//GEN-LAST:event_jBtAccesoAdministradorActionPerformed
 
     private void jBtCaracteristicasPilotoAleatoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCaracteristicasPilotoAleatoriasActionPerformed
@@ -595,6 +914,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         marcarComoValido(evt);
     }//GEN-LAST:event_jTxtFieldPilotoPesoFocusLost
 
+    private void jBtShowCrearCircuitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtShowCrearCircuitoActionPerformed
+       mostarPanelEditarCircuito();
+    }//GEN-LAST:event_jBtShowCrearCircuitoActionPerformed
+
+    private void jTxtFieldCircuitoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoNombreFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoNombreFocusLost
+
+    private void jTxtFieldCircuitoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtFieldCircuitoNombreActionPerformed
+
+    private void jTxtFieldCircuitoAforoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoAforoFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoAforoFocusLost
+
+    private void jTxtFieldCircuitoCanonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoCanonFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoCanonFocusLost
+
+    private void jTxtFieldCircuitoRectasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoRectasFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoRectasFocusLost
+
+    private void jTxtFieldCircuitoCurvasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoCurvasFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoCurvasFocusLost
+
+    private void jBtCrearCircuitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCrearCircuitoActionPerformed
+       crearCircuito(); 
+    }//GEN-LAST:event_jBtCrearCircuitoActionPerformed
+
+    private void jBtAdministradorVerCircuitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAdministradorVerCircuitosActionPerformed
+        cargarCircuitosEnTabla(this.jTbAdminVerCircuitos);
+        this.jPanelCrearCircuito.setVisible(false);
+        this.jPanelAdministradorVerCircuitos.setVisible(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_jBtAdministradorVerCircuitosActionPerformed
+
+    private void jButtonCircuitoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCircuitoEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCircuitoEliminarActionPerformed
+
+    private void jButtonCircuitoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCircuitoEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCircuitoEditarActionPerformed
+
+    private void jPanelCrearCircuitoInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jPanelCrearCircuitoInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelCrearCircuitoInputMethodTextChanged
+
+    private void jTxtFieldCircuitoNumRectasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoNumRectasFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoNumRectasFocusLost
+
+    private void jTxtFieldCircuitoNumCurvasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoNumCurvasFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTxtFieldCircuitoNumCurvasFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -633,12 +1010,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtAccesoAdministrador;
     private javax.swing.JButton jBtAdminVolver;
+    private javax.swing.JButton jBtAdministradorVerCircuitos;
     private javax.swing.JButton jBtAdministradorVerPilotos;
     private javax.swing.JButton jBtCaracteristicasPilotoAleatorias;
+    private javax.swing.JButton jBtCrearCircuito;
     private javax.swing.JButton jBtCrearPiloto;
+    private javax.swing.JButton jBtShowCrearCircuito;
     private javax.swing.JButton jBtShowCrearPiloto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCircuitoEditar;
+    private javax.swing.JButton jButtonCircuitoEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -648,22 +1030,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCircuitoAforo;
+    private javax.swing.JLabel jLabelCircuitoCanon;
+    private javax.swing.JLabel jLabelCircuitoCurvas;
+    private javax.swing.JLabel jLabelCircuitoNombre;
+    private javax.swing.JLabel jLabelCircuitoNumCurvas;
+    private javax.swing.JLabel jLabelCircuitoNumRectas;
+    private javax.swing.JLabel jLabelCircuitoRectas;
     private javax.swing.JLabel jLblAgresividad;
     private javax.swing.JLabel jLblPaciencia;
     private javax.swing.JLabel jLblReflejos;
     private javax.swing.JLabel jLblValentia;
     private javax.swing.JPanel jPanelAdminPilotos;
     private javax.swing.JPanel jPanelAdministrador;
+    private javax.swing.JPanel jPanelAdministradorVerCircuitos;
     private javax.swing.JPanel jPanelAdministradorVerPilotos;
+    private javax.swing.JPanel jPanelCrearCircuito;
     private javax.swing.JPanel jPanelCrearPiloto;
+    private javax.swing.JPanel jPanelGestionCircuitos;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlAgresividad;
     private javax.swing.JSlider jSlPaciencia;
     private javax.swing.JSlider jSlReflejos;
     private javax.swing.JSlider jSlValentia;
+    private javax.swing.JTable jTbAdminVerCircuitos;
     private javax.swing.JTable jTbAdminVerPilotos;
     private javax.swing.JTabbedPane jTbAdministrador;
+    private javax.swing.JTextField jTxtFieldCircuitoAforo;
+    private javax.swing.JTextField jTxtFieldCircuitoCanon;
+    private javax.swing.JTextField jTxtFieldCircuitoCurvas;
+    private javax.swing.JTextField jTxtFieldCircuitoNombre;
+    private javax.swing.JTextField jTxtFieldCircuitoNumCurvas;
+    private javax.swing.JTextField jTxtFieldCircuitoNumRectas;
+    private javax.swing.JTextField jTxtFieldCircuitoRectas;
     private javax.swing.JTextField jTxtFieldPilotoAltura;
     private javax.swing.JTextField jTxtFieldPilotoApellidos;
     private javax.swing.JTextField jTxtFieldPilotoEdad;
@@ -673,11 +1074,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private static final String FICHERO_PILOTOS = "ficheros" + System.getProperty("file.separator") + "PilotosLibres.dat";
     private ArrayList <PilotoLibre> pilotosLibres = new ArrayList<>();
+    private static final String FICHERO_CIRCUITOS = "ficheros" + System.getProperty("file.separator") + "Circuitos.dat";
+    private ArrayList <Circuito> circuitos = new ArrayList<>();
     
     private void cargarDatos() throws ClassNotFoundException {
         cargarPilotosLibresDesdeFichero();
+        cargarCircuitosDesdeFichero();
     }
     
+
     private void cargarPilotosLibresDesdeFichero() throws ClassNotFoundException {
         File fichero = new File(FICHERO_PILOTOS);
         try {
@@ -688,6 +1093,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 PilotoLibre piloto = null;
                 while ((piloto = (PilotoLibre) ois.readObject()) != null) {
                     pilotosLibres.add(piloto);
+                }
+                ois.close();
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+            fis.close();
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    private void cargarCircuitosDesdeFichero() throws ClassNotFoundException {
+        File fichero = new File(FICHERO_CIRCUITOS);
+        try {
+            FileInputStream fis = new FileInputStream(fichero);
+            try {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                
+                Circuito circuito = null;
+                while ((circuito = (Circuito) ois.readObject()) != null) {
+                    circuitos.add(circuito);
                 }
                 ois.close();
             } catch (IOException ex) {
@@ -723,6 +1149,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
     
+    private void guardarCircuitosHaciaFichero() throws IOException {
+        File fichero = new File(FICHERO_CIRCUITOS);
+        if(!fichero.exists()) {
+            fichero.createNewFile();
+        } 
+        try {
+            FileOutputStream out = new FileOutputStream(fichero);
+            try {
+                ObjectOutputStream so = new ObjectOutputStream(out);
+                Iterator<Circuito> it = circuitos.iterator();
+                while (it.hasNext()) {
+                    Circuito circuito = it.next();
+                    so.writeObject(circuito);
+                }
+                so.close();
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+            out.close();
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
+    
     private void marcarComoErroneo(JTextField field) {
         field.setBackground(Color.red);
     }
@@ -737,9 +1187,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             modelo.addRow(fila);
         }
     }
+    
+    private void cargarCircuitosEnTabla(JTable tabla){
+        Iterator<Circuito> it = circuitos.iterator();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        limpiarTabla(modelo);        
+        while (it.hasNext()) {
+            Circuito circuito = it.next();
+            Object[] fila = new Object[]{circuito.getNombre(), circuito.getAforo(), circuito.getCanon(),circuito.getRectas(),circuito.getCurvas()};
+            modelo.addRow(fila);
+        }
+    }
 
     private void guardarDatosAdministrador() throws IOException {
         guardarPilotosLibresHaciaFichero();
+        guardarCircuitosHaciaFichero();
     }
 
     private void limpiarTabla(DefaultTableModel modelo) {
@@ -766,6 +1228,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jSlReflejos.setValue(0);
         this.jSlValentia.setValue(0);
     }
+    
+    private void limpiarFormularioNuevoCircuito(){
+        this.jTxtFieldCircuitoNombre.setText("");
+        this.jTxtFieldCircuitoAforo.setText("");
+        this.jTxtFieldCircuitoCanon.setText("");
+        this.jTxtFieldCircuitoRectas.setText("");
+        this.jTxtFieldCircuitoCurvas.setText("");
+        this.jTxtFieldCircuitoNumRectas.setText("");
+        this.jTxtFieldCircuitoNumCurvas.setText("");
+    }
 
     private Boolean validarFormularioNuevoPiloto() {
         Boolean correcto = true;
@@ -791,6 +1263,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         return correcto;
     }
+    
+        private Boolean validarFormularioNuevoCircuito() {
+        Boolean correcto = true;
+        if (!this.jTxtFieldCircuitoNombre.getInputVerifier().verify(this.jTxtFieldCircuitoNombre)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldCircuitoNombre);
+        }
+        if (!this.jTxtFieldCircuitoAforo.getInputVerifier().verify(this.jTxtFieldCircuitoAforo)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldCircuitoAforo);
+        }
+        if (!this.jTxtFieldCircuitoCanon.getInputVerifier().verify(this.jTxtFieldCircuitoCanon)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldCircuitoCanon);
+        }
+        if (!this.jTxtFieldCircuitoRectas.getInputVerifier().verify(this.jTxtFieldCircuitoRectas)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldCircuitoRectas);
+        }
+        if (!this.jTxtFieldCircuitoCurvas.getInputVerifier().verify(this.jTxtFieldCircuitoCurvas)) {
+            correcto = false;
+            marcarComoErroneo(this.jTxtFieldCircuitoCurvas);
+        }
+        return correcto;
+    }
 
     private void marcarComoValido(FocusEvent evt) {
         evt.getComponent().setBackground(Color.white);
@@ -804,6 +1301,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void mostarPanelEditarPiloto() {
         this.jPanelAdministradorVerPilotos.setVisible(false);
         this.jPanelCrearPiloto.setVisible(true);
+    }
+    
+    private void mostarPanelEditarCircuito() {
+        this.jPanelAdministradorVerCircuitos.setVisible(false);
+        this.jPanelCrearCircuito.setVisible(true);
     }
 
     private void colocarDatosPilotoEnFormulario(PilotoLibre piloto) {
@@ -820,6 +1322,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jSlPaciencia.setValue(paciencia.intValue());
         Double valentia = piloto.getValentia()* 100;
         this.jSlValentia.setValue(valentia.intValue());
+    }
+    
+    private void crearCircuito() {
+        Boolean correcto = validarFormularioNuevoCircuito();
+        if (correcto) {
+            Circuito circuito = obtenerCircuitoDesdeFormulario();
+            circuitos.add(circuito);
+            limpiarFormularioNuevoCircuito();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void crearPilotoLibre() {
@@ -846,6 +1359,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jSlValentia.setValue(valentia.intValue());
     }
 
+    
+    
     private void asignarEventosEnVentana() {
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -872,6 +1387,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PilotoLibre piloto = new PilotoLibre(nombre, apellidos, edad, altura, peso, reflejos, agresividad, paciencia, valentia);
         return piloto;
+    }
+    
+    
+    private Circuito obtenerCircuitoDesdeFormulario() {
+        String nombre = this.jTxtFieldCircuitoNombre.getText();
+        Integer aforo = Integer.parseInt(this.jTxtFieldCircuitoAforo.getText());
+        Integer canon = Integer.parseInt(this.jTxtFieldCircuitoCanon.getText());
+        Double[] rectas = {Double.parseDouble(this.jTxtFieldCircuitoRectas.getText())};
+        Double[] curvas = {Double.parseDouble(this.jTxtFieldCircuitoCurvas.getText())};
+        Circuito circuito = new Circuito(nombre, aforo, canon, rectas, curvas);
+        return circuito;
+
     }
 
     
