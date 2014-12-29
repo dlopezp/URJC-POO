@@ -1,6 +1,6 @@
 package formula;
 
-class Circuito {
+public class Circuito {
     
     private String nombre;
     private Integer aforo;
@@ -10,7 +10,7 @@ class Circuito {
     
     public static final Integer PREMIOS[] = {100000, 75000, 50000, 25000, 15000, 10000};
 
-    Circuito(String nombre, Integer aforo, Integer canon, Double[] rectas, Double[] curvas) {
+    public Circuito(String nombre, Integer aforo, Integer canon, Double[] rectas, Double[] curvas) {
         this.nombre = nombre;
         this.aforo = aforo;
         this.canon = canon;
