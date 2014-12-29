@@ -71,12 +71,14 @@ public class Escuderia {
     
     public void intercambiarPiloto(PilotoDecorador pilotoVenta, PilotoDecorador pilotoCompra) {
         if (Escuderia.sonPilotosIntercambiables(pilotoVenta, pilotoCompra)) {
-           if (pilotosOficiales.remove(pilotoVenta)) {
+           if (esPilotoOficial(pilotoVenta)) {
+               descartarPiloto((PilotoOficial)pilotoVenta);
                PilotoOficial pilotoOficial = new PilotoOficial(pilotoCompra.getPiloto());
-               pilotosOficiales.add(pilotoOficial);
-           } else if (pilotosProbadores.remove(pilotoVenta)) {
+               ficharPiloto(pilotoOficial);
+           } else if (esPilotoProbador(pilotoVenta)) {
+               descartarPiloto((PilotoProbador)pilotoVenta);
                PilotoProbador pilotoProbador = new PilotoProbador(pilotoCompra.getPiloto());
-               pilotosProbadores.add(pilotoProbador);
+               ficharPiloto(pilotoProbador);
            }
         }
     }
@@ -110,7 +112,7 @@ public class Escuderia {
            Coche coche = new Coche(modelo, potencia, aerodinamica, neumaticos);
            coches.add(coche);
         }
-    }    
+    }
     
     public void descartarPiloto(PilotoOficial piloto){
         if (puedeDescartarPilotoOficial()) {
@@ -124,6 +126,42 @@ public class Escuderia {
     
     public void sumarPuntos(Integer puntos){
         this.puntos += puntos; 
+    }
+    
+    public Boolean esPilotoOficial(PilotoOficial piloto) {
+        return esPilotoOficial(piloto.getPiloto());
+    }
+    
+    public Boolean esPilotoOficial(PilotoDecorador piloto) {
+        return esPilotoOficial(piloto.getPiloto());
+    }
+    
+    public Boolean esPilotoOficial(PilotoLibre piloto) {
+        Iterator<PilotoOficial> pilotos = pilotosOficiales.iterator();
+        Boolean encontrado = false;
+        while (pilotos.hasNext() && !encontrado) {
+            PilotoLibre pilotoLibre = pilotos.next().getPiloto();
+            encontrado = piloto.equals(pilotoLibre);
+        }
+        return encontrado;
+    }
+    
+    public Boolean esPilotoProbador(PilotoProbador piloto) {
+        return esPilotoProbador(piloto.getPiloto());
+    }
+    
+    public Boolean esPilotoProbador(PilotoDecorador piloto) {
+        return esPilotoProbador(piloto.getPiloto());
+    }
+    
+    public Boolean esPilotoProbador(PilotoLibre piloto) {
+        Iterator<PilotoProbador> pilotos = pilotosProbadores.iterator();
+        Boolean encontrado = false;
+        while (pilotos.hasNext() && !encontrado) {
+            PilotoLibre pilotoLibre = pilotos.next().getPiloto();
+            encontrado = piloto.equals(pilotoLibre);
+        }
+        return encontrado;
     }
     
     /*
