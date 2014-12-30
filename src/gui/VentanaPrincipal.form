@@ -25,13 +25,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanelPrincipal" min="-2" pref="850" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanelAdministrador" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="304" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -65,8 +65,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                  <Component id="jBtAccesoAdministrador" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="570" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jBtAccesoDueñoEscuderia" max="32767" attributes="0"/>
+                      <Component id="jBtAccesoAdministrador" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="556" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -75,7 +78,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jBtAccesoAdministrador" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="362" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jBtAccesoDueñoEscuderia" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="321" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,6 +92,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtAccesoAdministradorActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBtAccesoDue&#xf1;oEscuderia">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Acceso Due&#xf1;o Escuder&#xed;a"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtAccesoDue&#xf1;oEscuderiaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -929,7 +942,7 @@
                                   <Component id="jButtonCircuitoEliminar" max="32767" attributes="0"/>
                                   <Component id="jButtonCircuitoEditar" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="346" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

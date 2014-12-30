@@ -54,6 +54,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanelPrincipal = new javax.swing.JPanel();
         jBtAccesoAdministrador = new javax.swing.JButton();
+        jBtAccesoDueñoEscuderia = new javax.swing.JButton();
         jPanelAdministrador = new javax.swing.JPanel();
         jBtAdminVolver = new javax.swing.JButton();
         jTbAdministrador = new javax.swing.JTabbedPane();
@@ -126,21 +127,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jBtAccesoDueñoEscuderia.setText("Acceso Dueño Escudería");
+        jBtAccesoDueñoEscuderia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtAccesoDueñoEscuderiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addGap(145, 145, 145)
-                .addComponent(jBtAccesoAdministrador)
-                .addContainerGap(570, Short.MAX_VALUE))
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtAccesoDueñoEscuderia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtAccesoAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBtAccesoAdministrador)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBtAccesoDueñoEscuderia)
+                .addContainerGap(314, Short.MAX_VALUE))
         );
 
         jBtAdminVolver.setText("Volver");
@@ -716,7 +728,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCircuitoEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCircuitoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 346, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelAdministradorVerCircuitosLayout.setVerticalGroup(
             jPanelAdministradorVerCircuitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -795,12 +807,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(304, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -938,7 +950,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtFieldCircuitoCurvasFocusLost
 
     private void jBtCrearCircuitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCrearCircuitoActionPerformed
-       crearCircuito(); 
+       /*crearCircuito(); */
     }//GEN-LAST:event_jBtCrearCircuitoActionPerformed
 
     private void jBtAdministradorVerCircuitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAdministradorVerCircuitosActionPerformed
@@ -966,6 +978,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jTxtFieldCircuitoNumCurvasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldCircuitoNumCurvasFocusLost
         marcarComoValido(evt);
     }//GEN-LAST:event_jTxtFieldCircuitoNumCurvasFocusLost
+
+    private void jBtAccesoDueñoEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAccesoDueñoEscuderiaActionPerformed
+
+    }//GEN-LAST:event_jBtAccesoDueñoEscuderiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1004,6 +1020,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtAccesoAdministrador;
+    private javax.swing.JButton jBtAccesoDueñoEscuderia;
     private javax.swing.JButton jBtAdminVolver;
     private javax.swing.JButton jBtAdministradorVerCircuitos;
     private javax.swing.JButton jBtAdministradorVerPilotos;
@@ -1319,7 +1336,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jSlValentia.setValue(valentia.intValue());
     }
     
-    private void crearCircuito() {
+    /*private void crearCircuito() {
         Boolean correcto = validarFormularioNuevoCircuito();
         if (correcto) {
             Circuito circuito = obtenerCircuitoDesdeFormulario();
@@ -1328,7 +1345,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }*/
 
     private void crearPilotoLibre() {
         Boolean correcto = validarFormularioNuevoPiloto();
@@ -1385,16 +1402,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     
-    private Circuito obtenerCircuitoDesdeFormulario() {
+    /*private Circuito obtenerCircuitoDesdeFormulario() {
         String nombre = this.jTxtFieldCircuitoNombre.getText();
         Integer aforo = Integer.parseInt(this.jTxtFieldCircuitoAforo.getText());
         Integer canon = Integer.parseInt(this.jTxtFieldCircuitoCanon.getText());
-        Double[] rectas = {Double.parseDouble(this.jTxtFieldCircuitoRectas.getText())};
-        Double[] curvas = {Double.parseDouble(this.jTxtFieldCircuitoCurvas.getText())};
+        Tramo rectas = {(Tramo)this.jTxtFieldCircuitoRectas.getText()};
+        Tramo curvas = {Double.parseDouble(this.jTxtFieldCircuitoCurvas.getText())};
         Circuito circuito = new Circuito(nombre, aforo, canon, rectas, curvas);
         return circuito;
 
     }
-
+*/
     
 }

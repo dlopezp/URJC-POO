@@ -1,7 +1,7 @@
 package formula;
 import java.util.*;
 
-public class Escuderia {
+public class Escuderia implements Comparable<Escuderia>{
     private String nombre;
     private String pais;
     private Integer año;
@@ -164,6 +164,18 @@ public class Escuderia {
         return encontrado;
     }
     
+    
+    public void obtenerPremio(Integer premio) {
+        setPresup(getPresup()+premio);
+    }
+    
+    
+    
+    @Override
+    public int compareTo(Escuderia e){
+        return getPuntos()-e.getPuntos();
+    }
+    
     /*
     Se implementarán cuando las clases Participante y Carrera estén listas
     
@@ -185,9 +197,7 @@ public class Escuderia {
        return participantes;
     }
     
-    public void obtenerPremio() {
-        
-    }
+
 
     public boolean puedeParticiparEnCarrera(Carrera carrera){
         

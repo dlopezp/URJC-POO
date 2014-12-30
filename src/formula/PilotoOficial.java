@@ -1,6 +1,6 @@
 package formula;
 
-public class PilotoOficial extends PilotoDecorador {
+public class PilotoOficial extends PilotoDecorador implements Comparable<PilotoOficial> {
     
     public static final Double INCREMENTO_MEJORA = 0.1;
     public static final Integer PLUS_PELIGROSIDAD = 50;
@@ -17,5 +17,10 @@ public class PilotoOficial extends PilotoDecorador {
     @Override
     public Integer getSueldo() {
         return piloto.getSueldo() + PLUS_PELIGROSIDAD;
+    }
+    
+    @Override
+    public int compareTo(PilotoOficial piloto){
+        return getPuntos() - piloto.getPuntos();
     }
 }
