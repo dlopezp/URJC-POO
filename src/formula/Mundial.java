@@ -1,7 +1,6 @@
-
 package formula;
-import java.util.*;
 
+import java.util.*;
 
 /**
  *
@@ -64,10 +63,5 @@ public class Mundial {
         }
         return lineas;
     }
-    
-    
-    
-    
-    
-    
+
 }

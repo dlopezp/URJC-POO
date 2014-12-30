@@ -82,3 +82,4 @@ public class CocheTest {
         assertThat(tiempoEstimado, is(coche.getTiempoPorVuelta(circuito)));
     }
 }
+
