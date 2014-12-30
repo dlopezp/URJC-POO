@@ -2,32 +2,41 @@
 package formula;
 import java.util.*;
 
-/**
- *
- * @author jaimedemora
- */
-public class Clasificado {
-    private Set<Participante> participantes;
-    protected Double tiempoPorVuelta;
 
-    
-    public Clasificado(Double tiempoPorVuelta){
-        participantes = new HashSet<Participante>(); 
-        this.tiempoPorVuelta = getTiempoPorVuelta();
+public class Clasificado implements Comparable<Clasificado> {
+    private Participante participante;
+    private Double tiempoPorVuelta;
+
+    @Override
+   public int compareTo(Clasificado clasificado2){
+       return (int) ((clasificado2.getTiempoPorVuelta()*100) - (getTiempoPorVuelta()*100));
+   } 
+   
+    public Clasificado(Participante participante, Double tiempoPorVuelta){
+        this.participante = participante;
+        this.tiempoPorVuelta = tiempoPorVuelta;
     }
 
-    
-    public Set<Participante> getParticipante() {
-        return participantes;
+    public Participante getParticipante() {
+        return participante;
     }
 
-    public void setParticipante(Set<Participante> participantes) {
-        this.participantes = participantes;
+    public void setParticipante(Participante participante) {
+        this.participante = participante;
     }
 
     public Double getTiempoPorVuelta() {
         return tiempoPorVuelta;
     }
+
+    public void setTiempoPorVuelta(Double tiempoPorVuelta) {
+        this.tiempoPorVuelta = tiempoPorVuelta;
+    }
+    
+    
+
+    
+
 
     
 }

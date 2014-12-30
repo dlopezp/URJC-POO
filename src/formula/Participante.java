@@ -15,8 +15,8 @@ public class Participante{
     }
     
     
-    public Integer sumarPuntos(Integer puntos){
-        return puntos;
+    public void sumarPuntos(Integer puntos){
+        this.escuderia.sumarPuntos(puntos);
     }
     
     public Double getTiempoPorVuelta(Circuito circuito){

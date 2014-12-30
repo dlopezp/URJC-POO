@@ -164,6 +164,11 @@ public class Escuderia {
         return encontrado;
     }
     
+    
+    public void obtenerPremio(Integer premio) {
+        setPresup(getPresup()+premio);
+    }
+    
     /*
     Se implementarán cuando las clases Participante y Carrera estén listas
     
@@ -185,9 +190,7 @@ public class Escuderia {
        return participantes;
     }
     
-    public void obtenerPremio() {
-        
-    }
+
 
     public boolean puedeParticiparEnCarrera(Carrera carrera){
         
