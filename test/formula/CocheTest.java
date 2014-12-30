@@ -17,8 +17,8 @@ public class CocheTest {
     private String nombre = "Spa-Francorchamps";
     private Integer aforo = 1;
     private Integer canon = 1;
-    private Tramo[] rectas = {new Tramo(1334.33), new Tramo(1334.33),new Tramo(1334.33),new Tramo(1334.33)};
-    private Tramo[] curvas = {new Tramo(600.0),new Tramo(600.0),new Tramo(600.0),new Tramo(600.0)};
+    private Tramo[] rectas = {new Tramo(1334.33), new Tramo(1334.33), new Tramo(1334.33)};
+    private Tramo[] curvas = {new Tramo(600.0), new Tramo(600.0), new Tramo(600.0), new Tramo(600.0), new Tramo(600.0)};
     private Circuito circuito = new Circuito(nombre, aforo, canon, rectas, curvas);
     
     @Test
@@ -82,4 +82,3 @@ public class CocheTest {
         assertThat(tiempoEstimado, is(coche.getTiempoPorVuelta(circuito)));
     }
 }
-
