@@ -1,54 +1,55 @@
 
 package formula;
-import java.util.*;
-/**
- *
- * @author jaimedemora
- */
-public class Participante {
-    private Set<Escuderia> escuderias;
-    private Set<PilotoOficial> piloto;
-    private Set<Coche> coche;
 
-    Participante(){
-        escuderias = new HashSet<Escuderia>();
-        piloto = new HashSet<PilotoOficial>();
-        coche = new HashSet<Coche>();    
+
+public class Participante{
+    private Escuderia escuderia;
+    private PilotoOficial piloto;
+    private Coche coche;
+
+    
+    public Participante(Escuderia escuderia, PilotoOficial piloto, Coche coche){
+        this.escuderia = escuderia;
+        this.piloto = piloto;
+        this.coche = coche;
+    }
+    
+    
+    public Integer sumarPuntos(Integer puntos){
+        return puntos;
+    }
+    
+    public Double getTiempoPorVuelta(Circuito circuito){
+        Double tiempo = this.coche.getTiempoPorVuelta(circuito);
+        tiempo -= (0.1 * piloto.getValoraciónGlobal());
+        return tiempo;
+    }
+    
+
+    
+    public Escuderia getEscuderia() {
+        return escuderia;
     }
 
-    public Set<Escuderia> getEscuderias() {
-        return escuderias;
+    public void setEscuderia(Escuderia escuderia) {
+        this.escuderia = escuderia;
     }
 
-    public void setEscuderias(Set<Escuderia> escuderias) {
-        this.escuderias = escuderias;
-    }
-
-    public Set<PilotoOficial> getPiloto() {
+    public PilotoOficial getPiloto() {
         return piloto;
     }
 
-    public void setPiloto(Set<PilotoOficial> piloto) {
+    public void setPiloto(PilotoOficial piloto) {
         this.piloto = piloto;
     }
-    
-    public Set<Coche> getCoches() {
+
+    public Coche getCoche() {
         return coche;
     }
 
-    public void setCoches(Set<Coche> coche) {
+    public void setCoche(Coche coche) {
         this.coche = coche;
     }
-
-    public void sumarPuntos(Integer puntos){
-        puntos += Carrera.asignarPuntos(Circuito circuito); 
-    }
     
-    public void TiempoPorVuelta(Circuito circuito){
-        return Coche.getTiempoPorVuelta(circuito); 
-    }
-
     
 }
-
-
