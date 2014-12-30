@@ -1,12 +1,13 @@
 
 package formula;
+import java.util.*;
 
 /**
  *
  * @author jaimedemora
  */
 public class Mundial {
-    private set<Carrera> Carreras;
+    private Set<Carrera> Carreras;
     
     
     

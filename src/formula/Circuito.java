@@ -5,12 +5,12 @@ public class Circuito {
     private String nombre;
     private Integer aforo;
     private Integer canon;
-    private Double[] rectas;
-    private Double[] curvas;
+    private Tramo[] rectas;
+    private Tramo[] curvas;
     
     public static final Integer PREMIOS[] = {100000, 75000, 50000, 25000, 15000, 10000};
 
-    public Circuito(String nombre, Integer aforo, Integer canon, Double[] rectas, Double[] curvas) {
+    public Circuito(String nombre, Integer aforo, Integer canon, Tramo[] rectas, Tramo[] curvas) {
         this.nombre = nombre;
         this.aforo = aforo;
         this.canon = canon;
@@ -18,10 +18,10 @@ public class Circuito {
         this.curvas = curvas;
     }
     
-    private Double getDistancia(Double[] tramos) {
+    private Double getDistancia(Tramo[] tramos) {
         Double distancia = 0.0;
-        for (Double tramo : tramos) {
-            distancia += tramo;
+        for (Tramo tramo : tramos) {
+            distancia += tramo.getDistancia();
         }
         return distancia;
     }
@@ -58,19 +58,19 @@ public class Circuito {
         this.canon = canon;
     }
 
-    public Double[] getRectas() {
+    public Tramo[] getRectas() {
         return rectas;
     }
 
-    public void setRectas(Double[] rectas) {
+    public void setRectas(Tramo[] rectas) {
         this.rectas = rectas;
     }
 
-    public Double[] getCurvas() {
+    public Tramo[] getCurvas() {
         return curvas;
     }
 
-    public void setCurvas(Double[] curvas) {
+    public void setCurvas(Tramo[] curvas) {
         this.curvas = curvas;
     }
           
