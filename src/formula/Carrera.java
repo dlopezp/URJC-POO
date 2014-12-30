@@ -15,6 +15,7 @@ public class Carrera {
     public Carrera(Circuito circuito, Set<Participante> participantes ) {
         this.circuito = circuito;
         this.participantes = participantes;
+        this.clasificacionFinal = null;
     }
  
     
@@ -63,7 +64,7 @@ public class Carrera {
     
     
     public void celebrarCarrera(){
-        obtenerClasificacion();
+        setClasificacionFinal();
         asignarPuntos();
         darPremios();
     }
@@ -89,8 +90,8 @@ public class Carrera {
         return clasificacionFinal;
     }
 
-    public void setClasificacionFinal(ArrayList<Clasificado> clasificacionFinal) {
-        this.clasificacionFinal = clasificacionFinal;
+    public void setClasificacionFinal() {
+        this.clasificacionFinal = obtenerClasificacion();
     }
     
 }
