@@ -8,9 +8,9 @@ package formula;
 public class Tramo {
     Double distancia; 
 
-Tramo (Double distancia){
-    this.distancia = distancia;
-}
+    public Tramo (Double distancia){
+        this.distancia = distancia;
+    }
     
     public Double getDistancia(){
     return distancia;
