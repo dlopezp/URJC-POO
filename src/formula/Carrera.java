@@ -40,7 +40,8 @@ public class Carrera {
             for(Integer i : PUNTUACION){
                 clasificado = it.next();
                 participante = clasificado.getParticipante();
-                participante.sumarPuntos(i);   
+                participante.sumarPuntos(i);
+                participante.getEscuderia().sumarPuntos(i);
             }
         }
     }
@@ -91,7 +92,5 @@ public class Carrera {
     public void setClasificacionFinal(ArrayList<Clasificado> clasificacionFinal) {
         this.clasificacionFinal = clasificacionFinal;
     }
-    
-    
     
 }

@@ -17,6 +17,7 @@ public class Participante{
     
     public void sumarPuntos(Integer puntos){
         this.escuderia.sumarPuntos(puntos);
+        this.piloto.sumarPuntos(puntos);
     }
     
     public Double getTiempoPorVuelta(Circuito circuito){

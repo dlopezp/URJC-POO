@@ -115,9 +115,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTbAdminVerCircuitos = new javax.swing.JTable();
         jButtonCircuitoEditar = new javax.swing.JButton();
         jButtonCircuitoEliminar = new javax.swing.JButton();
-        jPanelDueño = new javax.swing.JPanel();
-        jBDueñoVolver = new javax.swing.JButton();
-        jTbDueño = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,7 +143,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBtAccesoDueñoEscuderia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBtAccesoAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(556, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +152,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jBtAccesoAdministrador)
                 .addGap(18, 18, 18)
                 .addComponent(jBtAccesoDueñoEscuderia)
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
 
         jBtAdminVolver.setText("Volver");
@@ -798,43 +795,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelAdministradorLayout.setVerticalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAdministradorLayout.createSequentialGroup()
-                .addComponent(jTbAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE)
+                .addComponent(jTbAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBtAdminVolver)
                 .addContainerGap())
-        );
-
-        jBDueñoVolver.setText("jButton4");
-
-        javax.swing.GroupLayout jPanelDueñoLayout = new javax.swing.GroupLayout(jPanelDueño);
-        jPanelDueño.setLayout(jPanelDueñoLayout);
-        jPanelDueñoLayout.setHorizontalGroup(
-            jPanelDueñoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
-            .addGroup(jPanelDueñoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelDueñoLayout.createSequentialGroup()
-                    .addGap(0, 262, Short.MAX_VALUE)
-                    .addComponent(jBDueñoVolver)
-                    .addGap(0, 261, Short.MAX_VALUE)))
-            .addGroup(jPanelDueñoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDueñoLayout.createSequentialGroup()
-                    .addContainerGap(57, Short.MAX_VALUE)
-                    .addComponent(jTbDueño, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(56, Short.MAX_VALUE)))
-        );
-        jPanelDueñoLayout.setVerticalGroup(
-            jPanelDueñoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jPanelDueñoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelDueñoLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jBDueñoVolver)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanelDueñoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDueñoLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTbDueño, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -849,11 +813,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(jPanelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(304, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(23, Short.MAX_VALUE)
-                    .addComponent(jPanelDueño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(231, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -865,11 +824,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(jPanelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(73, Short.MAX_VALUE)
-                    .addComponent(jPanelDueño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(74, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1067,7 +1021,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBDueñoVolver;
     private javax.swing.JButton jBtAccesoAdministrador;
     private javax.swing.JButton jBtAccesoDueñoEscuderia;
     private javax.swing.JButton jBtAdminVolver;
@@ -1108,7 +1061,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelAdministradorVerPilotos;
     private javax.swing.JPanel jPanelCrearCircuito;
     private javax.swing.JPanel jPanelCrearPiloto;
-    private javax.swing.JPanel jPanelDueño;
     private javax.swing.JPanel jPanelGestionCircuitos;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1120,7 +1072,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTbAdminVerCircuitos;
     private javax.swing.JTable jTbAdminVerPilotos;
     private javax.swing.JTabbedPane jTbAdministrador;
-    private javax.swing.JTabbedPane jTbDueño;
     private javax.swing.JTextField jTxtFieldCircuitoAforo;
     private javax.swing.JTextField jTxtFieldCircuitoCanon;
     private javax.swing.JTextField jTxtFieldCircuitoCurvas;
