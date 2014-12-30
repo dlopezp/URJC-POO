@@ -18,23 +18,23 @@ public class Mundial {
         Collections.sort(escuderias);
         String linea;
         int i=0;
-        for (Escuderia e: escuderias ){
+        for (Escuderia escuderia: escuderias ){
             i++;
-            linea = "Posición " + i +": " + e.getNombre()+ ", Puntos: "+ Double.toString(e.getPuntos());
+            linea = "Posición " + i +": " + escuderia.getNombre()+ ", Puntos: "+ Double.toString(escuderia.getPuntos());
             System.out.println(linea);
         }
     }
     
     
     
-    public ArrayList<String> obtenerClasificacionEscuderias(ArrayList<Escuderia> escuderias){
+    public ArrayList<String> getClasificacionEscuderias(ArrayList<Escuderia> escuderias){
         ArrayList<String> lineas = new ArrayList<>();
         Collections.sort(escuderias);
         String linea;
         int i=0;
-        for (Escuderia e: escuderias ){
+        for (Escuderia escuderia: escuderias ){
             i++;
-            linea = "Posición " + i +": " + e.getNombre()+ ", Puntos: "+ Double.toString(e.getPuntos());
+            linea = "Posición " + i +": " + escuderia.getNombre()+ ", Puntos: "+ Double.toString(escuderia.getPuntos());
             lineas.add(linea);
         }
         return lineas;
@@ -51,7 +51,7 @@ public class Mundial {
         }
     }
     
-    public ArrayList<String> obtenerClasificacionPilotos(ArrayList<PilotoOficial> pilotos){
+    public ArrayList<String> getClasificacionPilotos(ArrayList<PilotoOficial> pilotos){
         ArrayList<String> lineas = new ArrayList<>();
         Collections.sort(pilotos);
         String linea;
