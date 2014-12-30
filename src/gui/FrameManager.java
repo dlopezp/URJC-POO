@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  */
 public class FrameManager {
     
-    private static FrameManager instance;
+    private static FrameManager instance = null;
     
     private FrameManager() {}
     
