@@ -69,7 +69,7 @@
                       <Component id="jBtAccesoDueñoEscuderia" max="32767" attributes="0"/>
                       <Component id="jBtAccesoAdministrador" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <EmptySpace pref="556" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -80,7 +80,7 @@
                   <Component id="jBtAccesoAdministrador" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jBtAccesoDueñoEscuderia" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="314" max="32767" attributes="0"/>
+                  <EmptySpace pref="321" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

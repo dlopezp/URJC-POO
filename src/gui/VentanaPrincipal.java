@@ -950,7 +950,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtFieldCircuitoCurvasFocusLost
 
     private void jBtCrearCircuitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtCrearCircuitoActionPerformed
-       crearCircuito(); 
+       /*crearCircuito(); */
     }//GEN-LAST:event_jBtCrearCircuitoActionPerformed
 
     private void jBtAdministradorVerCircuitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAdministradorVerCircuitosActionPerformed
@@ -980,9 +980,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtFieldCircuitoNumCurvasFocusLost
 
     private void jBtAccesoDueñoEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtAccesoDueñoEscuderiaActionPerformed
-    this.jPanelPrincipal.setVisible(false);
-        this.jPanelDueño.setVisible(true);
-        this.jPanelCrearPiloto.setVisible(false);
+
     }//GEN-LAST:event_jBtAccesoDueñoEscuderiaActionPerformed
 
     /**
@@ -1338,7 +1336,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jSlValentia.setValue(valentia.intValue());
     }
     
-    private void crearCircuito() {
+    /*private void crearCircuito() {
         Boolean correcto = validarFormularioNuevoCircuito();
         if (correcto) {
             Circuito circuito = obtenerCircuitoDesdeFormulario();
@@ -1347,7 +1345,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }*/
 
     private void crearPilotoLibre() {
         Boolean correcto = validarFormularioNuevoPiloto();
@@ -1404,16 +1402,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     
-    private Circuito obtenerCircuitoDesdeFormulario() {
+    /*private Circuito obtenerCircuitoDesdeFormulario() {
         String nombre = this.jTxtFieldCircuitoNombre.getText();
         Integer aforo = Integer.parseInt(this.jTxtFieldCircuitoAforo.getText());
         Integer canon = Integer.parseInt(this.jTxtFieldCircuitoCanon.getText());
-        Double[] rectas = {Double.parseDouble(this.jTxtFieldCircuitoRectas.getText())};
-        Double[] curvas = {Double.parseDouble(this.jTxtFieldCircuitoCurvas.getText())};
+        Tramo rectas = {(Tramo)this.jTxtFieldCircuitoRectas.getText()};
+        Tramo curvas = {Double.parseDouble(this.jTxtFieldCircuitoCurvas.getText())};
         Circuito circuito = new Circuito(nombre, aforo, canon, rectas, curvas);
         return circuito;
 
     }
-
+*/
     
 }
