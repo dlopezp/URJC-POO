@@ -63,6 +63,8 @@ public class Carrera {
     }
     
     
+    
+    
     public void celebrarCarrera(){
         setClasificacionFinal();
         asignarPuntos();
