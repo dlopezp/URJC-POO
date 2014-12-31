@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author HOME3
  */
-public class FrameAdministrador extends javax.swing.JFrame {
+public class FrameAdministrador extends FormulaFrame {
 
     /**
      * Creates new form FrameAdministradorBase
@@ -1203,7 +1203,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
         });
     }
 
-    private void recuperarPilotos() throws ClassNotFoundException {
+    private void recuperarPilotos() throws ClassNotFoundException, IOException {
         pilotos = PilotoLibreAdapter.getInstance().leer();
     }
     
@@ -1229,8 +1229,8 @@ public class FrameAdministrador extends javax.swing.JFrame {
     
     private void cargarPilotosEnTabla() {
         Iterator<PilotoLibre> pilotosIterator = pilotos.iterator();
-        DefaultTableModel modelo = (DefaultTableModel) this.jTbPilotos.getModel();
-        limpiarTabla(modelo);        
+        DefaultTableModel modelo = (DefaultTableModel) jTbPilotos.getModel();
+        limpiarTabla(jTbPilotos);        
         while (pilotosIterator.hasNext()) {
             PilotoLibre piloto = pilotosIterator.next();
             Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
@@ -1241,7 +1241,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private void cargarCircuitosEnTabla() {
         Iterator<Circuito> circuitosIterator = circuitos.iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableCircuitos.getModel();
-        limpiarTabla(modelo);        
+        limpiarTabla(jTableCircuitos);        
         while (circuitosIterator.hasNext()) {
             Circuito circuito = circuitosIterator.next();
             Object[] fila = new Object[]{circuito.getNombre(), circuito.getDistanciaRecta(), circuito.getDistanciaCurva(), circuito.getDistanciaTotal()};
@@ -1252,33 +1252,12 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private void cargarEscuderiasEnTabla() {
         Iterator<Escuderia> escuderiasIterator = escuderias.iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableEscuderias.getModel();
-        limpiarTabla(modelo);        
+        limpiarTabla(jTableEscuderias);        
         while (escuderiasIterator.hasNext()) {
             Escuderia escuderia = escuderiasIterator.next();
             Object[] fila = new Object[]{escuderia.getNombre(), escuderia.getPais(), escuderia.getAño(), escuderia.getPresup()};
             modelo.addRow(fila);
         }
-    }
-
-    private void limpiarTabla(DefaultTableModel modelo) {
-        int cantidadFilas = modelo.getRowCount();
-        for (int i = cantidadFilas - 1; i >= 0; i--) {
-            modelo.removeRow(i);
-        }
-    }
-    
-    private void marcarComoErroneo(JTextField field) {
-        field.setBackground(Color.red);
-    }
-    
-    private void marcarComoValido(FocusEvent evt) {
-        evt.getComponent().setBackground(Color.white);
-    }
-     
-    private void ponerValorEnEtiquetaSlider(JSlider slider, JLabel label) {
-        Double valor = slider.getValue() * 0.01;
-        DecimalFormat df = new DecimalFormat("#.##");
-        label.setText(df.format(valor));
     }
     
     private void crearPiloto() {
@@ -1504,15 +1483,6 @@ public class FrameAdministrador extends javax.swing.JFrame {
 
     private void borrarEscuderia() {
         borrarFilaSeleccionadaDeTabla(jTableEscuderias, escuderias);
-    }
-
-    private void borrarFilaSeleccionadaDeTabla(JTable tabla, ArrayList coleccion) {
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        int filaSeleccionada = tabla.getSelectedRow();
-        if (filaSeleccionada != -1) {          
-            modelo.removeRow(filaSeleccionada);
-            coleccion.remove(filaSeleccionada);
-        }
     }
 
     private void editarEscuderia(Escuderia escuderia) {

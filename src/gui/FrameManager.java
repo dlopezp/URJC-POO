@@ -6,6 +6,8 @@
 package gui;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -37,7 +39,13 @@ public class FrameManager {
     
     public void mostrarVentanaEscuderia(JFrame ventanaActual) {
         ocultarVentana(ventanaActual);
-        mostrarVentana(new FrameEscuderia());
+        try {
+            mostrarVentana(new FrameEscuderia());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrameManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FrameManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void mostrarVentanaDirector(JFrame ventanaActual) {

@@ -1,7 +1,17 @@
 package gui;
 
+import formula.Coche;
+import formula.Escuderia;
 import formula.PilotoLibre;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -9,17 +19,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author HOME3
  */
-public class FrameEscuderia extends javax.swing.JFrame {
+public class FrameEscuderia extends FormulaFrame {
 
     /**
      * Creates new form FrameEscuderia
      */
-    public FrameEscuderia() {
+    public FrameEscuderia() throws ClassNotFoundException, IOException {
         initComponents();
+        cargarDatos();
+        cargarComboPincipal();
         jLPConfigurarCarrera.setVisible(false);
         jLPDescartarPiloto.setVisible(false);
         jLPEntrenamiento.setVisible(false);
-        jLPFabricarCoche.setVisible(false);
         jLPFicharPiloto.setVisible(false);
   
     }
@@ -35,7 +46,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
 
         jLGestionDeEscuderia = new javax.swing.JLabel();
         jBtnEscuderiaVolver = new javax.swing.JButton();
-        jBFabricarCoche = new javax.swing.JButton();
         jBConfigurarCarrera = new javax.swing.JButton();
         jBDescartarPiloto = new javax.swing.JButton();
         jBEntrenamiento = new javax.swing.JButton();
@@ -45,23 +55,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jTFicharPilotosOficiales = new javax.swing.JTable();
-        jLPFabricarCoche = new javax.swing.JLayeredPane();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBoxEscuderia2 = new javax.swing.JComboBox();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jSlider1 = new javax.swing.JSlider();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jSlider3 = new javax.swing.JSlider();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jSlider4 = new javax.swing.JSlider();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jSeparator7 = new javax.swing.JSeparator();
         jLPConfigurarCarrera = new javax.swing.JLayeredPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -123,6 +116,28 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCoches = new javax.swing.JTable();
+        jBtnEliminarCoche = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldModelo = new javax.swing.JTextField();
+        jSliderPotencia = new javax.swing.JSlider();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jSliderNeumaticos = new javax.swing.JSlider();
+        jSliderAero = new javax.swing.JSlider();
+        jBtnCocheAleatorio = new javax.swing.JButton();
+        jBtnGuardarCoche = new javax.swing.JButton();
+        jLabelPotencia = new javax.swing.JLabel();
+        jLabelAero = new javax.swing.JLabel();
+        jLabelNeumaticos = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBoxPrincipal = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -144,13 +159,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jBtnEscuderiaVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEscuderiaVolverActionPerformed(evt);
-            }
-        });
-
-        jBFabricarCoche.setText("Fabricar Coche");
-        jBFabricarCoche.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBFabricarCocheActionPerformed(evt);
             }
         });
 
@@ -278,155 +286,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jLPFicharPiloto.setLayer(jTFicharPilotosOficiales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTFicharPilotosOficiales.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        jLabel3.setText("FABRICAR COCHE");
-
-        jLabel9.setText("Selecciona Modelo:");
-
-        jComboBoxEscuderia2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modelos", "Ferrari", "Renault", "McLaren", "Mercedes", "Lotus", "Red Bull", "Force India", "Sauber", "Toro Rosso", "Williams", "Marussia", "Caterham" }));
-        jComboBoxEscuderia2.setName(""); // NOI18N
-        jComboBoxEscuderia2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxEscuderia2ActionPerformed(evt);
-            }
-        });
-
-        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField4ActionPerformed(evt);
-            }
-        });
-
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("Potencia:");
-
-        jLabel12.setText("Aerodinámica:");
-
-        jLabel13.setText("Neumáticos:");
-
-        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField3ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Restablecer");
-
-        jButton4.setForeground(new java.awt.Color(51, 153, 0));
-        jButton4.setText("Aceptar");
-
-        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jLPFabricarCocheLayout = new javax.swing.GroupLayout(jLPFabricarCoche);
-        jLPFabricarCoche.setLayout(jLPFabricarCocheLayout);
-        jLPFabricarCocheLayout.setHorizontalGroup(
-            jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                                .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPFabricarCocheLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFormattedTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxEscuderia2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jLPFabricarCocheLayout.setVerticalGroup(
-            jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPFabricarCocheLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(17, 17, 17)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxEscuderia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                                .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29)
-                                .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(29, 29, 29)
-                                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jLPFabricarCocheLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPFabricarCocheLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jLPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton4))))
-                .addGap(38, 38, 38))
-        );
-        jLPFabricarCoche.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jComboBoxEscuderia2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jFormattedTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jSlider1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jSlider3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jFormattedTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jSlider4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jFormattedTextField5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFabricarCoche.setLayer(jSeparator7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -974,6 +833,207 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jLPEntrenamiento.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLPEntrenamiento.setLayer(jSeparator9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jScrollPane1.setViewportView(jTableCoches);
+
+        jBtnEliminarCoche.setText("Eliminar");
+        jBtnEliminarCoche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarCocheActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Modelo:");
+
+        jLabel10.setText("Potencia:");
+
+        jTextFieldModelo.setInputVerifier(new NotEmptyVerifier());
+
+        jSliderPotencia.setMaximum(500);
+        jSliderPotencia.setValue(0);
+        jSliderPotencia.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderPotenciaStateChanged(evt);
+            }
+        });
+
+        jLabel12.setText("Aerodinámica:");
+
+        jLabel13.setText("Neumáticos:");
+
+        jSliderNeumaticos.setMaximum(500);
+        jSliderNeumaticos.setValue(0);
+        jSliderNeumaticos.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderNeumaticosStateChanged(evt);
+            }
+        });
+
+        jSliderAero.setMaximum(500);
+        jSliderAero.setValue(0);
+        jSliderAero.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderAeroStateChanged(evt);
+            }
+        });
+
+        jBtnCocheAleatorio.setText("Aleatorio");
+        jBtnCocheAleatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCocheAleatorioActionPerformed(evt);
+            }
+        });
+
+        jBtnGuardarCoche.setText("Guardar");
+        jBtnGuardarCoche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarCocheActionPerformed(evt);
+            }
+        });
+
+        jLabelPotencia.setText("0.0");
+
+        jLabelAero.setText("0.0");
+
+        jLabelNeumaticos.setText("0.0");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBtnGuardarCoche))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addComponent(jLabel12))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jSliderAero, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelAero))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jSliderPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelPotencia)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jSliderNeumaticos, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelNeumaticos)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addComponent(jBtnCocheAleatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jBtnCocheAleatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSliderPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelPotencia))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelAero, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jSliderAero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel13))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabelNeumaticos))))
+                            .addComponent(jSliderNeumaticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnGuardarCoche))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBtnEliminarCoche)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnEliminarCoche)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Fabricar Coches", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 833, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 347, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 833, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 347, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab3", jPanel3);
+
+        jComboBoxPrincipal.setModel(new DefaultComboBoxModel());
+        jComboBoxPrincipal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPrincipalItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -986,22 +1046,23 @@ public class FrameEscuderia extends javax.swing.JFrame {
                 .addGap(395, 395, 395))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLGestionDeEscuderia)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jBFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBConfigurarCarrera)
-                        .addComponent(jBDescartarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBFabricarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtnEscuderiaVolver, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(43, 43, 43)
-                .addComponent(jLPEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLGestionDeEscuderia)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jBFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBConfigurarCarrera)
+                                .addComponent(jBDescartarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBtnEscuderiaVolver, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLPEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jComboBoxPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(529, 529, 529)
-                    .addComponent(jLPFabricarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1013, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(519, 519, 519)
@@ -1018,30 +1079,27 @@ public class FrameEscuderia extends javax.swing.JFrame {
                         .addComponent(jBConfigurarCarrera)
                         .addGap(18, 18, 18)
                         .addComponent(jBEntrenamiento)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBFabricarCoche)
-                        .addGap(18, 18, 18)
+                        .addGap(59, 59, 59)
                         .addComponent(jBFicharPiloto)
-                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBDescartarPiloto)
                         .addGap(50, 50, 50)
                         .addComponent(jBtnEscuderiaVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLPEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(605, 605, 605)
+                        .addGap(219, 219, 219)
                         .addComponent(jLPFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(463, 463, 463)
+                        .addGap(90, 90, 90)
                         .addComponent(jLPDescartarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(1036, 1036, 1036)
-                    .addComponent(jLPFabricarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(443, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(1025, 1025, 1025)
@@ -1082,55 +1140,24 @@ public class FrameEscuderia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTFicharPilotosOficiales1InputMethodTextChanged
 
-    private void jComboBoxEscuderia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEscuderia2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxEscuderia2ActionPerformed
-
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
-
-    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
-
-    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
-
     private void jBConfigurarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConfigurarCarreraActionPerformed
         this.jLPConfigurarCarrera.setVisible(true);
         this.jLPDescartarPiloto.setVisible(false);
         this.jLPEntrenamiento.setVisible(false);
-        this.jLPFabricarCoche.setVisible(false);
         this.jLPFicharPiloto.setVisible(false);
     }//GEN-LAST:event_jBConfigurarCarreraActionPerformed
-
-    private void jBFabricarCocheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFabricarCocheActionPerformed
-        this.jLPConfigurarCarrera.setVisible(false);
-        this.jLPDescartarPiloto.setVisible(false);
-        this.jLPEntrenamiento.setVisible(false);
-        this.jLPFabricarCoche.setVisible(true);
-        this.jLPFicharPiloto.setVisible(false);
-    }//GEN-LAST:event_jBFabricarCocheActionPerformed
 
     private void jBEntrenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrenamientoActionPerformed
         this.jLPConfigurarCarrera.setVisible(false);
         this.jLPDescartarPiloto.setVisible(false);
         this.jLPEntrenamiento.setVisible(true);
-        this.jLPFabricarCoche.setVisible(false);
         this.jLPFicharPiloto.setVisible(false);
     }//GEN-LAST:event_jBEntrenamientoActionPerformed
-
-    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
 
     private void jBFicharPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFicharPilotoActionPerformed
         this.jLPConfigurarCarrera.setVisible(false);
         this.jLPDescartarPiloto.setVisible(false);
         this.jLPEntrenamiento.setVisible(true);
-        this.jLPFabricarCoche.setVisible(false);
         this.jLPFicharPiloto.setVisible(true);
     }//GEN-LAST:event_jBFicharPilotoActionPerformed
 
@@ -1138,7 +1165,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
         this.jLPConfigurarCarrera.setVisible(false);
         this.jLPDescartarPiloto.setVisible(true);
         this.jLPEntrenamiento.setVisible(false);
-        this.jLPFabricarCoche.setVisible(false);
         this.jLPFicharPiloto.setVisible(true);
     }//GEN-LAST:event_jBDescartarPilotoActionPerformed
 
@@ -1149,6 +1175,40 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
                 // TODO add your handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jComboBoxPrincipalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPrincipalItemStateChanged
+        Integer escuderiaSeleccionada = jComboBoxPrincipal.getSelectedIndex() - 1;
+        if (escuderiaSeleccionada < 0) {
+            limpiarDatosDeVentana();
+        } else {
+            cargarEscuderiaEnVentana(escuderias.get(escuderiaSeleccionada));
+        }
+        
+    }//GEN-LAST:event_jComboBoxPrincipalItemStateChanged
+
+    private void jBtnCocheAleatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCocheAleatorioActionPerformed
+        generarCaracteristicasAleatorias();
+    }//GEN-LAST:event_jBtnCocheAleatorioActionPerformed
+
+    private void jBtnEliminarCocheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarCocheActionPerformed
+        eliminarCoche();
+    }//GEN-LAST:event_jBtnEliminarCocheActionPerformed
+
+    private void jSliderPotenciaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderPotenciaStateChanged
+        ponerValorEnEtiquetaSlider(jSliderPotencia, jLabelPotencia);
+    }//GEN-LAST:event_jSliderPotenciaStateChanged
+
+    private void jSliderAeroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderAeroStateChanged
+        ponerValorEnEtiquetaSlider(jSliderAero, jLabelAero);
+    }//GEN-LAST:event_jSliderAeroStateChanged
+
+    private void jSliderNeumaticosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderNeumaticosStateChanged
+        ponerValorEnEtiquetaSlider(jSliderNeumaticos, jLabelNeumaticos);
+    }//GEN-LAST:event_jSliderNeumaticosStateChanged
+
+    private void jBtnGuardarCocheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarCocheActionPerformed
+        crearCoche();
+    }//GEN-LAST:event_jBtnGuardarCocheActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1180,26 +1240,29 @@ public class FrameEscuderia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameEscuderia().setVisible(true);
+                try {
+                    new FrameEscuderia().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(FrameEscuderia.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(FrameEscuderia.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-        
-        
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBConfigurarCarrera;
     private javax.swing.JButton jBDescartarPiloto;
     private javax.swing.JButton jBEntrenamiento;
-    private javax.swing.JButton jBFabricarCoche;
     private javax.swing.JButton jBFicharPiloto;
+    private javax.swing.JButton jBtnCocheAleatorio;
+    private javax.swing.JButton jBtnEliminarCoche;
     private javax.swing.JButton jBtnEscuderiaVolver;
+    private javax.swing.JButton jBtnGuardarCoche;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox10;
@@ -1223,17 +1286,12 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox9;
     private javax.swing.JComboBox jComboBoxEscuderia;
     private javax.swing.JComboBox jComboBoxEscuderia1;
-    private javax.swing.JComboBox jComboBoxEscuderia2;
     private javax.swing.JComboBox jComboBoxEscuderiaCoches;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
+    private javax.swing.JComboBox jComboBoxPrincipal;
     private javax.swing.JLabel jLGestionDeEscuderia;
     private javax.swing.JLayeredPane jLPConfigurarCarrera;
     private javax.swing.JLayeredPane jLPDescartarPiloto;
     private javax.swing.JLayeredPane jLPEntrenamiento;
-    private javax.swing.JLayeredPane jLPFabricarCoche;
     private javax.swing.JLayeredPane jLPFicharPiloto;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1249,13 +1307,20 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAero;
+    private javax.swing.JLabel jLabelNeumaticos;
+    private javax.swing.JLabel jLabelPotencia;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1267,17 +1332,107 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider3;
-    private javax.swing.JSlider jSlider4;
+    private javax.swing.JSlider jSliderAero;
+    private javax.swing.JSlider jSliderNeumaticos;
+    private javax.swing.JSlider jSliderPotencia;
     private javax.swing.JTable jTDescartarPilotosOficiales1;
     private javax.swing.JTable jTFicharPilotosOficiales;
     private javax.swing.JTable jTFicharPilotosOficiales1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTableCoches;
+    private javax.swing.JTextField jTextFieldModelo;
     // End of variables declaration//GEN-END:variables
+    
+    private ArrayList<Escuderia> escuderias = new ArrayList<>();
+    private Escuderia escuderia = null;
+    
+    private void cargarDatos() throws ClassNotFoundException, IOException {
+        escuderias = EscuderiaAdapter.getInstance().leer();
+    }
+
+    private void cargarComboPincipal() {
+        jComboBoxPrincipal.addItem("Escoja escuderia");
+        for (Escuderia escuderia : escuderias) {
+            jComboBoxPrincipal.addItem(escuderia.getNombre());
+        }
+    }
+
+    private void cargarEscuderiaEnVentana(Escuderia escuderia) {
+        limpiarDatosDeVentana();
+        this.escuderia = escuderia;
+        cargarTablaCoches();
+    }
+
+    private void limpiarDatosDeVentana() {
+        this.escuderia = null;
+        limpiarTablaCoches();
+    }
+
+    private void cargarTablaCoches() {
+        jTableCoches.setModel(new CocheTableModel(escuderia.getCoches()));
+    }
+
+    private void limpiarTablaCoches() {
+        limpiarTabla(jTableCoches);
+    }
+
+    private void generarCaracteristicasAleatorias() {
+        Double valorMaximo = Coche.VALOR_MAXIMO_CARACTERISTICAS;
+        DecimalFormat df = new DecimalFormat("#.##");
+        Double potencia = Math.random() * valorMaximo * 100;
+        jSliderPotencia.setValue(potencia.intValue());
+        Double aerodinamica = Math.random() * valorMaximo * 100;
+        jSliderAero.setValue(aerodinamica.intValue());
+        Double neumaticos = Math.random() * valorMaximo * 100;
+        jSliderNeumaticos.setValue(neumaticos.intValue());
+    }
+
+    private void eliminarCoche() {
+        borrarFilaSeleccionadaDeTabla(jTableCoches, escuderia.getCoches());
+    }
+
+    private void crearCoche() {
+        Boolean correcto = validarFormularioNuevoCoche();
+        if (correcto) {
+            Coche coche = obtenerCocheDesdeFormulario();
+            escuderia.getCoches().add(coche);
+            limpiarFormularioNuevoCoche();
+            cargarTablaCoches();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private Boolean validarFormularioNuevoCoche() {
+        Boolean correcto = true;
+        if (!jTextFieldModelo.getInputVerifier().verify(this.jTextFieldModelo)) {
+            correcto = false;
+            marcarComoErroneo(this.jTextFieldModelo);
+        }
+        return correcto;
+    }
+
+    private Coche obtenerCocheDesdeFormulario() {
+        String modelo = jTextFieldModelo.getText();
+        Double potencia = jSliderPotencia.getValue() * 0.01;
+        Double aerodinamica = jSliderAero.getValue() * 0.01;
+        Double neumaticos = jSliderNeumaticos.getValue() * 0.01;
+        Coche coche = new Coche(modelo, potencia, aerodinamica, neumaticos);
+        return coche;
+    }
+
+    private void limpiarFormularioNuevoCoche() {
+        jTextFieldModelo.setText("");
+        jSliderPotencia.setValue(0);
+        jSliderAero.setValue(0);
+        jSliderNeumaticos.setValue(0);
+    }
+
+    
+
 }

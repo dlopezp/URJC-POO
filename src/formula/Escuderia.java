@@ -9,7 +9,7 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
     private Integer presupuesto;
     private Integer puntos;
     private Set<PilotoOficial> pilotosOficiales;
-    private Set<Coche> coches;
+    private ArrayList<Coche> coches;
     private Set<PilotoProbador> pilotosProbadores;
     private String dueño;
 
@@ -33,7 +33,7 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
         this.dueño = dueño;
         pilotosOficiales = new HashSet<PilotoOficial>();
         pilotosProbadores = new HashSet<PilotoProbador>();
-        coches = new HashSet<Coche>();
+        coches = new ArrayList<Coche>();
     }
     
     public boolean puedeFicharPilotoOficial() {
@@ -111,6 +111,10 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
            Coche coche = new Coche(modelo, potencia, aerodinamica, neumaticos);
            coches.add(coche);
         }
+    }
+    
+    public void destruirCoche(Coche coche) {
+        coches.remove(coche);
     }
     
     public void descartarPiloto(PilotoOficial piloto){
@@ -248,11 +252,11 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
         this.pilotosOficiales = pilotosOficiales;
     }
 
-    public Set<Coche> getCoches() {
+    public ArrayList<Coche> getCoches() {
         return coches;
     }
 
-    public void setCoches(Set<Coche> coches) {
+    public void setCoches(ArrayList<Coche> coches) {
         this.coches = coches;
     }
 
@@ -279,6 +283,7 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
     public void setDueño(String dueño) {
         this.dueño = dueño;
     }
+
 }
     
 
