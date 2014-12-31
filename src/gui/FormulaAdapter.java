@@ -13,7 +13,7 @@ import java.util.Iterator;
  *
  * @author HOME3
  */
-public class FormulaAdapter<T> {
+public abstract class FormulaAdapter<T> {
     
     public void save(ArrayList<T> elements, String file) throws IOException {
         File fichero = new File(file);
