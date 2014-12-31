@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class EscuderiaAdapter extends FormulaAdapter<Escuderia>{
     
     private static EscuderiaAdapter instance = null;
-    private static final String FICHERO = "ficheros" + System.getProperty("file.separator") + "Escuderia.dat";
+    private static final String FICHERO = "ficheros" + System.getProperty("file.separator") + "Escuderias.dat";
     
     private EscuderiaAdapter() {}
     
