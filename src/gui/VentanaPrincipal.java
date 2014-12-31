@@ -1276,7 +1276,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return correcto;
     }
     
-        private Boolean validarFormularioNuevoCircuito() {
+    private Boolean validarFormularioNuevoCircuito() {
         Boolean correcto = true;
         if (!this.jTxtFieldCircuitoNombre.getInputVerifier().verify(this.jTxtFieldCircuitoNombre)) {
             correcto = false;
