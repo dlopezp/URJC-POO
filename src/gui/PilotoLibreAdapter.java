@@ -8,20 +8,12 @@ import java.util.ArrayList;
  *
  * @author HOME3
  */
-public class PilotoLibreAdapter {
+public class PilotoLibreAdapter extends FormulaAdapter<PilotoLibre>{
     
     private static PilotoLibreAdapter instance = null;
-    private static FormulaAdapter<PilotoLibre> adapter = null;
     private static final String FICHERO = "ficheros" + System.getProperty("file.separator") + "PilotosLibres.dat";
     
     private PilotoLibreAdapter() {}
-    
-    private FormulaAdapter<PilotoLibre> getAdapter() {
-       if (adapter == null) {
-           adapter = new FormulaAdapter<>();
-       } 
-       return adapter;
-    }
     
     public static PilotoLibreAdapter getInstance() {
         if (instance == null) {
@@ -31,10 +23,10 @@ public class PilotoLibreAdapter {
     }
     
     public void guardar(ArrayList<PilotoLibre> pilotosLibres) throws IOException {
-        getAdapter().save(pilotosLibres, FICHERO);
+        save(pilotosLibres, FICHERO);
     }
     
     public ArrayList<PilotoLibre> leer() throws ClassNotFoundException, IOException {
-        return getAdapter().read(FICHERO);
+        return read(FICHERO);
     }
 }
