@@ -1,7 +1,8 @@
 package formula;
+import java.io.Serializable;
 import java.util.*;
 
-public class Escuderia implements Comparable<Escuderia>{
+public class Escuderia implements Comparable<Escuderia>,Serializable{
     private String nombre;
     private String pais;
     private Integer año;
@@ -11,7 +12,7 @@ public class Escuderia implements Comparable<Escuderia>{
     private Set<Coche> coches;
     private Set<PilotoProbador> pilotosProbadores;
     private String dueño;
-    
+
     private static final Integer MINIMA_CANTIDAD_DE_PILOTOS_OFICIALES = 1;
     private static final Integer MAXIMA_CANTIDAD_DE_PILOTOS_OFICIALES = 2;
     private static final Integer MAXIMA_CANTIDAD_DE_PILOTOS_PROBADORES = 2;
@@ -23,8 +24,7 @@ public class Escuderia implements Comparable<Escuderia>{
             String pais,
             Integer año,
             Integer presupuesto,
-            String dueño,
-            PilotoLibre piloto
+            String dueño
     ) {
         this.nombre = nombre;
         this.pais = pais;
@@ -34,7 +34,6 @@ public class Escuderia implements Comparable<Escuderia>{
         pilotosOficiales = new HashSet<PilotoOficial>();
         pilotosProbadores = new HashSet<PilotoProbador>();
         coches = new HashSet<Coche>();
-        pilotosOficiales.add(new PilotoOficial(piloto));
     }
     
     public boolean puedeFicharPilotoOficial() {
@@ -72,11 +71,11 @@ public class Escuderia implements Comparable<Escuderia>{
     public void intercambiarPiloto(PilotoDecorador pilotoVenta, PilotoDecorador pilotoCompra) {
         if (Escuderia.sonPilotosIntercambiables(pilotoVenta, pilotoCompra)) {
            if (esPilotoOficial(pilotoVenta)) {
-               descartarPiloto((PilotoOficial)pilotoVenta);
+               pilotosOficiales.remove(pilotoVenta);
                PilotoOficial pilotoOficial = new PilotoOficial(pilotoCompra.getPiloto());
                ficharPiloto(pilotoOficial);
            } else if (esPilotoProbador(pilotoVenta)) {
-               descartarPiloto((PilotoProbador)pilotoVenta);
+               pilotosProbadores.remove(pilotoVenta);
                PilotoProbador pilotoProbador = new PilotoProbador(pilotoCompra.getPiloto());
                ficharPiloto(pilotoProbador);
            }
@@ -163,14 +162,11 @@ public class Escuderia implements Comparable<Escuderia>{
         }
         return encontrado;
     }
-    
-    
+
     public void obtenerPremio(Integer premio) {
         setPresup(getPresup()+premio);
     }
-    
-    
-    
+
     @Override
     public int compareTo(Escuderia e){
         return getPuntos()-e.getPuntos();
@@ -266,6 +262,22 @@ public class Escuderia implements Comparable<Escuderia>{
 
     public void setPilotosProbadores(Set<PilotoProbador> pilotosProbadores) {
         this.pilotosProbadores = pilotosProbadores;
+    }
+    
+    public Integer getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(Integer presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
+    public String getDueño() {
+        return dueño;
+    }
+
+    public void setDueño(String dueño) {
+        this.dueño = dueño;
     }
 }
     

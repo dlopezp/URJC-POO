@@ -1,6 +1,5 @@
 package gui;
 
-import formula.PilotoLibre;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -33,23 +32,28 @@ public class FormulaAdapter<T> {
             out.close();
         } catch (IOException ex) {
             System.err.println(ex);
+            System.err.println(file);
         }
     }
     
-    public ArrayList<T> read(String file) throws ClassNotFoundException {
+    public ArrayList<T> read(String file) throws ClassNotFoundException, IOException {
         File fichero = new File(file);
         ArrayList<T> elements = new ArrayList<>();
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
         try {
-            FileInputStream fis = new FileInputStream(fichero);
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            fis = new FileInputStream(fichero);
+            ois = new ObjectInputStream(fis);
             T element = null;
-            while ((element = (T) ois.readObject()) != null) {
+            while (true) {
+                element = (T) ois.readObject();
                 elements.add(element);
             }
+        } catch (IOException ex) {
+
+        } finally {
             ois.close();
             fis.close();
-        } catch (IOException ex) {
-            System.err.println(ex);
         }
         return elements;
     }

@@ -1,6 +1,7 @@
 package gui;
 
 import formula.Circuito;
+import formula.Escuderia;
 import formula.PilotoLibre;
 import formula.Tramo;
 import java.awt.Color;
@@ -31,9 +32,10 @@ public class FrameAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form FrameAdministradorBase
      */
-    public FrameAdministrador() throws ClassNotFoundException {
+    public FrameAdministrador() throws ClassNotFoundException, IOException {
         initComponents();
-        obtenerDatosAdministrador();
+        obtenerDatos();
+        cargarDatos();
         asignarEventosEnVentana();
     }
 
@@ -74,7 +76,23 @@ public class FrameAdministrador extends javax.swing.JFrame {
         jLblNuevaCurva = new javax.swing.JLabel();
         jBtnAniadirCurva = new javax.swing.JButton();
         jBtnBorrarCurva = new javax.swing.JButton();
+        jBtnBorrarCircuito = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTableEscuderias = new javax.swing.JTable();
+        jBtnBorrarEscuderia = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jTextFieldNombreEscuderia = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jTextFieldDuenoEscuderia = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jTextFieldPaisEscuderia = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jTextFieldAnioEscuderia = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jTextFieldPresupuestoEscuderia = new javax.swing.JTextField();
+        jBtnGuardarEscuderia = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbPilotos = new javax.swing.JTable();
@@ -103,6 +121,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
         jLblAgresividad = new javax.swing.JLabel();
         jLblPaciencia = new javax.swing.JLabel();
         jLblValentia = new javax.swing.JLabel();
+        jBtnBorrarPiloto = new javax.swing.JButton();
         jBtnVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -135,6 +154,11 @@ public class FrameAdministrador extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableCircuitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCircuitosMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(jTableCircuitos);
@@ -238,7 +262,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
                         .addComponent(jBtnBorrarRecta))
                     .addComponent(jLabel14)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(102, 204, 255));
@@ -259,7 +283,6 @@ public class FrameAdministrador extends javax.swing.JFrame {
         jLblNuevaCurva.setText("0.0");
 
         jBtnAniadirCurva.setText("Añadir Curva");
-        jBtnAniadirCurva.setPreferredSize(new java.awt.Dimension(95, 23));
         jBtnAniadirCurva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnAniadirCurvaActionPerformed(evt);
@@ -285,17 +308,12 @@ public class FrameAdministrador extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSlNuevaCurva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jBtnBorrarCurva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                .addComponent(jBtnAniadirCurva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLblNuevaCurva)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jSlNuevaCurva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jBtnBorrarCurva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                        .addComponent(jBtnAniadirCurva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLblNuevaCurva))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +325,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLblNuevaCurva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnAniadirCurva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnAniadirCurva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnBorrarCurva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel15)
@@ -365,6 +383,13 @@ public class FrameAdministrador extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jBtnBorrarCircuito.setText("Borrar");
+        jBtnBorrarCircuito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBorrarCircuitoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -375,7 +400,10 @@ public class FrameAdministrador extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                        .addGap(0, 4, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnBorrarCircuito)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -383,22 +411,161 @@ public class FrameAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnBorrarCircuito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Circuitos", jPanel3);
 
+        jTableEscuderias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Pais", "Año", "Presupuesto"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableEscuderias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEscuderiasMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jTableEscuderias);
+
+        jBtnBorrarEscuderia.setText("Borrar");
+        jBtnBorrarEscuderia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBorrarEscuderiaActionPerformed(evt);
+            }
+        });
+
+        jPanel7.setBackground(new java.awt.Color(102, 204, 255));
+
+        jLabel16.setText("Nombre:");
+
+        jTextFieldNombreEscuderia.setInputVerifier(new NotEmptyVerifier());
+
+        jLabel17.setText("Dueño:");
+
+        jTextFieldDuenoEscuderia.setInputVerifier(new NotEmptyVerifier());
+
+        jLabel18.setText("País:");
+
+        jTextFieldPaisEscuderia.setInputVerifier(new NotEmptyVerifier());
+
+        jLabel19.setText("Año:");
+
+        jTextFieldAnioEscuderia.setInputVerifier(new IsIntegerVerifier());
+
+        jLabel20.setText("Presupuesto:");
+
+        jTextFieldPresupuestoEscuderia.setInputVerifier(new IsIntegerVerifier());
+
+        jBtnGuardarEscuderia.setText("Guardar");
+        jBtnGuardarEscuderia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarEscuderiaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jTextFieldNombreEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldDuenoEscuderia))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jTextFieldPaisEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldAnioEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldPresupuestoEscuderia, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnGuardarEscuderia)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jTextFieldNombreEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addComponent(jTextFieldDuenoEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jTextFieldPaisEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextFieldAnioEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jTextFieldPresupuestoEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnGuardarEscuderia)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnBorrarEscuderia))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnBorrarEscuderia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Escuderias", jPanel2);
@@ -568,8 +735,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
                                         .addGap(2, 2, 2)
                                         .addComponent(jSlPaciencia, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLblPaciencia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(111, 111, 111))
+                                        .addComponent(jLblPaciencia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanelCrearPilotoLayout.createSequentialGroup()
                                         .addComponent(jTxtFieldPilotoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -662,23 +828,33 @@ public class FrameAdministrador extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jBtnBorrarPiloto.setText("Borrar");
+        jBtnBorrarPiloto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBorrarPilotoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnBorrarPiloto)
+                    .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnBorrarPiloto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jPanelCrearPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -727,12 +903,16 @@ public class FrameAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
+        try {
+            guardarDatos();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrameManager.getInstance().mostrarVentanaPrincipal(this);
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        cargarPilotosEnTabla();
-        cargarCircuitosEnTabla();
+        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void jTxtFieldPilotoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoNombreFocusLost
@@ -830,6 +1010,44 @@ public class FrameAdministrador extends javax.swing.JFrame {
         eliminarCurva();
     }//GEN-LAST:event_jBtnBorrarCurvaActionPerformed
 
+    private void jTableCircuitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCircuitosMouseClicked
+        if (evt.getClickCount() == 2) {
+            int filaSeleccionada = jTableCircuitos.getSelectedRow();
+            if (filaSeleccionada != -1) {
+                Circuito circuito = circuitos.get(filaSeleccionada);
+                circuitos.remove(filaSeleccionada);
+                editarCircuito(circuito);
+            }
+        }
+    }//GEN-LAST:event_jTableCircuitosMouseClicked
+
+    private void jBtnBorrarCircuitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBorrarCircuitoActionPerformed
+        borrarCircuito();
+    }//GEN-LAST:event_jBtnBorrarCircuitoActionPerformed
+
+    private void jBtnBorrarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBorrarPilotoActionPerformed
+        borrarPiloto();
+    }//GEN-LAST:event_jBtnBorrarPilotoActionPerformed
+
+    private void jBtnBorrarEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBorrarEscuderiaActionPerformed
+        borrarEscuderia();
+    }//GEN-LAST:event_jBtnBorrarEscuderiaActionPerformed
+
+    private void jTableEscuderiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEscuderiasMouseClicked
+        if (evt.getClickCount() == 2) {
+            int filaSeleccionada = jTableEscuderias.getSelectedRow();
+            if (filaSeleccionada != -1) {
+                Escuderia escuderia = escuderias.get(filaSeleccionada);
+                escuderias.remove(filaSeleccionada);
+                editarEscuderia(escuderia);
+            }
+        }
+    }//GEN-LAST:event_jTableEscuderiasMouseClicked
+
+    private void jBtnGuardarEscuderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarEscuderiaActionPerformed
+        crearEscuderia();
+    }//GEN-LAST:event_jBtnGuardarEscuderiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -864,6 +1082,8 @@ public class FrameAdministrador extends javax.swing.JFrame {
                     new FrameAdministrador().setVisible(true);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -874,9 +1094,13 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton jBtCrearPiloto;
     private javax.swing.JButton jBtnAniadirCurva;
     private javax.swing.JButton jBtnAniadirRecta;
+    private javax.swing.JButton jBtnBorrarCircuito;
     private javax.swing.JButton jBtnBorrarCurva;
+    private javax.swing.JButton jBtnBorrarEscuderia;
+    private javax.swing.JButton jBtnBorrarPiloto;
     private javax.swing.JButton jBtnBorrarRecta;
     private javax.swing.JButton jBtnGuardarCircuito;
+    private javax.swing.JButton jBtnGuardarEscuderia;
     private javax.swing.JButton jBtnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -885,7 +1109,12 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -907,11 +1136,13 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelCrearPiloto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSlider jSlAgresividad;
     private javax.swing.JSlider jSlNuevaCurva;
     private javax.swing.JSlider jSlNuevaRecta;
@@ -920,10 +1151,16 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private javax.swing.JSlider jSlValentia;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableCircuitos;
+    private javax.swing.JTable jTableEscuderias;
     private javax.swing.JTable jTbPilotos;
+    private javax.swing.JTextField jTextFieldAnioEscuderia;
     private javax.swing.JTextField jTextFieldCircuitoAforo;
     private javax.swing.JTextField jTextFieldCircuitoCanon;
     private javax.swing.JTextField jTextFieldCircuitoNombre;
+    private javax.swing.JTextField jTextFieldDuenoEscuderia;
+    private javax.swing.JTextField jTextFieldNombreEscuderia;
+    private javax.swing.JTextField jTextFieldPaisEscuderia;
+    private javax.swing.JTextField jTextFieldPresupuestoEscuderia;
     private javax.swing.JTextField jTxtFieldPilotoAltura;
     private javax.swing.JTextField jTxtFieldPilotoApellidos;
     private javax.swing.JTextField jTxtFieldPilotoEdad;
@@ -933,15 +1170,24 @@ public class FrameAdministrador extends javax.swing.JFrame {
 
     private ArrayList<PilotoLibre> pilotos = new ArrayList<>();
     private ArrayList<Circuito> circuitos = new ArrayList<>();
+    private ArrayList<Escuderia> escuderias = new ArrayList<>();
     
-    private void obtenerDatosAdministrador() throws ClassNotFoundException {
+    private void obtenerDatos() throws ClassNotFoundException, IOException {
         recuperarPilotos();
         recuperarCircuitos();
+        recuperarEscuderias();
     }
     
-    private void guardarDatosAdministrador() throws IOException {
+    private void guardarDatos() throws IOException {
         guardarPilotos();
         guardarCircuitos();
+        guardarEscuderias();
+    }
+    
+    private void cargarDatos() {
+        cargarPilotosEnTabla();
+        cargarCircuitosEnTabla();
+        cargarEscuderiasEnTabla();
     }
 
     private void asignarEventosEnVentana() {
@@ -949,7 +1195,7 @@ public class FrameAdministrador extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent evt) {
                 try {
-                    guardarDatosAdministrador();
+                    guardarDatos();
                 } catch (IOException ex) {
                     Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -961,8 +1207,12 @@ public class FrameAdministrador extends javax.swing.JFrame {
         pilotos = PilotoLibreAdapter.getInstance().leer();
     }
     
-    private void recuperarCircuitos() throws ClassNotFoundException {
+    private void recuperarCircuitos() throws ClassNotFoundException, IOException {
         circuitos = CircuitoAdapter.getInstance().leer();
+    }
+    
+    private void recuperarEscuderias() throws ClassNotFoundException, IOException {
+        escuderias = EscuderiaAdapter.getInstance().leer();
     }
 
     private void guardarPilotos() throws IOException {
@@ -971,6 +1221,10 @@ public class FrameAdministrador extends javax.swing.JFrame {
     
     private void guardarCircuitos() throws IOException {
         CircuitoAdapter.getInstance().guardar(circuitos);
+    }
+    
+    private void guardarEscuderias() throws IOException {
+        EscuderiaAdapter.getInstance().guardar(escuderias);
     }
     
     private void cargarPilotosEnTabla() {
@@ -991,6 +1245,17 @@ public class FrameAdministrador extends javax.swing.JFrame {
         while (circuitosIterator.hasNext()) {
             Circuito circuito = circuitosIterator.next();
             Object[] fila = new Object[]{circuito.getNombre(), circuito.getDistanciaRecta(), circuito.getDistanciaCurva(), circuito.getDistanciaTotal()};
+            modelo.addRow(fila);
+        }
+    }
+    
+    private void cargarEscuderiasEnTabla() {
+        Iterator<Escuderia> escuderiasIterator = escuderias.iterator();
+        DefaultTableModel modelo = (DefaultTableModel) jTableEscuderias.getModel();
+        limpiarTabla(modelo);        
+        while (escuderiasIterator.hasNext()) {
+            Escuderia escuderia = escuderiasIterator.next();
+            Object[] fila = new Object[]{escuderia.getNombre(), escuderia.getPais(), escuderia.getAño(), escuderia.getPresup()};
             modelo.addRow(fila);
         }
     }
@@ -1207,6 +1472,114 @@ public class FrameAdministrador extends javax.swing.JFrame {
     private void limpiarLista(JList lista) {
         DefaultListModel modelo = (DefaultListModel) lista.getModel();
         modelo.removeAllElements();
+    }
+
+    private void editarCircuito(Circuito circuito) {
+        colocarDatosCircuitoEnFormulario(circuito);
+    }
+    
+    private void colocarDatosCircuitoEnFormulario(Circuito circuito) {
+        jTextFieldCircuitoNombre.setText(circuito.getNombre());
+        jTextFieldCircuitoAforo.setText(circuito.getAforo().toString());
+        jTextFieldCircuitoCanon.setText(circuito.getCanon().toString());
+        rellenarLista(jListCurvas, circuito.getCurvas());
+        rellenarLista(jListRectas, circuito.getRectas());
+    }
+
+    private void rellenarLista(JList lista, Tramo[] tramos) {
+        DefaultListModel modelo = (DefaultListModel) lista.getModel();
+        for (Tramo tramo : tramos) {
+            modelo.addElement(tramo.getDistancia());
+        }
+    }
+
+    private void borrarCircuito() {
+        borrarFilaSeleccionadaDeTabla(jTableCircuitos, circuitos);
+        
+    }
+
+    private void borrarPiloto() {
+        borrarFilaSeleccionadaDeTabla(jTbPilotos, pilotos);
+    }
+
+    private void borrarEscuderia() {
+        borrarFilaSeleccionadaDeTabla(jTableEscuderias, escuderias);
+    }
+
+    private void borrarFilaSeleccionadaDeTabla(JTable tabla, ArrayList coleccion) {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        int filaSeleccionada = tabla.getSelectedRow();
+        if (filaSeleccionada != -1) {          
+            modelo.removeRow(filaSeleccionada);
+            coleccion.remove(filaSeleccionada);
+        }
+    }
+
+    private void editarEscuderia(Escuderia escuderia) {
+        colocarDatosEscuderiaEnFormulario(escuderia);
+    }
+
+    private void colocarDatosEscuderiaEnFormulario(Escuderia escuderia) {
+        jTextFieldNombreEscuderia.setText(escuderia.getNombre());
+        jTextFieldDuenoEscuderia.setText(escuderia.getDueño());
+        jTextFieldPaisEscuderia.setText(escuderia.getPais());
+        jTextFieldAnioEscuderia.setText(escuderia.getAño().toString());
+        jTextFieldPresupuestoEscuderia.setText(escuderia.getPresup().toString());
+    }
+
+    private void crearEscuderia() {
+        Boolean correcto = validarFormularioNuevaEscuderia();
+        if (correcto) {
+            Escuderia escuderia = obtenerEscuderiaDesdeFormulario();
+            escuderias.add(escuderia);
+            limpiarFormularioNuevaEscuderia();
+            cargarEscuderiasEnTabla();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private Boolean validarFormularioNuevaEscuderia() {
+        Boolean correcto = true;
+        if (!jTextFieldNombreEscuderia.getInputVerifier().verify(jTextFieldNombreEscuderia)) {
+            correcto = false;
+            marcarComoErroneo(jTextFieldNombreEscuderia);
+        }
+        if (!jTextFieldDuenoEscuderia.getInputVerifier().verify(jTextFieldDuenoEscuderia)) {
+            correcto = false;
+            marcarComoErroneo(jTextFieldDuenoEscuderia);
+        }
+        if (!jTextFieldPaisEscuderia.getInputVerifier().verify(jTextFieldPaisEscuderia)) {
+            correcto = false;
+            marcarComoErroneo(jTextFieldPaisEscuderia);
+        }
+        if (!jTextFieldAnioEscuderia.getInputVerifier().verify(jTextFieldAnioEscuderia)) {
+            correcto = false;
+            marcarComoErroneo(jTextFieldAnioEscuderia);
+        }
+        if (!jTextFieldPresupuestoEscuderia.getInputVerifier().verify(jTextFieldPresupuestoEscuderia)) {
+            correcto = false;
+            marcarComoErroneo(jTextFieldPresupuestoEscuderia);
+        }
+        return correcto;
+    }
+
+    private Escuderia obtenerEscuderiaDesdeFormulario() {
+        String nombre = jTextFieldNombreEscuderia.getText();
+        String dueño = jTextFieldDuenoEscuderia.getText();
+        String pais = jTextFieldPaisEscuderia.getText();
+        Integer año = Integer.parseInt(jTextFieldAnioEscuderia.getText());
+        Integer presupuesto = Integer.parseInt(jTextFieldPresupuestoEscuderia.getText());
+        Escuderia escuderia = new Escuderia(nombre, pais, año, presupuesto, dueño);
+        return escuderia;
+    }
+
+    private void limpiarFormularioNuevaEscuderia() {
+        jTextFieldNombreEscuderia.setText("");
+        jTextFieldDuenoEscuderia.setText("");
+        jTextFieldPaisEscuderia.setText("");
+        jTextFieldAnioEscuderia.setText("");
+        jTextFieldPresupuestoEscuderia.setText("");
     }
 
 }

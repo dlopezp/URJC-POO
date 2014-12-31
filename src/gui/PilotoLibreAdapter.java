@@ -34,7 +34,7 @@ public class PilotoLibreAdapter {
         getAdapter().save(pilotosLibres, FICHERO);
     }
     
-    public ArrayList<PilotoLibre> leer() throws ClassNotFoundException {
+    public ArrayList<PilotoLibre> leer() throws ClassNotFoundException, IOException {
         return getAdapter().read(FICHERO);
     }
 }

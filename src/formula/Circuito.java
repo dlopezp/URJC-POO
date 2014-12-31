@@ -1,6 +1,8 @@
 package formula;
 
-public class Circuito {
+import java.io.Serializable;
+
+public class Circuito implements Serializable {
     
     private String nombre;
     private Integer aforo;

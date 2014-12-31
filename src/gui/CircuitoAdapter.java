@@ -34,7 +34,7 @@ public class CircuitoAdapter {
         getAdapter().save(pilotosLibres, FICHERO);
     }
     
-    public ArrayList<Circuito> leer() throws ClassNotFoundException {
+    public ArrayList<Circuito> leer() throws ClassNotFoundException, IOException {
         return getAdapter().read(FICHERO);
     }
 }

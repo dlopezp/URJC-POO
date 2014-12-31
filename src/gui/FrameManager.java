@@ -5,6 +5,7 @@
  */
 package gui;
 
+import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
@@ -29,7 +30,7 @@ public class FrameManager {
         mostrarVentana(new FrameSeleccionUsuario());
     }
     
-    public void mostrarVentanaAdministrador(JFrame ventanaActual) throws ClassNotFoundException {
+    public void mostrarVentanaAdministrador(JFrame ventanaActual) throws ClassNotFoundException, IOException {
         ocultarVentana(ventanaActual);
         mostrarVentana(new FrameAdministrador());
     }

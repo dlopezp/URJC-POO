@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,6 +84,8 @@ public class FrameSeleccionUsuario extends javax.swing.JFrame {
         try {
             FrameManager.getInstance().mostrarVentanaAdministrador(this);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrameSeleccionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(FrameSeleccionUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

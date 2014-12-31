@@ -31,7 +31,7 @@ public class EscuderiaAdapter {
         getAdapter().save(escuderias, FICHERO);
     }
     
-    public ArrayList<Escuderia> leer() throws ClassNotFoundException {
+    public ArrayList<Escuderia> leer() throws ClassNotFoundException, IOException {
         return getAdapter().read(FICHERO);
     }
     

@@ -64,10 +64,12 @@ public class EscuderiaTest {
     private PilotoLibre pilotoLibre4 = new PilotoLibre(nombrePiloto3, apellidosPiloto3, edadPiloto3, alturaPiloto3, pesoPiloto3, reflejosPiloto3, agresividadPiloto3, pacienciaPiloto3, valentiaPiloto3);
     
     
-    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, dueñoEscuderia, pilotoLibre1);
+    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, dueñoEscuderia);
 
     @Test
     public void test_puedeFicharPilotoOficial() {
+        assertTrue(escuderia.puedeFicharPilotoOficial());
+        escuderia.ficharPiloto(new PilotoOficial(pilotoLibre1));
         assertTrue(escuderia.puedeFicharPilotoOficial());
         escuderia.ficharPiloto(new PilotoOficial(pilotoLibre2));
         assertFalse(escuderia.puedeFicharPilotoOficial());
