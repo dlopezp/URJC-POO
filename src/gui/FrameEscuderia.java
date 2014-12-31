@@ -29,34 +29,44 @@ public class FrameEscuderia extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jBtnEscuderiaVolver = new javax.swing.JButton();
-        jLPEscuderiaCoche = new javax.swing.JLayeredPane();
+        jPGestionDeEscuderia = new javax.swing.JPanel();
+        jBFabricarCoche = new javax.swing.JButton();
+        jBConfigurarCarrera = new javax.swing.JButton();
+        jBDescartarPiloto = new javax.swing.JButton();
+        jBEntrenamiento = new javax.swing.JButton();
+        jBFicharPiloto = new javax.swing.JButton();
+        jLGestionDeEscuderia = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jPFabricarCoche = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxEscuderia2 = new javax.swing.JComboBox();
-        jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jSlider2 = new javax.swing.JSlider();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jSlider3 = new javax.swing.JSlider();
-        jLabel13 = new javax.swing.JLabel();
+        jComboBoxEscuderia2 = new javax.swing.JComboBox();
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jButton4 = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jSlider1 = new javax.swing.JSlider();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jSlider3 = new javax.swing.JSlider();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jButton5 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLPFicharPiloto = new javax.swing.JLayeredPane();
+        jButton4 = new javax.swing.JButton();
+        jSlider4 = new javax.swing.JSlider();
+        jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        jPFicharPiloto = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTFicharPilotosOficiales = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLPDescartarPilotos = new javax.swing.JLayeredPane();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPDescartarPiloto = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTDescartarPilotosOficiales1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jLPConfigurarEntrenamiento = new javax.swing.JLayeredPane();
+        jSeparator8 = new javax.swing.JSeparator();
+        jPEntrenemiento = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxEscuderia = new javax.swing.JComboBox();
@@ -73,7 +83,8 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLPConfigurarCarrera = new javax.swing.JLayeredPane();
+        jSeparator9 = new javax.swing.JSeparator();
+        jPCarrera = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox();
@@ -121,7 +132,42 @@ public class FrameEscuderia extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Fabricar Coche");
+        jPGestionDeEscuderia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPGestionDeEscuderiaFocusGained(evt);
+            }
+        });
+
+        jBFabricarCoche.setText("Fabricar Coche");
+        jBFabricarCoche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFabricarCocheActionPerformed(evt);
+            }
+        });
+
+        jBConfigurarCarrera.setText("Configurar Carrera");
+        jBConfigurarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConfigurarCarreraActionPerformed(evt);
+            }
+        });
+
+        jBDescartarPiloto.setText("Descartar Piloto");
+
+        jBEntrenamiento.setText("Entrenamiento");
+        jBEntrenamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEntrenamientoActionPerformed(evt);
+            }
+        });
+
+        jBFicharPiloto.setText("Fichar Piloto");
+
+        jLGestionDeEscuderia.setText("GESTIÓN DE ESCUDERÍA");
+
+        jLabel3.setText("FABRICAR COCHE");
+
+        jLabel9.setText("Selecciona Modelo:");
 
         jComboBoxEscuderia2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Modelos", "Ferrari", "Renault", "McLaren", "Mercedes", "Lotus", "Red Bull", "Force India", "Sauber", "Toro Rosso", "Williams", "Marussia", "Caterham" }));
         jComboBoxEscuderia2.setName(""); // NOI18N
@@ -131,9 +177,11 @@ public class FrameEscuderia extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Potencia:");
-
-        jLabel9.setText("Selecciona Modelo:");
+        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField4ActionPerformed(evt);
+            }
+        });
 
         jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,13 +189,11 @@ public class FrameEscuderia extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("Potencia:");
+
         jLabel12.setText("Aerodinámica:");
 
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
-            }
-        });
+        jLabel13.setText("Neumáticos:");
 
         jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,121 +201,106 @@ public class FrameEscuderia extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("Neumáticos:");
-
-        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField4ActionPerformed(evt);
-            }
-        });
+        jButton5.setText("Restablecer");
 
         jButton4.setForeground(new java.awt.Color(51, 153, 0));
         jButton4.setText("Aceptar");
 
-        jButton5.setText("Restablecer");
+        jFormattedTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField5ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jLPEscuderiaCocheLayout = new javax.swing.GroupLayout(jLPEscuderiaCoche);
-        jLPEscuderiaCoche.setLayout(jLPEscuderiaCocheLayout);
-        jLPEscuderiaCocheLayout.setHorizontalGroup(
-            jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPFabricarCocheLayout = new javax.swing.GroupLayout(jPFabricarCoche);
+        jPFabricarCoche.setLayout(jPFabricarCocheLayout);
+        jPFabricarCocheLayout.setHorizontalGroup(
+            jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPEscuderiaCocheLayout.createSequentialGroup()
-                .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                        .addGap(120, 120, 120)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator7))
+            .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                                .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPFabricarCocheLayout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jFormattedTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxEscuderia2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
                         .addComponent(jButton5)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                                .addGap(225, 225, 225)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
-                            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSlider3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(64, 64, 64)
-                                .addComponent(jComboBoxEscuderia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextField1)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jLPEscuderiaCocheLayout.setVerticalGroup(
-            jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
+        jPFabricarCocheLayout.setVerticalGroup(
+            jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPFabricarCocheLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLPEscuderiaCocheLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxEscuderia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextField1)
-                            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(36, 36, 36)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextField2)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(34, 34, 34)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(142, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPEscuderiaCocheLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jLPEscuderiaCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                                .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPFabricarCocheLayout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(66, 66, 66))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPFabricarCocheLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPFabricarCocheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton5)
-                            .addComponent(jButton4))
-                        .addGap(41, 41, 41))))
+                            .addComponent(jButton4))))
+                .addGap(38, 38, 38))
         );
-        jLPEscuderiaCoche.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jComboBoxEscuderia2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jSlider1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jSlider2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jFormattedTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jFormattedTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jSlider3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jFormattedTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPEscuderiaCoche.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setText("Fichar Piloto");
 
@@ -331,35 +362,35 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 204, 0));
         jButton1.setText("Contratar");
 
-        javax.swing.GroupLayout jLPFicharPilotoLayout = new javax.swing.GroupLayout(jLPFicharPiloto);
-        jLPFicharPiloto.setLayout(jLPFicharPilotoLayout);
-        jLPFicharPilotoLayout.setHorizontalGroup(
-            jLPFicharPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPFicharPilotoLayout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jLPFicharPilotoLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPFicharPilotoLayout = new javax.swing.GroupLayout(jPFicharPiloto);
+        jPFicharPiloto.setLayout(jPFicharPilotoLayout);
+        jPFicharPilotoLayout.setHorizontalGroup(
+            jPFicharPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPFicharPilotoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jLPFicharPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jLPFicharPilotoLayout.setVerticalGroup(
-            jLPFicharPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPFicharPilotoLayout.createSequentialGroup()
+                .addGroup(jPFicharPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(jPFicharPilotoLayout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
-        jLPFicharPiloto.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFicharPiloto.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPFicharPiloto.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jPFicharPilotoLayout.setVerticalGroup(
+            jPFicharPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPFicharPilotoLayout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
 
-        jLabel5.setText("Descartar Piloto");
+        jLabel5.setText("DESCARTAR PILOTO");
 
         jTDescartarPilotosOficiales1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -398,43 +429,40 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jTDescartarPilotosOficiales1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jButton3.setForeground(new java.awt.Color(204, 51, 0));
-        jButton3.setText("Despedir Piloto");
+        jButton3.setText("Descartar Piloto");
 
-        javax.swing.GroupLayout jLPDescartarPilotosLayout = new javax.swing.GroupLayout(jLPDescartarPilotos);
-        jLPDescartarPilotos.setLayout(jLPDescartarPilotosLayout);
-        jLPDescartarPilotosLayout.setHorizontalGroup(
-            jLPDescartarPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPDescartarPilotosLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPDescartarPilotoLayout = new javax.swing.GroupLayout(jPDescartarPiloto);
+        jPDescartarPiloto.setLayout(jPDescartarPilotoLayout);
+        jPDescartarPilotoLayout.setHorizontalGroup(
+            jPDescartarPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPDescartarPilotoLayout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jLPDescartarPilotosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addContainerGap(778, Short.MAX_VALUE))
-            .addGroup(jLPDescartarPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLPDescartarPilotosLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jSeparator8)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDescartarPilotoLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPDescartarPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDescartarPilotoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDescartarPilotoLayout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(395, 395, 395))))
         );
-        jLPDescartarPilotosLayout.setVerticalGroup(
-            jLPDescartarPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPDescartarPilotosLayout.createSequentialGroup()
+        jPDescartarPilotoLayout.setVerticalGroup(
+            jPDescartarPilotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDescartarPilotoLayout.createSequentialGroup()
                 .addComponent(jLabel5)
-                .addGap(123, 123, 123)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(jLPDescartarPilotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLPDescartarPilotosLayout.createSequentialGroup()
-                    .addGap(33, 33, 33)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(58, Short.MAX_VALUE)))
+                .addGap(32, 32, 32))
         );
-        jLPDescartarPilotos.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPDescartarPilotos.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPDescartarPilotos.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setText("Entrenamiento");
+        jLabel2.setText("ENTRENAMIENTO");
 
         jLabel6.setText("Selecciona Circuito:");
 
@@ -546,45 +574,48 @@ public class FrameEscuderia extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(51, 153, 0));
         jButton2.setText("Aceptar");
 
-        javax.swing.GroupLayout jLPConfigurarEntrenamientoLayout = new javax.swing.GroupLayout(jLPConfigurarEntrenamiento);
-        jLPConfigurarEntrenamiento.setLayout(jLPConfigurarEntrenamientoLayout);
-        jLPConfigurarEntrenamientoLayout.setHorizontalGroup(
-            jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPConfigurarEntrenamientoLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPEntrenemientoLayout = new javax.swing.GroupLayout(jPEntrenemiento);
+        jPEntrenemiento.setLayout(jPEntrenemientoLayout);
+        jPEntrenemientoLayout.setHorizontalGroup(
+            jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPEntrenemientoLayout.createSequentialGroup()
                 .addGap(385, 385, 385)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPConfigurarEntrenamientoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEntrenemientoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jLPConfigurarEntrenamientoLayout.createSequentialGroup()
-                        .addGroup(jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPEntrenemientoLayout.createSequentialGroup()
+                        .addGroup(jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxEscuderia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jLPConfigurarEntrenamientoLayout.createSequentialGroup()
+                        .addGroup(jPEntrenemientoLayout.createSequentialGroup()
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jComboBoxEscuderiaCoches, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addComponent(jSeparator3)
             .addComponent(jSeparator2)
+            .addComponent(jSeparator9)
         );
-        jLPConfigurarEntrenamientoLayout.setVerticalGroup(
-            jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPConfigurarEntrenamientoLayout.createSequentialGroup()
-                .addContainerGap()
+        jPEntrenemientoLayout.setVerticalGroup(
+            jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPEntrenemientoLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
                 .addComponent(jLabel2)
-                .addGap(40, 40, 40)
-                .addGroup(jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -592,7 +623,7 @@ public class FrameEscuderia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addGroup(jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxEscuderia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -600,7 +631,7 @@ public class FrameEscuderia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLPConfigurarEntrenamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPEntrenemientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxEscuderiaCoches, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -608,19 +639,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton2))
         );
-        jLPConfigurarEntrenamiento.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jComboBoxEscuderia, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jComboBoxEscuderia1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jComboBoxEscuderiaCoches, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarEntrenamiento.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -714,140 +732,140 @@ public class FrameEscuderia extends javax.swing.JFrame {
 
         jLabel22.setText("Configurar Carreras");
 
-        javax.swing.GroupLayout jLPConfigurarCarreraLayout = new javax.swing.GroupLayout(jLPConfigurarCarrera);
-        jLPConfigurarCarrera.setLayout(jLPConfigurarCarreraLayout);
-        jLPConfigurarCarreraLayout.setHorizontalGroup(
-            jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPConfigurarCarreraLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPCarreraLayout = new javax.swing.GroupLayout(jPCarrera);
+        jPCarrera.setLayout(jPCarreraLayout);
+        jPCarreraLayout.setHorizontalGroup(
+            jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCarreraLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(125, 125, 125))
-            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+            .addGroup(jPCarreraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLPConfigurarCarreraLayout.createSequentialGroup()
-                        .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCarreraLayout.createSequentialGroup()
+                        .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLPConfigurarCarreraLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPCarreraLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                                    .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                    .addGroup(jPCarreraLayout.createSequentialGroup()
                                         .addGap(35, 35, 35)
-                                        .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel11)
                                             .addComponent(jLabel16)
                                             .addComponent(jLabel17)
                                             .addComponent(jLabel18)
                                             .addComponent(jLabel19))
                                         .addGap(39, 39, 39)
-                                        .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel20))
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPCarreraLayout.createSequentialGroup()
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                                    .addGroup(jPCarreraLayout.createSequentialGroup()
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
                                                 .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
                                                 .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
                                                 .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
                                                 .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(44, 44, 44)
-                                        .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel21))
                                                 .addGap(23, 23, 23)
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(23, 23, 23)
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPCarreraLayout.createSequentialGroup()
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jComboBox19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(23, 23, 23)
-                                                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBox20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jComboBox16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(15, 15, 15))
                                     .addComponent(jSeparator5))))
                         .addGap(24, 24, 24))
-                    .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+                    .addGroup(jPCarreraLayout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jLPConfigurarCarreraLayout.setVerticalGroup(
-            jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLPConfigurarCarreraLayout.createSequentialGroup()
+        jPCarreraLayout.setVerticalGroup(
+            jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCarreraLayout.createSequentialGroup()
                 .addComponent(jLabel22)
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel20))
-                    .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel21)))
                 .addGap(11, 11, 11)
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(26, 26, 26)
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(27, 27, 27)
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
                 .addGap(28, 28, 28)
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addGap(27, 27, 27)
-                .addGroup(jLPConfigurarCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPCarreraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -857,100 +875,128 @@ public class FrameEscuderia extends javax.swing.JFrame {
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jButton6)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jLPConfigurarCarrera.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jSeparator5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox16, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox18, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jComboBox20, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel20, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jSeparator6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLPConfigurarCarrera.setLayer(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jPGestionDeEscuderiaLayout = new javax.swing.GroupLayout(jPGestionDeEscuderia);
+        jPGestionDeEscuderia.setLayout(jPGestionDeEscuderiaLayout);
+        jPGestionDeEscuderiaLayout.setHorizontalGroup(
+            jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator4)
+            .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLGestionDeEscuderia)
+                    .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBConfigurarCarrera)
+                            .addComponent(jBDescartarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBFabricarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(94, 859, Short.MAX_VALUE))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPFabricarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPDescartarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPEntrenemiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPGestionDeEscuderiaLayout.setVerticalGroup(
+            jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                .addComponent(jLGestionDeEscuderia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jBConfigurarCarrera)
+                .addGap(18, 18, 18)
+                .addComponent(jBEntrenamiento)
+                .addGap(18, 18, 18)
+                .addComponent(jBFabricarCoche)
+                .addGap(18, 18, 18)
+                .addComponent(jBFicharPiloto)
+                .addGap(18, 18, 18)
+                .addComponent(jBDescartarPiloto)
+                .addContainerGap(392, Short.MAX_VALUE))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPFabricarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPDescartarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPEntrenemiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPGestionDeEscuderiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPGestionDeEscuderiaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLPConfigurarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(143, 143, 143)
-                        .addComponent(jLPFicharPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLPDescartarPilotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jBtnEscuderiaVolver)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnEscuderiaVolver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(0, 1369, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(736, 736, 736)
-                    .addComponent(jLPEscuderiaCoche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(879, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(405, 405, 405)
-                    .addComponent(jLPConfigurarEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1230, Short.MAX_VALUE)))
+                    .addGap(0, 183, Short.MAX_VALUE)
+                    .addComponent(jPGestionDeEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 183, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE)
-                        .addComponent(jLPDescartarPilotos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLPConfigurarCarrera)
-                            .addComponent(jLPFicharPiloto))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 943, Short.MAX_VALUE)
                 .addComponent(jBtnEscuderiaVolver)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(109, 109, 109)
-                    .addComponent(jLPEscuderiaCoche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(217, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(153, 153, 153)
-                    .addComponent(jLPConfigurarEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(261, Short.MAX_VALUE)))
+                    .addGap(0, 179, Short.MAX_VALUE)
+                    .addComponent(jPGestionDeEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 179, Short.MAX_VALUE)))
         );
 
         pack();
@@ -992,10 +1038,6 @@ public class FrameEscuderia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
-
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
@@ -1003,6 +1045,26 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+
+    private void jBConfigurarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConfigurarCarreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBConfigurarCarreraActionPerformed
+
+    private void jPGestionDeEscuderiaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPGestionDeEscuderiaFocusGained
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jPGestionDeEscuderiaFocusGained
+
+    private void jBFabricarCocheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFabricarCocheActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBFabricarCocheActionPerformed
+
+    private void jBEntrenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrenamientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBEntrenamientoActionPerformed
+
+    private void jFormattedTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1043,6 +1105,11 @@ public class FrameEscuderia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBConfigurarCarrera;
+    private javax.swing.JButton jBDescartarPiloto;
+    private javax.swing.JButton jBEntrenamiento;
+    private javax.swing.JButton jBFabricarCoche;
+    private javax.swing.JButton jBFicharPiloto;
     private javax.swing.JButton jBtnEscuderiaVolver;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1075,14 +1142,10 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxEscuderia2;
     private javax.swing.JComboBox jComboBoxEscuderiaCoches;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JLayeredPane jLPConfigurarCarrera;
-    private javax.swing.JLayeredPane jLPConfigurarEntrenamiento;
-    private javax.swing.JLayeredPane jLPDescartarPilotos;
-    private javax.swing.JLayeredPane jLPEscuderiaCoche;
-    private javax.swing.JLayeredPane jLPFicharPiloto;
+    private javax.swing.JFormattedTextField jFormattedTextField5;
+    private javax.swing.JLabel jLGestionDeEscuderia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1105,6 +1168,12 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPCarrera;
+    private javax.swing.JPanel jPDescartarPiloto;
+    private javax.swing.JPanel jPEntrenemiento;
+    private javax.swing.JPanel jPFabricarCoche;
+    private javax.swing.JPanel jPFicharPiloto;
+    private javax.swing.JPanel jPGestionDeEscuderia;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1114,11 +1183,15 @@ public class FrameEscuderia extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
     private javax.swing.JSlider jSlider3;
+    private javax.swing.JSlider jSlider4;
     private javax.swing.JTable jTDescartarPilotosOficiales1;
     private javax.swing.JTable jTFicharPilotosOficiales;
     private javax.swing.JTable jTFicharPilotosOficiales1;
