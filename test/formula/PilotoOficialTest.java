@@ -37,6 +37,8 @@ public class PilotoOficialTest {
         Double valoracionGlobal = pilotoProbador.getValoraciónGlobal();
         Double sueldoEstimado = (valoracionGlobal * PilotoOficial.EUROS_POR_VALORACION) + PilotoOficial.PLUS_PELIGROSIDAD;
         assertThat(sueldoEstimado.intValue(), is(pilotoProbador.getSueldo()));
+        
+        
     }
     
     @Test
