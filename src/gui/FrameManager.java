@@ -29,7 +29,7 @@ public class FrameManager {
         mostrarVentana(new FrameSeleccionUsuario());
     }
     
-    public void mostrarVentanaAdministrador(JFrame ventanaActual) {
+    public void mostrarVentanaAdministrador(JFrame ventanaActual) throws ClassNotFoundException {
         ocultarVentana(ventanaActual);
         mostrarVentana(new FrameAdministrador());
     }

@@ -33,6 +33,10 @@ public class Circuito {
     public Double getDistanciaCurva() {
         return getDistancia(curvas);
     }
+    
+    public Object getDistanciaTotal() {
+        return getDistanciaCurva() + getDistanciaRecta();
+    }
 
     public String getNombre() {
         return nombre;
@@ -73,5 +77,5 @@ public class Circuito {
     public void setCurvas(Tramo[] curvas) {
         this.curvas = curvas;
     }
-          
+      
 }
