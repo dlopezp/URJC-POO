@@ -8,9 +8,9 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
     private Integer año;
     private Integer presupuesto;
     private Integer puntos;
-    private Set<PilotoOficial> pilotosOficiales;
+    private ArrayList<PilotoOficial> pilotosOficiales;
     private ArrayList<Coche> coches;
-    private Set<PilotoProbador> pilotosProbadores;
+    private ArrayList<PilotoProbador> pilotosProbadores;
     private String dueño;
 
     private static final Integer MINIMA_CANTIDAD_DE_PILOTOS_OFICIALES = 1;
@@ -31,8 +31,8 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
         this.año = año;
         this.presupuesto = presupuesto;
         this.dueño = dueño;
-        pilotosOficiales = new HashSet<PilotoOficial>();
-        pilotosProbadores = new HashSet<PilotoProbador>();
+        pilotosOficiales = new ArrayList<PilotoOficial>();
+        pilotosProbadores = new ArrayList<PilotoProbador>();
         coches = new ArrayList<Coche>();
     }
     
@@ -250,11 +250,11 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
         this.puntos = puntos;
     }
     
-    public Set<PilotoOficial> getPilotosOficiales() {
+    public ArrayList<PilotoOficial> getPilotosOficiales() {
         return pilotosOficiales;
     }
 
-    public void setPilotosOficiales(Set<PilotoOficial> pilotosOficiales) {
+    public void setPilotosOficiales(ArrayList<PilotoOficial> pilotosOficiales) {
         this.pilotosOficiales = pilotosOficiales;
     }
 
@@ -266,11 +266,11 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
         this.coches = coches;
     }
 
-    public Set<PilotoProbador> getPilotosProbadores() {
+    public ArrayList<PilotoProbador> getPilotosProbadores() {
         return pilotosProbadores;
     }
 
-    public void setPilotosProbadores(Set<PilotoProbador> pilotosProbadores) {
+    public void setPilotosProbadores(ArrayList<PilotoProbador> pilotosProbadores) {
         this.pilotosProbadores = pilotosProbadores;
     }
     
