@@ -210,6 +210,11 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
     }
     */
     
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
     public String getNombre() {
         return nombre;
     }
