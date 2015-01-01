@@ -19,20 +19,22 @@ public abstract class FormulaAdapter<T> {
         File fichero = new File(file);
         if(!fichero.exists()) {
             fichero.createNewFile();
-        } 
+        }
+        FileOutputStream out = null;
+        ObjectOutputStream so = null;
         try {
-            FileOutputStream out = new FileOutputStream(fichero);
-            ObjectOutputStream so = new ObjectOutputStream(out);
+            out = new FileOutputStream(fichero);
+            so = new ObjectOutputStream(out);
             Iterator<T> elementsIterator = elements.iterator();
             while (elementsIterator.hasNext()) {
                 T element = elementsIterator.next();
                 so.writeObject(element);
             }
+        } catch (IOException ex) {
+
+        } finally {
             so.close();
             out.close();
-        } catch (IOException ex) {
-            System.err.println(ex);
-            System.err.println(file);
         }
     }
     
@@ -52,8 +54,10 @@ public abstract class FormulaAdapter<T> {
         } catch (IOException ex) {
 
         } finally {
-            ois.close();
-            fis.close();
+            if (fis != null) {
+                ois.close();
+                fis.close();
+            }
         }
         return elements;
     }
