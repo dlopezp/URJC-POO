@@ -1,6 +1,8 @@
 package formula;
 
-public class Coche {
+import java.io.Serializable;
+
+public class Coche implements Serializable {
  
     private String modelo;
     private Double potencia;

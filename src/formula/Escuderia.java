@@ -113,6 +113,12 @@ public class Escuderia implements Comparable<Escuderia>,Serializable{
         }
     }
     
+    public void fabricarCoche(Coche coche) {
+        if (puedeFabricarCoche()){
+           coches.add(coche);
+        }
+    }
+    
     public void destruirCoche(Coche coche) {
         coches.remove(coche);
     }
