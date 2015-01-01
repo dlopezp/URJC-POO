@@ -57,4 +57,5 @@ public abstract class FormulaAdapter<T> {
         }
         return elements;
     }
+    
 }
