@@ -16,6 +16,10 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
         return piloto;
     }
     
+    public String getNombreCompleto() {
+        return piloto.getNombreCompleto();
+    }
+    
     public Double getValoraciónGlobal() {
         return piloto.getValoraciónGlobal();
     }

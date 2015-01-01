@@ -3,6 +3,7 @@ package formula;
 import java.util.Set;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import static org.hamcrest.core.Is.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -94,7 +95,7 @@ public class EscuderiaTest {
     @Test
     public void test_ficharPilotoOficial() {
         PilotoOficial piloto = new PilotoOficial(pilotoLibre2);
-        Set<PilotoOficial> pilotosOficiales = escuderia.getPilotosOficiales();
+        ArrayList<PilotoOficial> pilotosOficiales = escuderia.getPilotosOficiales();
         assertFalse(pilotosOficiales.contains(piloto));
         escuderia.ficharPiloto(piloto);
         pilotosOficiales = escuderia.getPilotosOficiales();
@@ -104,7 +105,7 @@ public class EscuderiaTest {
     @Test
     public void test_ficharPilotoProbador() {
         PilotoProbador piloto = new PilotoProbador(pilotoLibre2);
-        Set<PilotoProbador> pilotosProbadores = escuderia.getPilotosProbadores();
+        ArrayList<PilotoProbador> pilotosProbadores = escuderia.getPilotosProbadores();
         assertFalse(pilotosProbadores.contains(piloto));
         escuderia.ficharPiloto(piloto);
         pilotosProbadores = escuderia.getPilotosProbadores();

@@ -23,4 +23,5 @@ public class PilotoOficial extends PilotoDecorador implements Comparable<PilotoO
     public int compareTo(PilotoOficial piloto){
         return getPuntos() - piloto.getPuntos();
     }
+    
 }
