@@ -3,10 +3,11 @@ package formula;
 import java.util.*;
 
 /**
- *
- * @author jaimedemora
+ * @author Eduardo Benito Fernández
  */
+
 public class Mundial {
+    
     private Carrera[] Carreras;
     
     public Mundial(Carrera[] carreras){
@@ -58,7 +59,6 @@ public class Mundial {
         for (PilotoOficial piloto: pilotos ){
             i++;
             linea = "Posición " + i +": " + piloto.getNombre()+ ", Puntos: "+ Double.toString(piloto.getPuntos());
-            System.out.println(linea);
             lineas.add(linea);
         }
         return lineas;

@@ -1,6 +1,12 @@
+/**
+ * Autor: Eduardo Benito Fernández
+ */
+
 package formula;
 import java.io.Serializable;
 import java.util.*;
+
+
 
 public class Escuderia implements Comparable<Escuderia>,Serializable{
     private String nombre;
