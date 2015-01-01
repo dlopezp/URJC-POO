@@ -16,6 +16,4 @@ nb-configuration.xml
 *.ear
 
 # Binary Files #
-ficheros/Escuderias.dat
-ficheros/PilotosLibres.dat
-ficheros/Circuitos.dat
+ficheros/*
