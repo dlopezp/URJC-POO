@@ -1671,6 +1671,7 @@ public class FrameEscuderia extends FormulaFrame {
         cargarComboEscuderias();
         cargarPanelEntrenar();
         cargarPanelCarreras();
+        configurarPanelParticipantes(new ArrayList<Participante>());
     }
 
     private void limpiarDatosDeVentana() {
@@ -1882,10 +1883,12 @@ public class FrameEscuderia extends FormulaFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 Integer filaSelecionada = jTableCarreras.getSelectedRow();
-                CarrerasTableModel modelo = (CarrerasTableModel)jTableCarreras.getModel();
-                Carrera carrera = (Carrera) modelo.getElement(filaSelecionada);
-                ArrayList<Participante> participantes = carrera.getParticipantes(escuderia);
-                configurarPanelParticipantes(participantes);
+                if (filaSelecionada != -1) {
+                    CarrerasTableModel modelo = (CarrerasTableModel)jTableCarreras.getModel();
+                    Carrera carrera = (Carrera) modelo.getElement(filaSelecionada);
+                    ArrayList<Participante> participantes = carrera.getParticipantes(escuderia);
+                    configurarPanelParticipantes(participantes);
+                }
             }
         });
     }
@@ -1919,11 +1922,12 @@ public class FrameEscuderia extends FormulaFrame {
     private void añadirParticipante() {
         PilotoOficial piloto = (PilotoOficial) jComboBoxOficiales.getModel().getSelectedItem();
         Coche coche = (Coche) jComboBoxCoches.getModel().getSelectedItem();
-        if (piloto != null && coche != null) {
+        Integer carreraIndice = jTableCarreras.getSelectedRow();
+        if (piloto != null && coche != null && carreraIndice != -1) {
             Participante participante = new Participante(escuderia, piloto, coche);
-            Carrera carrera = (Carrera) ((CarrerasTableModel)jTableCarreras.getModel()).getElement(jTableCarreras.getSelectedRow());
+            Carrera carrera = (Carrera) ((CarrerasTableModel)jTableCarreras.getModel()).getElement(carreraIndice);
             carrera.añadirParticipante(participante);
-            configurarPanelParticipantes(carrera.getParticipantes());
+            configurarPanelParticipantes(carrera.getParticipantes(escuderia));
         }
     }
 
