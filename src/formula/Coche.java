@@ -2,6 +2,7 @@ package formula;
 
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 /**
  * @author Eduardo Benito Fernández
@@ -42,11 +43,14 @@ public class Coche implements Serializable {
         return valorSeguro;
     }
     
+    
     public Double getVelocidadEnRecta() {
         Double velocidad;
         velocidad = potencia * FACTOR_POTENCIA_RECTA;
         velocidad += (aerodinamica + FACTOR_AERODINAMICA_RECTA);
-        return velocidad;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        return Double.valueOf(nf.format(velocidad));
     }
     
     public Double getVelocidadEnCurva() {
@@ -54,7 +58,9 @@ public class Coche implements Serializable {
         velocidad = potencia * FACTOR_POTENCIA_CURVA;
         velocidad += (aerodinamica + FACTOR_AERODINAMICA_CURVA);
         velocidad += (neumaticos + FACTOR_NEUMATICOS_CURVA);
-        return velocidad;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        return Double.valueOf(nf.format(velocidad));
     }
     
     public void entrenar() {

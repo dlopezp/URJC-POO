@@ -1,5 +1,10 @@
 package gui;
 
+/**
+ *
+ * @author Eduardo Benito Fernández
+ */
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
