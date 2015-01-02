@@ -1214,7 +1214,7 @@ public class FrameEscuderia extends FormulaFrame {
     
     
     private void jBtnEscuderiaVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEscuderiaVolverActionPerformed
-        FrameManager.getInstance().mostrarVentanaPrincipal(this);
+        volverAVentanaPrincpal();
     }//GEN-LAST:event_jBtnEscuderiaVolverActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -1230,6 +1230,7 @@ public class FrameEscuderia extends FormulaFrame {
         if (escuderiaSeleccionada < 0) {
             limpiarDatosDeVentana();
         } else {
+            ArrayList<Escuderia> escuderias = mundial.getEscuderias();
             cargarEscuderiaEnVentana(escuderias.get(escuderiaSeleccionada));
         }
     }//GEN-LAST:event_jComboBoxPrincipalItemStateChanged
@@ -1261,6 +1262,7 @@ public class FrameEscuderia extends FormulaFrame {
     private void jBtnFicharLibreComoProbadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFicharLibreComoProbadorActionPerformed
         Integer filaSeleccionada = jTablePilotosLibres.getSelectedRow();
         if (filaSeleccionada != -1 && escuderia.puedeFicharPilotoProbador()) {
+            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
             PilotoLibre pilotoLibre = pilotosLibres.get(filaSeleccionada);
             if (escuderia.tienePresupuestoSuficiente(pilotoLibre.getSueldo())) {
                 pilotosLibres.remove(pilotoLibre);
@@ -1276,6 +1278,7 @@ public class FrameEscuderia extends FormulaFrame {
         if (filaSeleccionada != -1) {
             PilotoProbador piloto = escuderia.getPilotosProbadores().get(filaSeleccionada);
             escuderia.descartarPiloto(piloto);
+            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
             pilotosLibres.add(piloto.getPiloto());
             cargarTablaPilotosLibres();
             cargarTablaPilotosProbadores();
@@ -1285,6 +1288,7 @@ public class FrameEscuderia extends FormulaFrame {
     private void jBtnFicharLibreComoOficialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFicharLibreComoOficialActionPerformed
         Integer filaSeleccionada = jTablePilotosLibres.getSelectedRow();
         if (filaSeleccionada != -1 && escuderia.puedeFicharPilotoOficial()) {
+            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
             PilotoLibre pilotoLibre = pilotosLibres.get(filaSeleccionada);
             if (escuderia.tienePresupuestoSuficiente(pilotoLibre.getSueldo())) {
                 pilotosLibres.remove(pilotoLibre);
@@ -1300,6 +1304,7 @@ public class FrameEscuderia extends FormulaFrame {
         if (filaSeleccionada != -1 && escuderia.puedeDescartarPilotoOficial()) {
             PilotoOficial piloto = escuderia.getPilotosOficiales().get(filaSeleccionada);
             escuderia.descartarPiloto(piloto);
+            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
             pilotosLibres.add(piloto.getPiloto());
             cargarTablaPilotosLibres();
             cargarTablaPilotosOficiales();
@@ -1309,7 +1314,7 @@ public class FrameEscuderia extends FormulaFrame {
     private void jComboBoxEscuderiaIntercambiarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxEscuderiaIntercambiarItemStateChanged
         Integer escuderiaSeleccionada = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
         if (escuderiaSeleccionada >= 0) {
-            cargarPilotosEscuderiaEnFormularioIntercambiar(escuderias.get(escuderiaSeleccionada));
+            cargarPilotosEscuderiaEnFormularioIntercambiar(mundial.getEscuderia(escuderiaSeleccionada));
         }
     }//GEN-LAST:event_jComboBoxEscuderiaIntercambiarItemStateChanged
 
@@ -1333,7 +1338,7 @@ public class FrameEscuderia extends FormulaFrame {
         Integer escuderiaIndice = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
         Integer pilotoIndice = jTablePilotosOficialesIntercambiar.getSelectedRow();
         if (escuderiaIndice != -1 && pilotoIndice != -1) {
-            Escuderia escuderiaSalida = escuderias.get(escuderiaIndice);
+            Escuderia escuderiaSalida = mundial.getEscuderia(escuderiaIndice);
             if (escuderia.puedeFicharPilotoProbador() && escuderiaSalida.puedeDescartarPilotoOficial()) {
                 PilotoOficial oficial = escuderiaSalida.getPilotosOficiales().get(pilotoIndice);
                 if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
@@ -1350,7 +1355,7 @@ public class FrameEscuderia extends FormulaFrame {
         Integer escuderiaIndice = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
         Integer pilotoIndice = jTablePilotosProbadoresIntercambiar.getSelectedRow();
         if (escuderiaIndice != -1 && pilotoIndice != -1) {
-            Escuderia escuderiaSalida = escuderias.get(escuderiaIndice);
+            Escuderia escuderiaSalida = mundial.getEscuderia(escuderiaIndice);
             if (escuderia.puedeFicharPilotoProbador()) {
                 PilotoProbador oficial = escuderiaSalida.getPilotosProbadores().get(pilotoIndice);
                 if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
@@ -1367,7 +1372,7 @@ public class FrameEscuderia extends FormulaFrame {
         Integer escuderiaIndice = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
         Integer pilotoIndice = jTablePilotosOficialesIntercambiar.getSelectedRow();
         if (escuderiaIndice != -1 && pilotoIndice != -1) {
-            Escuderia escuderiaSalida = escuderias.get(escuderiaIndice);
+            Escuderia escuderiaSalida = mundial.getEscuderia(escuderiaIndice);
             if (escuderia.puedeFicharPilotoOficial() && escuderiaSalida.puedeDescartarPilotoOficial()) {
                 PilotoOficial oficial = escuderiaSalida.getPilotosOficiales().get(pilotoIndice);
                 if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
@@ -1384,7 +1389,7 @@ public class FrameEscuderia extends FormulaFrame {
         Integer escuderiaIndice = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
         Integer pilotoIndice = jTablePilotosProbadoresIntercambiar.getSelectedRow();
         if (escuderiaIndice != -1 && pilotoIndice != -1) {
-            Escuderia escuderiaSalida = escuderias.get(escuderiaIndice);
+            Escuderia escuderiaSalida = mundial.getEscuderia(escuderiaIndice);
             if (escuderia.puedeFicharPilotoProbador()) {
                 PilotoProbador oficial = escuderiaSalida.getPilotosProbadores().get(pilotoIndice);
                 if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
@@ -1407,7 +1412,7 @@ public class FrameEscuderia extends FormulaFrame {
             oficial = false;
         }
         if (escuderiaIndice != -1 && pilotoAjenoIndice != -1 && pilotoPropioIndice != -1) {
-            Escuderia escuderiaAjena = escuderias.get(escuderiaIndice);
+            Escuderia escuderiaAjena = mundial.getEscuderia(escuderiaIndice);
             PilotoDecorador pilotoAjeno = escuderiaAjena.getPilotosOficiales().get(pilotoAjenoIndice);
             PilotoDecorador pilotoPropio;
             if (oficial) {
@@ -1437,7 +1442,7 @@ public class FrameEscuderia extends FormulaFrame {
             oficial = false;
         }
         if (escuderiaIndice != -1 && pilotoAjenoIndice != -1 && pilotoPropioIndice != -1) {
-            Escuderia escuderiaAjena = escuderias.get(escuderiaIndice);
+            Escuderia escuderiaAjena = mundial.getEscuderia(escuderiaIndice);
             PilotoDecorador pilotoAjeno = escuderiaAjena.getPilotosProbadores().get(pilotoAjenoIndice);
             PilotoDecorador pilotoPropio;
             if (oficial) {
@@ -1481,7 +1486,7 @@ public class FrameEscuderia extends FormulaFrame {
             oficial = false;
         }
         if (circuitoIndice != -1 && cocheIndice != -1 && pilotoIndice != -1) {
-            Circuito circuito = circuitos.get(circuitoIndice);
+            Circuito circuito = mundial.getCircuito(circuitoIndice);
             Coche coche = escuderia.getCoches().get(cocheIndice);
             PilotoDecorador piloto;
             if (oficial) {
@@ -1628,22 +1633,11 @@ public class FrameEscuderia extends FormulaFrame {
     private javax.swing.JTextField jTextFieldModelo;
     // End of variables declaration//GEN-END:variables
     
-    private ArrayList<Escuderia> escuderias = new ArrayList<>();
-    private ArrayList<PilotoLibre> pilotosLibres = new ArrayList<>();
-    private ArrayList<Circuito> circuitos = new ArrayList<>();
     private Escuderia escuderia = null;
-    private Mundial mundial = null;
-    
-    private void cargarDatos() throws ClassNotFoundException, IOException {
-        escuderias = EscuderiaAdapter.getInstance().leer();
-        pilotosLibres = PilotoLibreAdapter.getInstance().leer();
-        circuitos = CircuitoAdapter.getInstance().leer();
-        mundial = MundialAdapter.getInstance().leer();
-    }
 
     private void cargarComboPincipal() {
         jComboBoxPrincipal.addItem("Escoja escuderia");
-        for (Escuderia esc : escuderias) {
+        for (Escuderia esc : mundial.getEscuderias()) {
             jComboBoxPrincipal.addItem(esc.getNombre());
         }
     }
@@ -1685,7 +1679,6 @@ public class FrameEscuderia extends FormulaFrame {
 
     private void generarCaracteristicasAleatorias() {
         Double valorMaximo = Coche.VALOR_MAXIMO_CARACTERISTICAS;
-        DecimalFormat df = new DecimalFormat("#.##");
         Double potencia = Math.random() * valorMaximo * 100;
         jSliderPotencia.setValue(potencia.intValue());
         Double aerodinamica = Math.random() * valorMaximo * 100;
@@ -1736,24 +1729,7 @@ public class FrameEscuderia extends FormulaFrame {
         jSliderNeumaticos.setValue(0);
     }
 
-    private void asignarEventosEnVentana() {
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent evt) {
-                try {
-                    guardarDatos();
-                } catch (IOException ex) {
-                    Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
     
-    private void guardarDatos() throws IOException {
-        EscuderiaAdapter.getInstance().guardar(escuderias);
-        PilotoLibreAdapter.getInstance().guardar(pilotosLibres);
-        MundialAdapter.getInstance().guardar(mundial);
-    }
 
     private void bloquearFormularioCoches(Boolean bloquear) {
         jTextFieldModelo.setEnabled(!bloquear);
@@ -1789,7 +1765,7 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void cargarTablaPilotosLibres() {
-        Iterator<PilotoLibre> pilotosIterator = pilotosLibres.iterator();
+        Iterator<PilotoLibre> pilotosIterator = mundial.getPilotos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTablePilotosLibres.getModel();
         limpiarTabla(jTablePilotosLibres);        
         while (pilotosIterator.hasNext()) {
@@ -1803,7 +1779,7 @@ public class FrameEscuderia extends FormulaFrame {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBoxEscuderiaIntercambiar.getModel();
         modelo.removeAllElements();
         modelo.addElement("Escoja escuderia");
-        for (Escuderia esc : escuderias) {
+        for (Escuderia esc : mundial.getEscuderias()) {
             modelo.addElement(esc.getNombre());
         }
     }
@@ -1838,7 +1814,7 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void cargarTablaCircuitosEntrenar() {
-        Iterator<Circuito> iterador = circuitos.iterator();
+        Iterator<Circuito> iterador = mundial.getCircuitos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableCircuitosEntrenar.getModel();
         limpiarTabla(jTableCircuitosEntrenar);        
         while (iterador.hasNext()) {

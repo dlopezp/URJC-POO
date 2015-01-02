@@ -257,12 +257,7 @@ public class FrameDirector extends FormulaFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
-        try {
-            guardarDatos();
-        } catch (IOException ex) {
-            Logger.getLogger(FrameDirector.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        FrameManager.getInstance().mostrarVentanaPrincipal(this);
+        volverAVentanaPrincpal();
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
     private void jBtnAniadirCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAniadirCarreraActionPerformed
@@ -340,43 +335,13 @@ public class FrameDirector extends FormulaFrame {
     private javax.swing.JTable jTableCircuitos;
     // End of variables declaration//GEN-END:variables
 
-    private ArrayList<Circuito> circuitos = new ArrayList<>();
-    private Mundial mundial;
-    
-    private void cargarDatos() throws ClassNotFoundException, IOException {
-        circuitos = CircuitoAdapter.getInstance().leer();
-        mundial = MundialAdapter.getInstance().leer();
-        if (mundial == null) {
-            mundial = new Mundial();
-        }
-            
-    }
-
-    private void asignarEventosEnVentana() {
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent evt) {
-                try {
-                    guardarDatos();
-                } catch (IOException ex) {
-                    Logger.getLogger(FrameDirector.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-    
-    private void guardarDatos() throws IOException {
-        CircuitoAdapter.getInstance().guardar(circuitos);
-        MundialAdapter.getInstance().guardar(mundial);
-    }
-
     private void cargarDatosEnVentana() {
         cargarCircuitosEnTabla();
         cargarCarrerasEnTabla();
     }
 
     private void cargarCircuitosEnTabla() {
-        Iterator<Circuito> iterador = circuitos.iterator();
+        Iterator<Circuito> iterador = mundial.getCircuitos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableCircuitos.getModel();
         limpiarTabla(jTableCircuitos);        
         while (iterador.hasNext()) {
@@ -401,9 +366,9 @@ public class FrameDirector extends FormulaFrame {
     private void añadirCarrera() {
         Integer circuitoIndice = jTableCircuitos.getSelectedRow();
         if (circuitoIndice != -1) {
-            Circuito circuito = circuitos.get(circuitoIndice);
+            Circuito circuito = mundial.getCircuito(circuitoIndice);
             Carrera carrera = new Carrera(circuito);
-            mundial.addCarrera(carrera);
+            mundial.añadirCarrera(carrera);
             cargarCarrerasEnTabla();
         }
     }

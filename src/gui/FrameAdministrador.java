@@ -7,6 +7,7 @@ package gui;
 
 import formula.Circuito;
 import formula.Escuderia;
+import formula.Mundial;
 import formula.PilotoLibre;
 import formula.Tramo;
 import java.awt.Color;
@@ -14,6 +15,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -39,8 +41,8 @@ public class FrameAdministrador extends FormulaFrame {
      */
     public FrameAdministrador() throws ClassNotFoundException, IOException {
         initComponents();
-        obtenerDatos();
         cargarDatos();
+        cargarDatosEnVentana();
         asignarEventosEnVentana();
     }
 
@@ -916,12 +918,7 @@ public class FrameAdministrador extends FormulaFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
-        try {
-            guardarDatos();
-        } catch (IOException ex) {
-            Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        FrameManager.getInstance().mostrarVentanaPrincipal(this);
+        volverAVentanaPrincpal();
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
@@ -980,6 +977,7 @@ public class FrameAdministrador extends FormulaFrame {
         if (evt.getClickCount() == 2) {
             int filaSeleccionada = this.jTbPilotos.getSelectedRow();
             if (filaSeleccionada != -1) {
+                ArrayList<PilotoLibre> pilotos = mundial.getPilotos();
                 PilotoLibre piloto = pilotos.get(filaSeleccionada);
                 pilotos.remove(filaSeleccionada);
                 editarPiloto(piloto);
@@ -1027,6 +1025,7 @@ public class FrameAdministrador extends FormulaFrame {
         if (evt.getClickCount() == 2) {
             int filaSeleccionada = jTableCircuitos.getSelectedRow();
             if (filaSeleccionada != -1) {
+                ArrayList<Circuito> circuitos = mundial.getCircuitos();
                 Circuito circuito = circuitos.get(filaSeleccionada);
                 circuitos.remove(filaSeleccionada);
                 editarCircuito(circuito);
@@ -1050,6 +1049,7 @@ public class FrameAdministrador extends FormulaFrame {
         if (evt.getClickCount() == 2) {
             int filaSeleccionada = jTableEscuderias.getSelectedRow();
             if (filaSeleccionada != -1) {
+                ArrayList<Escuderia> escuderias = mundial.getEscuderias();
                 Escuderia escuderia = escuderias.get(filaSeleccionada);
                 escuderias.remove(filaSeleccionada);
                 editarEscuderia(escuderia);
@@ -1181,67 +1181,14 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JTextField jTxtFieldPilotoPeso;
     // End of variables declaration//GEN-END:variables
 
-    private ArrayList<PilotoLibre> pilotos = new ArrayList<>();
-    private ArrayList<Circuito> circuitos = new ArrayList<>();
-    private ArrayList<Escuderia> escuderias = new ArrayList<>();
-    
-    private void obtenerDatos() throws ClassNotFoundException, IOException {
-        recuperarPilotos();
-        recuperarCircuitos();
-        recuperarEscuderias();
-    }
-    
-    private void guardarDatos() throws IOException {
-        guardarPilotos();
-        guardarCircuitos();
-        guardarEscuderias();
-    }
-    
-    private void cargarDatos() {
+    private void cargarDatosEnVentana() {
         cargarPilotosEnTabla();
         cargarCircuitosEnTabla();
         cargarEscuderiasEnTabla();
     }
-
-    private void asignarEventosEnVentana() {
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent evt) {
-                try {
-                    guardarDatos();
-                } catch (IOException ex) {
-                    Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-
-    private void recuperarPilotos() throws ClassNotFoundException, IOException {
-        pilotos = PilotoLibreAdapter.getInstance().leer();
-    }
-    
-    private void recuperarCircuitos() throws ClassNotFoundException, IOException {
-        circuitos = CircuitoAdapter.getInstance().leer();
-    }
-    
-    private void recuperarEscuderias() throws ClassNotFoundException, IOException {
-        escuderias = EscuderiaAdapter.getInstance().leer();
-    }
-
-    private void guardarPilotos() throws IOException {
-        PilotoLibreAdapter.getInstance().guardar(pilotos);
-    }
-    
-    private void guardarCircuitos() throws IOException {
-        CircuitoAdapter.getInstance().guardar(circuitos);
-    }
-    
-    private void guardarEscuderias() throws IOException {
-        EscuderiaAdapter.getInstance().guardar(escuderias);
-    }
     
     private void cargarPilotosEnTabla() {
-        Iterator<PilotoLibre> pilotosIterator = pilotos.iterator();
+        Iterator<PilotoLibre> pilotosIterator = mundial.getPilotos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTbPilotos.getModel();
         limpiarTabla(jTbPilotos);        
         while (pilotosIterator.hasNext()) {
@@ -1252,7 +1199,7 @@ public class FrameAdministrador extends FormulaFrame {
     }
     
     private void cargarCircuitosEnTabla() {
-        Iterator<Circuito> circuitosIterator = circuitos.iterator();
+        Iterator<Circuito> circuitosIterator = mundial.getCircuitos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableCircuitos.getModel();
         limpiarTabla(jTableCircuitos);        
         while (circuitosIterator.hasNext()) {
@@ -1263,7 +1210,7 @@ public class FrameAdministrador extends FormulaFrame {
     }
     
     private void cargarEscuderiasEnTabla() {
-        Iterator<Escuderia> escuderiasIterator = escuderias.iterator();
+        Iterator<Escuderia> escuderiasIterator = mundial.getEscuderias().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableEscuderias.getModel();
         limpiarTabla(jTableEscuderias);        
         while (escuderiasIterator.hasNext()) {
@@ -1276,6 +1223,7 @@ public class FrameAdministrador extends FormulaFrame {
     private void crearPiloto() {
         Boolean correcto = validarFormularioNuevoPiloto();
         if (correcto) {
+            ArrayList<PilotoLibre> pilotos = mundial.getPilotos();
             PilotoLibre piloto = obtenerPilotoLibreDesdeFormulario();
             pilotos.add(piloto);
             limpiarFormularioNuevoPiloto();
@@ -1287,7 +1235,6 @@ public class FrameAdministrador extends FormulaFrame {
     
     private void colocarCaracteristicasAleatoriasParaPiloto() {
         Double valorMaximo = PilotoLibre.VALOR_MAXIMO_CARACTERISTICAS;
-        DecimalFormat df = new DecimalFormat("#.##");
         Double reflejos = Math.random() * valorMaximo * 100;
         this.jSlReflejos.setValue(reflejos.intValue());
         Double agresividad = Math.random() * valorMaximo * 100;
@@ -1405,6 +1352,7 @@ public class FrameAdministrador extends FormulaFrame {
     private void crearCircuito() {
         Boolean correcto = validarFormularioNuevoCircuito();
         if (correcto) {
+            ArrayList<Circuito> circuitos = mundial.getCircuitos();
             Circuito circuito = obtenerCircuitoDesdeFormulario();
             circuitos.add(circuito);
             limpiarFormularioNuevoCircuito();
@@ -1486,16 +1434,16 @@ public class FrameAdministrador extends FormulaFrame {
     }
 
     private void borrarCircuito() {
-        borrarFilaSeleccionadaDeTabla(jTableCircuitos, circuitos);
+        borrarFilaSeleccionadaDeTabla(jTableCircuitos, mundial.getCircuitos());
         
     }
 
     private void borrarPiloto() {
-        borrarFilaSeleccionadaDeTabla(jTbPilotos, pilotos);
+        borrarFilaSeleccionadaDeTabla(jTbPilotos, mundial.getPilotos());
     }
 
     private void borrarEscuderia() {
-        borrarFilaSeleccionadaDeTabla(jTableEscuderias, escuderias);
+        borrarFilaSeleccionadaDeTabla(jTableEscuderias, mundial.getEscuderias());
     }
 
     private void editarEscuderia(Escuderia escuderia) {
@@ -1513,6 +1461,7 @@ public class FrameAdministrador extends FormulaFrame {
     private void crearEscuderia() {
         Boolean correcto = validarFormularioNuevaEscuderia();
         if (correcto) {
+            ArrayList<Escuderia> escuderias = mundial.getEscuderias();
             Escuderia escuderia = obtenerEscuderiaDesdeFormulario();
             escuderias.add(escuderia);
             limpiarFormularioNuevaEscuderia();

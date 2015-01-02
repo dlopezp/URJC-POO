@@ -88,9 +88,7 @@ public class FrameSeleccionUsuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             FrameManager.getInstance().mostrarVentanaAdministrador(this);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FrameSeleccionUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (ClassNotFoundException | IOException ex) {
             Logger.getLogger(FrameSeleccionUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -100,7 +98,11 @@ public class FrameSeleccionUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        FrameManager.getInstance().mostrarVentanaDirector(this);
+        try {
+            FrameManager.getInstance().mostrarVentanaDirector(this);
+        } catch (ClassNotFoundException | IOException ex) {
+            Logger.getLogger(FrameSeleccionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

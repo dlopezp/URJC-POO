@@ -1,7 +1,6 @@
 package formula;
 
 import java.io.Serializable;
-import java.text.NumberFormat;
 
 public class Circuito implements Serializable {
     
@@ -26,9 +25,7 @@ public class Circuito implements Serializable {
         for (Tramo tramo : tramos) {
             distancia += tramo.getDistancia();
         }
-        NumberFormat nf = NumberFormat.getInstance();
-        nf.setMaximumFractionDigits(3);
-        return Double.valueOf(nf.format(distancia));
+        return distancia;
     }
     
     public Double getDistanciaRecta() {

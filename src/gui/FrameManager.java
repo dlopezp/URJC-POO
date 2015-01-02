@@ -41,14 +41,12 @@ public class FrameManager {
         ocultarVentana(ventanaActual);
         try {
             mostrarVentana(new FrameEscuderia());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FrameManager.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (ClassNotFoundException | IOException ex) {
             Logger.getLogger(FrameManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void mostrarVentanaDirector(JFrame ventanaActual) {
+    public void mostrarVentanaDirector(JFrame ventanaActual) throws ClassNotFoundException, IOException {
         ocultarVentana(ventanaActual);
         mostrarVentana(new FrameDirector());
     }
