@@ -4,7 +4,6 @@ package gui;
  *
  * @author Eduardo Benito Fernández
  */
-
 import formula.Circuito;
 import formula.Escuderia;
 import formula.Mundial;
@@ -922,7 +921,7 @@ public class FrameAdministrador extends FormulaFrame {
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        
+
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void jTxtFieldPilotoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtFieldPilotoNombreFocusLost
@@ -1186,40 +1185,40 @@ public class FrameAdministrador extends FormulaFrame {
         cargarCircuitosEnTabla();
         cargarEscuderiasEnTabla();
     }
-    
+
     private void cargarPilotosEnTabla() {
         Iterator<PilotoLibre> pilotosIterator = mundial.getPilotos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTbPilotos.getModel();
-        limpiarTabla(jTbPilotos);        
+        limpiarTabla(jTbPilotos);
         while (pilotosIterator.hasNext()) {
             PilotoLibre piloto = pilotosIterator.next();
             Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
             modelo.addRow(fila);
         }
     }
-    
+
     private void cargarCircuitosEnTabla() {
         Iterator<Circuito> circuitosIterator = mundial.getCircuitos().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableCircuitos.getModel();
-        limpiarTabla(jTableCircuitos);        
+        limpiarTabla(jTableCircuitos);
         while (circuitosIterator.hasNext()) {
             Circuito circuito = circuitosIterator.next();
             Object[] fila = new Object[]{circuito.getNombre(), circuito.getDistanciaRecta(), circuito.getDistanciaCurva(), circuito.getDistanciaTotal()};
             modelo.addRow(fila);
         }
     }
-    
+
     private void cargarEscuderiasEnTabla() {
         Iterator<Escuderia> escuderiasIterator = mundial.getEscuderias().iterator();
         DefaultTableModel modelo = (DefaultTableModel) jTableEscuderias.getModel();
-        limpiarTabla(jTableEscuderias);        
+        limpiarTabla(jTableEscuderias);
         while (escuderiasIterator.hasNext()) {
             Escuderia escuderia = escuderiasIterator.next();
             Object[] fila = new Object[]{escuderia.getNombre(), escuderia.getPais(), escuderia.getAño(), escuderia.getPresup()};
             modelo.addRow(fila);
         }
     }
-    
+
     private void crearPiloto() {
         Boolean correcto = validarFormularioNuevoPiloto();
         if (correcto) {
@@ -1232,7 +1231,7 @@ public class FrameAdministrador extends FormulaFrame {
             JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void colocarCaracteristicasAleatoriasParaPiloto() {
         Double valorMaximo = PilotoLibre.VALOR_MAXIMO_CARACTERISTICAS;
         Double reflejos = Math.random() * valorMaximo * 100;
@@ -1244,7 +1243,7 @@ public class FrameAdministrador extends FormulaFrame {
         Double valentia = Math.random() * valorMaximo * 100;
         this.jSlValentia.setValue(valentia.intValue());
     }
-    
+
     private Boolean validarFormularioNuevoPiloto() {
         Boolean correcto = true;
         if (!this.jTxtFieldPilotoNombre.getInputVerifier().verify(this.jTxtFieldPilotoNombre)) {
@@ -1269,7 +1268,7 @@ public class FrameAdministrador extends FormulaFrame {
         }
         return correcto;
     }
-    
+
     private void limpiarFormularioNuevoPiloto() {
         this.jTxtFieldPilotoNombre.setText("");
         this.jTxtFieldPilotoApellidos.setText("");
@@ -1281,7 +1280,7 @@ public class FrameAdministrador extends FormulaFrame {
         this.jSlReflejos.setValue(0);
         this.jSlValentia.setValue(0);
     }
-    
+
     private PilotoLibre obtenerPilotoLibreDesdeFormulario() {
         String nombre = this.jTxtFieldPilotoNombre.getText();
         String apellidos = this.jTxtFieldPilotoApellidos.getText();
@@ -1300,7 +1299,7 @@ public class FrameAdministrador extends FormulaFrame {
     private void editarPiloto(PilotoLibre piloto) {
         colocarDatosPilotoEnFormulario(piloto);
     }
-    
+
     private void colocarDatosPilotoEnFormulario(PilotoLibre piloto) {
         this.jTxtFieldPilotoNombre.setText(piloto.getNombre());
         this.jTxtFieldPilotoApellidos.setText(piloto.getApellidos());
@@ -1313,14 +1312,14 @@ public class FrameAdministrador extends FormulaFrame {
         this.jSlAgresividad.setValue(agresividad.intValue());
         Double paciencia = piloto.getPaciencia() * 100;
         this.jSlPaciencia.setValue(paciencia.intValue());
-        Double valentia = piloto.getValentia()* 100;
+        Double valentia = piloto.getValentia() * 100;
         this.jSlValentia.setValue(valentia.intValue());
     }
 
     private void aniadirRecta() {
         aniadirTramo(jSlNuevaRecta, jListRectas);
     }
-    
+
     private void aniadirCurva() {
         aniadirTramo(jSlNuevaCurva, jListCurvas);
     }
@@ -1337,7 +1336,7 @@ public class FrameAdministrador extends FormulaFrame {
     private void eliminarRecta() {
         eliminarTramo(jListRectas);
     }
-    
+
     private void eliminarCurva() {
         eliminarTramo(jListCurvas);
     }
@@ -1346,7 +1345,7 @@ public class FrameAdministrador extends FormulaFrame {
         if (lista.getSelectedIndex() != -1) {
             DefaultListModel modelo = (DefaultListModel) lista.getModel();
             modelo.removeElementAt(lista.getSelectedIndex());
-        }        
+        }
     }
 
     private void crearCircuito() {
@@ -1394,7 +1393,7 @@ public class FrameAdministrador extends FormulaFrame {
         Integer cantidadTramos = modelo.getSize();
         Tramo[] tramos = new Tramo[cantidadTramos];
         for (int i = 0; i < cantidadTramos; i++) {
-            tramos[i] = new Tramo((Double)modelo.get(i));
+            tramos[i] = new Tramo((Double) modelo.get(i));
         }
         return tramos;
     }
@@ -1417,7 +1416,7 @@ public class FrameAdministrador extends FormulaFrame {
     private void editarCircuito(Circuito circuito) {
         colocarDatosCircuitoEnFormulario(circuito);
     }
-    
+
     private void colocarDatosCircuitoEnFormulario(Circuito circuito) {
         jTextFieldCircuitoNombre.setText(circuito.getNombre());
         jTextFieldCircuitoAforo.setText(circuito.getAforo().toString());
@@ -1435,7 +1434,7 @@ public class FrameAdministrador extends FormulaFrame {
 
     private void borrarCircuito() {
         borrarFilaSeleccionadaDeTabla(jTableCircuitos, mundial.getCircuitos());
-        
+
     }
 
     private void borrarPiloto() {

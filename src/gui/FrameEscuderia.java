@@ -467,21 +467,21 @@ public class FrameEscuderia extends FormulaFrame {
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 255));
 
-        jLabel1.setText("Pilotos Libres:");
+        jLabel1.setText("Pilotos:");
 
         jTablePilotosLibres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre Completo", "Valoración"
+                "Nombre Completo", "Valoración", "Sueldo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1786,7 +1786,7 @@ public class FrameEscuderia extends FormulaFrame {
         limpiarTabla(jTablePilotosLibres);        
         while (pilotosIterator.hasNext()) {
             PilotoLibre piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
+            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal(), piloto.getSueldo()};
             modelo.addRow(fila);
         }
     }
