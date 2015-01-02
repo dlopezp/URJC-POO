@@ -1,9 +1,10 @@
 
 package formula;
+import java.io.Serializable;
 import java.util.*;
 
 
-public class Clasificado implements Comparable<Clasificado> {
+public class Clasificado implements Comparable<Clasificado>, Serializable {
     private Participante participante;
     private Double tiempoPorVuelta;
 

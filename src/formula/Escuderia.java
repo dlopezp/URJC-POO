@@ -9,7 +9,7 @@ import java.util.*;
 
 
 
-public class Escuderia implements Comparable<Escuderia>,Serializable{
+public class Escuderia implements Comparable<Escuderia>, Serializable{
     private String nombre;
     private String pais;
     private Integer año;

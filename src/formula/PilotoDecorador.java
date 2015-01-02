@@ -11,6 +11,11 @@ public abstract class PilotoDecorador extends PilotoBase implements Serializable
     }
     
     public abstract void entrenar();
+    
+    @Override
+    public String toString() {
+        return getNombreCompleto();
+    }
 
     public PilotoLibre getPiloto() {
         return piloto;

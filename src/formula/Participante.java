@@ -1,8 +1,10 @@
 package formula;
 
+import java.io.Serializable;
 
 
-public class Participante{
+
+public class Participante implements Serializable {
     private Escuderia escuderia;
     private PilotoOficial piloto;
     private Coche coche;

@@ -74,6 +74,11 @@ public class Coche implements Serializable {
         tiempo *= 3600;
         return tiempo;
     }
+    
+    @Override
+    public String toString() {
+        return modelo;
+    }
 
     public String getModelo() {
         return modelo;

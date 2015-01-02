@@ -1,6 +1,7 @@
 package gui;
 
 import formula.Carrera;
+import formula.Circuito;
 import formula.Mundial;
 import formula.Coche;
 import formula.Escuderia;
@@ -24,23 +25,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author HOME3
  */
-public class FrameDirector extends javax.swing.JFrame {
+public class FrameDirector extends FormulaFrame {
     
     public FrameDirector() throws ClassNotFoundException, IOException {
         initComponents();
         cargarDatos();
         asignarEventosEnVentana();
-  
-    }
-    
-    
-    
-
-    /**
-     * Creates new form FrameDirector
-     */
-        public FrameDirector() {
-        initComponents();
+        cargarDatosEnVentana();
     }
 
     /**
@@ -54,8 +45,18 @@ public class FrameDirector extends javax.swing.JFrame {
 
         jBtnVolver = new javax.swing.JButton();
         jLGestionDeEscuderia = new javax.swing.JLabel();
-        jBtnComenzarCarrera = new javax.swing.JButton();
-        jBtnComenzarMundial = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCircuitos = new javax.swing.JTable();
+        jBtnAniadirCarrera = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableCarreras = new javax.swing.JTable();
+        jBtnEliminarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,19 +69,161 @@ public class FrameDirector extends javax.swing.JFrame {
 
         jLGestionDeEscuderia.setText("DIRECTOR DEL MUNDIAL");
 
-        jBtnComenzarCarrera.setText("Comenzar Carrera");
-        jBtnComenzarCarrera.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+
+        jLabel1.setText("Circuitos:");
+
+        jTableCircuitos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Distancia Recta", "Distancia Curva", "Distancia Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableCircuitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCircuitosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableCircuitos);
+
+        jBtnAniadirCarrera.setText("Añadir Carrera");
+        jBtnAniadirCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnComenzarCarreraActionPerformed(evt);
+                jBtnAniadirCarreraActionPerformed(evt);
             }
         });
 
-        jBtnComenzarMundial.setText("Comenzar Mundial");
-        jBtnComenzarMundial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnComenzarMundialActionPerformed(evt);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnAniadirCarrera)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnAniadirCarrera)
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel2.setText("Carreras:");
+
+        jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane2.setViewportView(jTableCarreras);
+
+        jBtnEliminarCarrera.setText("Eliminar");
+        jBtnEliminarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarCarreraActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 214, Short.MAX_VALUE)
+                        .addComponent(jBtnEliminarCarrera)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnEliminarCarrera)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Configurar Carreras", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,54 +232,56 @@ public class FrameDirector extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 327, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBtnVolver))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLGestionDeEscuderia)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnComenzarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jBtnComenzarMundial, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(233, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLGestionDeEscuderia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jBtnComenzarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnVolver)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(133, Short.MAX_VALUE)
-                    .addComponent(jBtnComenzarMundial, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(110, 110, 110)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
+        try {
+            guardarDatos();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameDirector.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrameManager.getInstance().mostrarVentanaPrincipal(this);
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
-    private void jBtnComenzarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnComenzarCarreraActionPerformed
-        comenzarCarrera();
-    }//GEN-LAST:event_jBtnComenzarCarreraActionPerformed
+    private void jBtnAniadirCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAniadirCarreraActionPerformed
+        añadirCarrera();
+    }//GEN-LAST:event_jBtnAniadirCarreraActionPerformed
 
-    private void jBtnComenzarMundialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnComenzarMundialActionPerformed
-        comenzarMundial();// TODO add your handling code here:
-    }//GEN-LAST:event_jBtnComenzarMundialActionPerformed
+    private void jBtnEliminarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarCarreraActionPerformed
+        Integer carreraIndice = jTableCarreras.getSelectedRow();
+        if (carreraIndice != -1) {
+            mundial.getCarreras().remove(carreraIndice);
+            cargarCarrerasEnTabla();
+        }
+    }//GEN-LAST:event_jBtnEliminarCarreraActionPerformed
+
+    private void jTableCircuitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCircuitosMouseClicked
+        if (evt.getClickCount() == 2) {
+            añadirCarrera();
+        }
+    }//GEN-LAST:event_jTableCircuitosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -167,24 +312,100 @@ public class FrameDirector extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new FrameDirector().setVisible(true);
+                try {
+                    new FrameDirector().setVisible(true);
+                } catch (ClassNotFoundException | IOException ex) {
+                    Logger.getLogger(FrameDirector.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnComenzarCarrera;
-    private javax.swing.JButton jBtnComenzarMundial;
+    private javax.swing.JButton jBtnAniadirCarrera;
+    private javax.swing.JButton jBtnEliminarCarrera;
     private javax.swing.JButton jBtnVolver;
     private javax.swing.JLabel jLGestionDeEscuderia;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableCarreras;
+    private javax.swing.JTable jTableCircuitos;
     // End of variables declaration//GEN-END:variables
 
+    private ArrayList<Circuito> circuitos = new ArrayList<>();
+    private Mundial mundial;
+    
     private void cargarDatos() throws ClassNotFoundException, IOException {
-        escuderias = EscuderiaAdapter.getInstance().leer();
-        pilotosLibres = PilotoLibreAdapter.getInstance().leer();
+        circuitos = CircuitoAdapter.getInstance().leer();
+        mundial = MundialAdapter.getInstance().leer();
+        if (mundial == null) {
+            mundial = new Mundial();
+        }
+            
+    }
+
+    private void asignarEventosEnVentana() {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                try {
+                    guardarDatos();
+                } catch (IOException ex) {
+                    Logger.getLogger(FrameDirector.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
     
+    private void guardarDatos() throws IOException {
+        CircuitoAdapter.getInstance().guardar(circuitos);
+        MundialAdapter.getInstance().guardar(mundial);
+    }
 
+    private void cargarDatosEnVentana() {
+        cargarCircuitosEnTabla();
+        cargarCarrerasEnTabla();
+    }
+
+    private void cargarCircuitosEnTabla() {
+        Iterator<Circuito> iterador = circuitos.iterator();
+        DefaultTableModel modelo = (DefaultTableModel) jTableCircuitos.getModel();
+        limpiarTabla(jTableCircuitos);        
+        while (iterador.hasNext()) {
+            Circuito circuito = iterador.next();
+            Object[] fila = new Object[]{circuito.getNombre(), circuito.getDistanciaRecta(), circuito.getDistanciaCurva(), circuito.getDistanciaTotal()};
+            modelo.addRow(fila);
+        }
+    }
+
+    private void cargarCarrerasEnTabla() {
+        Iterator<Carrera> iterador = mundial.getCarreras().iterator();
+        DefaultTableModel modelo = (DefaultTableModel) jTableCarreras.getModel();
+        limpiarTabla(jTableCarreras);        
+        while (iterador.hasNext()) {
+            Carrera carrera = iterador.next();
+            Object[] fila = new Object[]{carrera.getCircuito().getNombre()};
+            modelo.addRow(fila);
+        }
+        jBtnAniadirCarrera.setEnabled(mundial.puedeAgregarCarreras());
+    }
+
+    private void añadirCarrera() {
+        Integer circuitoIndice = jTableCircuitos.getSelectedRow();
+        if (circuitoIndice != -1) {
+            Circuito circuito = circuitos.get(circuitoIndice);
+            Carrera carrera = new Carrera(circuito);
+            mundial.addCarrera(carrera);
+            cargarCarrerasEnTabla();
+        }
+    }
 
 }

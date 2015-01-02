@@ -28,7 +28,6 @@ public class EscuderiaAdapter extends FormulaAdapter<Escuderia>{
         return read(FICHERO);
     }
     
-    
 }
 
 

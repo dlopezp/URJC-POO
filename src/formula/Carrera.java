@@ -1,6 +1,7 @@
 package formula;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -8,20 +9,38 @@ import java.util.*;
  */
 
 
-public class Carrera {
+public class Carrera implements Serializable {
     private Circuito circuito;
-    private Set<Participante> participantes;
+    private ArrayList<Participante> participantes;
     private ArrayList<Clasificado> clasificacionFinal;
     
-    private static final Integer PUNTUACION[] = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1};
-    private static final Integer PREMIOS[] = {1000,75000,50000,25000,15000,10000};
+    private static final Integer[] PUNTUACION = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1};
+    private static final Integer[] PREMIOS = {100000,75000,50000,25000,15000,10000};
     
     
-    public Carrera(Circuito circuito, Set<Participante> participantes ) {
+    public Carrera(Circuito circuito) {
         this.circuito = circuito;
-        this.participantes = participantes;
-        this.clasificacionFinal = null;
+        participantes = new ArrayList<>();
+        clasificacionFinal = new ArrayList<>();
     }
+    
+    public ArrayList<Participante> getParticipantes(Escuderia escuderia) {
+        ArrayList<Participante> participantesEscuderia = new ArrayList<>();
+        for (Participante participante : participantes) {
+            if (participante.getEscuderia().equals(escuderia)) {
+                participantesEscuderia.add(participante);
+            }
+        }
+        return participantesEscuderia;
+    }
+    
+    public void añadirParticipante(Participante participante) {
+        participantes.add(participante);
+    }
+    
+    
+    
+    
  
     
     public ArrayList<Clasificado> obtenerClasificacion(){
@@ -83,11 +102,11 @@ public class Carrera {
         this.circuito = circuito;
     }
 
-    public Set<Participante> getParticipantes() {
+    public ArrayList<Participante> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(Set<Participante> participantes) {
+    public void setParticipantes(ArrayList<Participante> participantes) {
         this.participantes = participantes;
     }
 

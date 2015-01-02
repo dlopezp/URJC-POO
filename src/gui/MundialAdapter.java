@@ -20,12 +20,16 @@ public class MundialAdapter extends FormulaAdapter<Mundial>{
         return instance;
     }
     
-    public void guardar(ArrayList<Mundial> mundial) throws IOException {
+    public void guardar(Mundial mundial) throws IOException {
         save(mundial, FICHERO);
     }
     
-    public ArrayList<Mundial> leer() throws ClassNotFoundException, IOException {
-        return read(FICHERO);
+    public Mundial leer() throws ClassNotFoundException, IOException {
+        Mundial mundial = readOneObject(FICHERO);
+        if (mundial == null) {
+            mundial = new Mundial();
+        }
+        return mundial;
     }
     
     
