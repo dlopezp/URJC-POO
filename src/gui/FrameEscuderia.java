@@ -1475,6 +1475,7 @@ public class FrameEscuderia extends FormulaFrame {
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         if (escuderia != null) {
             cargarPanelEntrenar();
+            cargarPanelCarreras();
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
@@ -1688,9 +1689,7 @@ public class FrameEscuderia extends FormulaFrame {
             Object[] fila = new Object[]{coche.getModelo(), coche.getVelocidadEnRecta(), coche.getVelocidadEnCurva()};
             modelo.addRow(fila);
         }
-        if (!escuderia.puedeFabricarCoche()) {
-            bloquearFormularioCoches(true);
-        }
+        bloquearFormularioCoches(!escuderia.puedeFabricarCoche());
     }
 
     private void limpiarTablaCoches() {
