@@ -1592,12 +1592,11 @@ public class FrameEscuderia extends FormulaFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new FrameEscuderia().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(FrameEscuderia.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
+                } catch (ClassNotFoundException | IOException ex) {
                     Logger.getLogger(FrameEscuderia.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -1728,8 +1727,8 @@ public class FrameEscuderia extends FormulaFrame {
 
     private void cargarComboPincipal() {
         jComboBoxPrincipal.addItem("Escoja escuderia");
-        for (Escuderia escuderia : escuderias) {
-            jComboBoxPrincipal.addItem(escuderia.getNombre());
+        for (Escuderia esc : escuderias) {
+            jComboBoxPrincipal.addItem(esc.getNombre());
         }
     }
 
@@ -1886,8 +1885,8 @@ public class FrameEscuderia extends FormulaFrame {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) jComboBoxEscuderiaIntercambiar.getModel();
         modelo.removeAllElements();
         modelo.addElement("Escoja escuderia");
-        for (Escuderia escuderia : escuderias) {
-            modelo.addElement(escuderia.getNombre());
+        for (Escuderia esc : escuderias) {
+            modelo.addElement(esc.getNombre());
         }
     }
 
