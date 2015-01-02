@@ -1,15 +1,45 @@
 package gui;
 
+import formula.Carrera;
+import formula.Mundial;
+import formula.Coche;
+import formula.Escuderia;
+import formula.PilotoLibre;
+import formula.PilotoOficial;
+import formula.PilotoProbador;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author HOME3
  */
 public class FrameDirector extends javax.swing.JFrame {
+    
+    public FrameDirector() throws ClassNotFoundException, IOException {
+        initComponents();
+        cargarDatos();
+        asignarEventosEnVentana();
+  
+    }
+    
+    
+    
 
     /**
      * Creates new form FrameDirector
      */
-    public FrameDirector() {
+        public FrameDirector() {
         initComponents();
     }
 
@@ -22,17 +52,33 @@ public class FrameDirector extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jBtnVolver = new javax.swing.JButton();
+        jLGestionDeEscuderia = new javax.swing.JLabel();
+        jBtnComenzarCarrera = new javax.swing.JButton();
+        jBtnComenzarMundial = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Usuario Director");
 
         jBtnVolver.setText("Volver");
         jBtnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnVolverActionPerformed(evt);
+            }
+        });
+
+        jLGestionDeEscuderia.setText("DIRECTOR DEL MUNDIAL");
+
+        jBtnComenzarCarrera.setText("Comenzar Carrera");
+        jBtnComenzarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnComenzarCarreraActionPerformed(evt);
+            }
+        });
+
+        jBtnComenzarMundial.setText("Comenzar Mundial");
+        jBtnComenzarMundial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnComenzarMundialActionPerformed(evt);
             }
         });
 
@@ -42,21 +88,39 @@ public class FrameDirector extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 327, Short.MAX_VALUE)
+                        .addComponent(jBtnVolver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLGestionDeEscuderia)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnVolver)
-                .addContainerGap())
+                .addComponent(jBtnComenzarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jBtnComenzarMundial, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(233, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addComponent(jLGestionDeEscuderia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addComponent(jBtnComenzarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
                 .addComponent(jBtnVolver)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(133, Short.MAX_VALUE)
+                    .addComponent(jBtnComenzarMundial, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(110, 110, 110)))
         );
 
         pack();
@@ -65,6 +129,14 @@ public class FrameDirector extends javax.swing.JFrame {
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
         FrameManager.getInstance().mostrarVentanaPrincipal(this);
     }//GEN-LAST:event_jBtnVolverActionPerformed
+
+    private void jBtnComenzarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnComenzarCarreraActionPerformed
+        comenzarCarrera();
+    }//GEN-LAST:event_jBtnComenzarCarreraActionPerformed
+
+    private void jBtnComenzarMundialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnComenzarMundialActionPerformed
+        comenzarMundial();// TODO add your handling code here:
+    }//GEN-LAST:event_jBtnComenzarMundialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,7 +174,17 @@ public class FrameDirector extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnComenzarCarrera;
+    private javax.swing.JButton jBtnComenzarMundial;
     private javax.swing.JButton jBtnVolver;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLGestionDeEscuderia;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos() throws ClassNotFoundException, IOException {
+        escuderias = EscuderiaAdapter.getInstance().leer();
+        pilotosLibres = PilotoLibreAdapter.getInstance().leer();
+    }
+    
+
+
 }

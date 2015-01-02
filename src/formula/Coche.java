@@ -1,6 +1,11 @@
 package formula;
 
+
 import java.io.Serializable;
+
+/**
+ * @author Eduardo Benito Fernández
+ */
 
 public class Coche implements Serializable {
  

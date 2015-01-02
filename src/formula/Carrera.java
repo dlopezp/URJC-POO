@@ -1,6 +1,11 @@
-
 package formula;
+
+
 import java.util.*;
+
+/**
+ * @author Eduardo Benito Fernández
+ */
 
 
 public class Carrera {
@@ -61,8 +66,6 @@ public class Carrera {
             }
         }
     }
-    
-    
     
     
     public void celebrarCarrera(){
