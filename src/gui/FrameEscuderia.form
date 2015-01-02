@@ -109,7 +109,7 @@
                               <Component id="jScrollPane1" min="-2" pref="527" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="453" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -180,25 +180,30 @@
                                       <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jSliderAero" min="-2" pref="183" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabelAero" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabelAero" pref="102" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="jSliderPotencia" min="-2" pref="183" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabelPotencia" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jTextFieldModelo" alignment="1" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jSliderPotencia" min="-2" pref="183" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabelPotencia" pref="56" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jSliderNeumaticos" min="-2" pref="183" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabelNeumaticos" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jSliderNeumaticos" min="-2" pref="183" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabelNeumaticos" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jTextFieldModelo" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="102" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="jBtnCocheAleatorio" min="-2" pref="125" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -947,7 +952,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" pref="355" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="395" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
