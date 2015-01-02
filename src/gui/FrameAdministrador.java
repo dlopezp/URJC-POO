@@ -1,5 +1,10 @@
 package gui;
 
+/**
+ *
+ * @author Eduardo Benito Fernández
+ */
+
 import formula.Circuito;
 import formula.Escuderia;
 import formula.PilotoLibre;
