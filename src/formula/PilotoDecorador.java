@@ -15,7 +15,11 @@ public abstract class PilotoDecorador extends PilotoBase {
     }
     
     public abstract void entrenar();
-    
+ 
+      /**
+     * Devuelve el nombre completo del Piloto en un String.
+     * @return NombreCompleto;
+     */      
     @Override
     public String toString() {
         return getNombreCompleto();
@@ -36,7 +40,10 @@ public abstract class PilotoDecorador extends PilotoBase {
     public Integer getSueldo() {
         return piloto.getSueldo();
     }
-    
+     /**
+     * Suma los puntos introducidos al total de puntos del Piloto.
+     * @param puntos;
+     */      
     public void sumarPuntos(Integer puntos) {
         piloto.sumarPuntos(puntos);
     }
