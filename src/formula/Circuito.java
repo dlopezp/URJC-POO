@@ -2,6 +2,12 @@ package formula;
 
 import java.io.Serializable;
 
+/**
+ * @author Jaime de Mora
+ * @version 1.0
+ * @since 20-12-2014
+ */
+
 public class Circuito implements Serializable {
     
     private String nombre;
@@ -19,6 +25,12 @@ public class Circuito implements Serializable {
         this.rectas = rectas;
         this.curvas = curvas;
     }
+ 
+     /**
+     * Calcula la Distancia Total generada por un conjunto de Tramos
+     * @param tramos[] de Tramo.java
+     * @return distancia total;
+     */
     
     private Double getDistancia(Tramo[] tramos) {
         Double distancia = 0.0;
