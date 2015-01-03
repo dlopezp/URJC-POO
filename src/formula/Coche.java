@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 /**
  * @author Eduardo Benito Fernández
+ * @version 1.0
+ * @since 20-12-2014
  */
 
 public class Coche implements Serializable {
@@ -30,6 +32,12 @@ public class Coche implements Serializable {
         this.neumaticos = getValorCaracteristicaEnLimite(neumaticos);
     }
     
+     /**
+     * Devuelve un valor seguro (entre 0 y 5) para valor
+     * @param valor
+     * @return valorSeguro;
+     */
+        
     private Double getValorCaracteristicaEnLimite(Double valor) {
         Double valorSeguro;
         if (valor < 0) {
@@ -42,7 +50,12 @@ public class Coche implements Serializable {
         return valorSeguro;
     }
     
-    
+     /**
+     * Devuelve la velocidad en Recta teniendo en cuenta la potencia y la
+     * aerodinámica del Coche. 
+     * @return velocidad;
+     */
+       
     public Double getVelocidadEnRecta() {
         Double velocidad;
         velocidad = potencia * FACTOR_POTENCIA_RECTA;
@@ -50,6 +63,12 @@ public class Coche implements Serializable {
         return velocidad;
     }
     
+     /**
+     * Calcula la velocidad en Curva teniendo en cuenta la potencia, los
+     * neumáticos y la aerodinámica del coche. 
+     * @return velocidad;
+     */
+        
     public Double getVelocidadEnCurva() {
         Double velocidad;
         velocidad = potencia * FACTOR_POTENCIA_CURVA;
@@ -58,12 +77,26 @@ public class Coche implements Serializable {
         return velocidad;
     }
     
+    
+     /**
+     * Incrementa los valores de potencia, aerodinámica y neumáticos en el 
+     * valor constante INCREMENTO_MEJORA
+     */
+        
     public void entrenar() {
         setPotencia(potencia + INCREMENTO_MEJORA);
         setAerodinamica(aerodinamica + INCREMENTO_MEJORA);
         setNeumaticos(neumaticos + INCREMENTO_MEJORA);
     }
-    
+
+     /**
+     * Calcula el tiempo total en dar un Coche una Vuelta al Circuito introducido.     * 
+     * Tiene en cuenta los parámetros de distancia en recta y en curva, la velocidad
+     * en recta y curva del Coche y devuelve el tiempo total.
+     * @param Circuito de Circuito.java
+     * @return tiempo;
+     */
+        
     public Double getTiempoPorVuelta(Circuito circuito) {
         Double tiempo = 0.0;
         Double distanciaRecta = circuito.getDistanciaRecta();
