@@ -16,10 +16,13 @@ public class Participante implements Serializable {
         this.coche = coche;
     }
     
-    
     public void sumarPuntos(Integer puntos){
         this.escuderia.sumarPuntos(puntos);
         this.piloto.sumarPuntos(puntos);
+    }
+    
+    public void sumarPremio(Integer premio) {
+        escuderia.sumarPremio(premio);
     }
     
     public Double getTiempoPorVuelta(Circuito circuito){
@@ -28,7 +31,9 @@ public class Participante implements Serializable {
         return tiempo;
     }
     
-
+    void correrCarrera(Circuito circuito) {
+        escuderia.pagarSueldoAPiloto(piloto);
+    }
     
     public Escuderia getEscuderia() {
         return escuderia;
@@ -53,6 +58,5 @@ public class Participante implements Serializable {
     public void setCoche(Coche coche) {
         this.coche = coche;
     }
-    
-    
+
 }

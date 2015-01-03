@@ -44,40 +44,20 @@ public class Circuito implements Serializable {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public Integer getAforo() {
         return aforo;
-    }
-
-    public void setAforo(Integer aforo) {
-        this.aforo = aforo;
     }
 
     public Integer getCanon() {
         return canon;
     }
 
-    public void setCanon(Integer canon) {
-        this.canon = canon;
-    }
-
     public Tramo[] getRectas() {
         return rectas;
     }
 
-    public void setRectas(Tramo[] rectas) {
-        this.rectas = rectas;
-    }
-
     public Tramo[] getCurvas() {
         return curvas;
-    }
-
-    public void setCurvas(Tramo[] curvas) {
-        this.curvas = curvas;
     }
       
 }

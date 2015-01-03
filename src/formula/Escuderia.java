@@ -9,7 +9,7 @@ import java.util.*;
 
 
 
-public class Escuderia implements Comparable<Escuderia>, Serializable{
+public class Escuderia implements Comparable<Escuderia>, Serializable {
     private String nombre;
     private String pais;
     private Integer año;
@@ -180,42 +180,14 @@ public class Escuderia implements Comparable<Escuderia>, Serializable{
         return encontrado;
     }
 
-    public void obtenerPremio(Integer premio) {
-        setPresup(getPresup()+premio);
+    public void sumarPremio(Integer premio) {
+        presupuesto += premio;
     }
 
     @Override
     public int compareTo(Escuderia e){
         return getPuntos()-e.getPuntos();
     }
-    
-    /*
-    Se implementarán cuando las clases Participante y Carrera estén listas
-    
-    public Participante configurarCarrera(Carrera race, PilotoOficial piloto, Coche c){
-        Participante parti = new Participante(this,piloto, c); 
-        return parti;
-    }
-    
-    public ArrayList<Participante> configurarCarrera(Carrera race){
-       ArrayList<Participante> participantes = new ArrayList<>();
-       Iterator<PilotoOficial> it_oficiales = this.pilotosOficiales.iterator();
-       Iterator<Coche> it_coches = this.coches.iterator();
-       
-       int total = Math.min(this.coches.size(), this.pilotosOficiales.size());
-       for (int i=0; i<total; i++){
-           participantes.add(Participante(it_oficiales.next(),it_coches.next()));
-           i++;
-       }
-       return participantes;
-    }
-    
-
-
-    public boolean puedeParticiparEnCarrera(Carrera carrera){
-        
-    }
-    */
     
     @Override
     public String toString() {
@@ -226,80 +198,40 @@ public class Escuderia implements Comparable<Escuderia>, Serializable{
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getPais() {
         return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public Integer getAño() {
         return año;
     }
 
-    public void setAño(Integer año) {
-        this.año = año;
-    }
-
     public Integer getPresup() {
         return presupuesto;
     }
 
-    public void setPresup(Integer presup) {
-        this.presupuesto = presup;
-    }
-
     public Integer getPuntos() {
         return puntos;
-    }
-
-    public void setPuntos(Integer puntos) {
-        this.puntos = puntos;
     }
     
     public ArrayList<PilotoOficial> getPilotosOficiales() {
         return pilotosOficiales;
     }
 
-    public void setPilotosOficiales(ArrayList<PilotoOficial> pilotosOficiales) {
-        this.pilotosOficiales = pilotosOficiales;
-    }
-
     public ArrayList<Coche> getCoches() {
         return coches;
     }
 
-    public void setCoches(ArrayList<Coche> coches) {
-        this.coches = coches;
-    }
-
     public ArrayList<PilotoProbador> getPilotosProbadores() {
         return pilotosProbadores;
-    }
-
-    public void setPilotosProbadores(ArrayList<PilotoProbador> pilotosProbadores) {
-        this.pilotosProbadores = pilotosProbadores;
     }
     
     public Integer getPresupuesto() {
         return presupuesto;
     }
 
-    public void setPresupuesto(Integer presupuesto) {
-        this.presupuesto = presupuesto;
-    }
-
     public String getDueño() {
         return dueño;
-    }
-
-    public void setDueño(String dueño) {
-        this.dueño = dueño;
     }
 
 }
