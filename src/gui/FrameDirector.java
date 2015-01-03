@@ -82,6 +82,12 @@ public class FrameDirector extends FormulaFrame {
         jTableClasificacionPilotos = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableClasificacionEscuderias = new javax.swing.JTable();
+        jPanelFin = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTableClasificacionPilotosFin = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTableClasificacionEscuderiasFin = new javax.swing.JTable();
         jBtnAnterior = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -375,7 +381,7 @@ public class FrameDirector extends FormulaFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelNombreCarrera))
                     .addComponent(jLabel5)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -485,7 +491,7 @@ public class FrameDirector extends FormulaFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6)))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -530,6 +536,66 @@ public class FrameDirector extends FormulaFrame {
 
         jPanelCard.add(jPanelPost, "card3");
 
+        jPanelFin.setBackground(new java.awt.Color(51, 204, 255));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("El mundial ha terminado");
+
+        jTableClasificacionPilotosFin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTableClasificacionPilotosFin);
+
+        jTableClasificacionEscuderiasFin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane8.setViewportView(jTableClasificacionEscuderiasFin);
+
+        javax.swing.GroupLayout jPanelFinLayout = new javax.swing.GroupLayout(jPanelFin);
+        jPanelFin.setLayout(jPanelFinLayout);
+        jPanelFinLayout.setHorizontalGroup(
+            jPanelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelFinLayout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelFinLayout.setVerticalGroup(
+            jPanelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanelCard.add(jPanelFin, "card4");
+
         jBtnAnterior.setText("Anterior");
         jBtnAnterior.setEnabled(false);
 
@@ -540,7 +606,9 @@ public class FrameDirector extends FormulaFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jPanelCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jBtnComenzarMundial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -692,6 +760,7 @@ public class FrameDirector extends FormulaFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -711,6 +780,7 @@ public class FrameDirector extends FormulaFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelCard;
+    private javax.swing.JPanel jPanelFin;
     private javax.swing.JPanel jPanelPost;
     private javax.swing.JPanel jPanelPre;
     private javax.swing.JProgressBar jProgressBar1;
@@ -720,11 +790,15 @@ public class FrameDirector extends FormulaFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableCarreras;
     private javax.swing.JTable jTableCircuitos;
     private javax.swing.JTable jTableClasificacionEscuderias;
+    private javax.swing.JTable jTableClasificacionEscuderiasFin;
     private javax.swing.JTable jTableClasificacionPilotos;
+    private javax.swing.JTable jTableClasificacionPilotosFin;
     private javax.swing.JTable jTableClasificados;
     private javax.swing.JTable jTableParticipantes;
     // End of variables declaration//GEN-END:variables
@@ -778,6 +852,8 @@ public class FrameDirector extends FormulaFrame {
             if (carrera.estaFinalizada()) {
                 jPanelCard.add(jPanelPost);
                 cargarCarrera(carrera);
+            } else if (carrera == null) {
+                jPanelCard.add(jPanelFin);
             } else {
                 jPanelCard.add(jPanelPre);
             }
@@ -797,9 +873,6 @@ public class FrameDirector extends FormulaFrame {
                 encontrada = true;
             }
         }
-        if (carrera == null) {
-            // Mundial terminado
-        }
         return carrera;
     }
 
@@ -816,6 +889,11 @@ public class FrameDirector extends FormulaFrame {
         jTableClasificados.setModel(new ClasificadosTableModel(carrera.getClasificacionFinal()));
         jTableClasificacionPilotos.setModel(new ClasificacionPilotosTableModel(mundial.getEscuderias()));
         jTableClasificacionEscuderias.setModel(new ClasificacionEscuderiasTableModel(mundial.getEscuderias()));
+        
+        if (carrera == null) {
+            jTableClasificacionEscuderiasFin.setModel(new ClasificacionEscuderiasTableModel(mundial.getEscuderias()));
+            jTableClasificacionPilotosFin.setModel(new ClasificacionPilotosTableModel(mundial.getEscuderias()));
+        }
     }
 
     private void activarBotones(boolean mundialComenzado) {
