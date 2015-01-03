@@ -1,5 +1,13 @@
 package formula;
 
+/**
+ * @author Jaime de Mora
+ * @version 1.0
+ * @since 20-12-2014
+ */
+
+    
+
 import java.io.Serializable;
 
 public class Clasificado implements Comparable<Clasificado>, Serializable {
@@ -16,18 +24,33 @@ public class Clasificado implements Comparable<Clasificado>, Serializable {
         this.premio = 0;
     }
     
+     /**
+     * Calcula la diferencia de tiempos entre dos clasificados
+     * Devuelve un número mayor que 0 si clasificado2 es mayor  que el objeto1,
+     * 0 si son iguales o -1 si objeto1 es mayor que clasificado.
+     * @param clasificado2 de Clasificado.java
+     * @return tiempo de diferencia;
+     */    
     @Override
     public int compareTo(Clasificado clasificado2){
        return (int) ((getTiempoPorVuelta()*100) - (clasificado2.getTiempoPorVuelta()*100));
     }
     
+     /**
+     * Según los puntos obtenidos por un participante, otorga un premio concreto
+     * @param punto, premio;
+     */    
     public void premiar(Integer puntos, Integer premio) {
         this.puntos = puntos;
         this.premio = premio;
         participante.sumarPuntos(puntos);
         participante.sumarPremio(premio);
     }
-    
+
+     /**
+     * Formatea el tiempo total a formato F1 para poder mostrar en las tablas.
+     * @return tiempo (formateado);
+     */    
     public String getTiempoPorVueltaFormateado() {
         String tiempo = "";
         Integer minutos = Double.valueOf(tiempoPorVuelta / 60).intValue();

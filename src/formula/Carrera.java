@@ -31,7 +31,7 @@ public class Carrera implements Serializable {
     /**
      * Devuelve Listado de Participantes de una Escudería Concreta para la Carrera
      * @param escuderia de Escuderia.java
-     * @return Array de participantes de Particpantes.java;
+     * @return Array de participantes de Participantes.java;
      */
     
     public ArrayList<Participante> getParticipantes(Escuderia escuderia) {
@@ -60,6 +60,7 @@ public class Carrera implements Serializable {
     public Boolean estaFinalizada() {
         return finalizada;
     }
+    
     /**
      * Celebra la carrera, asignando tiempos, puntos y premios a cada participante.
      * 

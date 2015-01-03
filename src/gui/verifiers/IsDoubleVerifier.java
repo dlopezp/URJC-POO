@@ -4,6 +4,10 @@ import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
+
+/**
+ * @author Eduardo Benito Fernández
+ */
 public class IsDoubleVerifier extends InputVerifier {
 
     @Override
