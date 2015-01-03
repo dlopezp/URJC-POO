@@ -1,8 +1,7 @@
 package formula;
 
-import java.io.Serializable;
 
-public abstract class PilotoDecorador extends PilotoBase implements Serializable {
+public abstract class PilotoDecorador extends PilotoBase {
     
     protected PilotoLibre piloto;
 
