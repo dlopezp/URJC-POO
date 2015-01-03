@@ -1,5 +1,9 @@
 package formula;
 
+/**
+ * 
+ * @author Daniel López Pérez
+ */
 public abstract class PilotoBase {
     
     public static final Integer EUROS_POR_VALORACION = 50;
