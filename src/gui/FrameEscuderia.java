@@ -1231,7 +1231,7 @@ public class FrameEscuderia extends FormulaFrame {
     
     
     private void jBtnEscuderiaVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEscuderiaVolverActionPerformed
-        volverAVentanaPrincpal();
+        volverAVentanaPrincipal();
     }//GEN-LAST:event_jBtnEscuderiaVolverActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
