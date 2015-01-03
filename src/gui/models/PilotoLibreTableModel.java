@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PilotoLibreTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Nombre", "Agresividad", "Paciencia", "Reflejos", "Valentía", "Valoración Global", "Sueldo"};
-    protected Class[] COLUMNAS_CLASES = {String.class, Double.class, Double.class, Double.class, Double.class, String.class};
+    protected Class[] COLUMNAS_CLASES = {String.class, Double.class, Double.class, Double.class, Double.class, Double.class, String.class};
     
     public PilotoLibreTableModel(ArrayList<PilotoLibre> pilotos) {
         items = pilotos;

@@ -2,6 +2,7 @@ package gui;
 
 import gui.adapters.MundialAdapter;
 import formula.Mundial;
+import gui.models.FormulaTableModel;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
@@ -16,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -59,15 +59,17 @@ public class FormulaFrame extends JFrame {
     }
     
     protected void limpiarTabla(JTable tabla) {
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        int cantidadFilas = modelo.getRowCount();
-        for (int i = cantidadFilas - 1; i >= 0; i--) {
-            modelo.removeRow(i);
+        if (tabla.getRowCount() > 0) {
+            FormulaTableModel modelo = (FormulaTableModel) tabla.getModel();
+            int cantidadFilas = modelo.getRowCount();
+            for (int i = cantidadFilas - 1; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
         }
     }
     
     protected void borrarFilaSeleccionadaDeTabla(JTable tabla) {
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        FormulaTableModel modelo = (FormulaTableModel) tabla.getModel();
         int filaSeleccionada = tabla.getSelectedRow();
         if (filaSeleccionada != -1) {
             modelo.removeRow(filaSeleccionada);
@@ -75,7 +77,7 @@ public class FormulaFrame extends JFrame {
     }
     
     protected void borrarFilaSeleccionadaDeTabla(JTable tabla, ArrayList coleccion) {
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        FormulaTableModel modelo = (FormulaTableModel) tabla.getModel();
         int filaSeleccionada = tabla.getSelectedRow();
         if (filaSeleccionada != -1) {
             modelo.removeRow(filaSeleccionada);

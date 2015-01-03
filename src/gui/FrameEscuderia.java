@@ -18,14 +18,12 @@ import gui.models.PilotoDecoradorTableModel;
 import gui.models.PilotoLibreReducidoTableModel;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -139,6 +137,8 @@ public class FrameEscuderia extends FormulaFrame {
         jComboBoxCoches = new javax.swing.JComboBox();
         jBtnAñadirParticipante = new javax.swing.JButton();
         jComboBoxPrincipal = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelPresupuesto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -975,14 +975,14 @@ public class FrameEscuderia extends FormulaFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())
+                        .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Entrenar", jPanel7);
@@ -1184,6 +1184,8 @@ public class FrameEscuderia extends FormulaFrame {
             }
         });
 
+        jLabel2.setText("Presupuesto:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1195,14 +1197,16 @@ public class FrameEscuderia extends FormulaFrame {
                         .addComponent(jLGestionDeEscuderia)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPresupuesto)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnEscuderiaVolver)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnEscuderiaVolver, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1211,7 +1215,9 @@ public class FrameEscuderia extends FormulaFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLGestionDeEscuderia)
-                    .addComponent(jComboBoxPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelPresupuesto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1280,6 +1286,7 @@ public class FrameEscuderia extends FormulaFrame {
                 escuderia.ficharPiloto(new PilotoProbador(pilotoLibre));
                 cargarTablaPilotosLibres();
                 cargarTablaPilotosProbadores();
+                actualizarLabelPresupuesto();
             }
         }
     }//GEN-LAST:event_jBtnFicharLibreComoProbadorActionPerformed
@@ -1306,6 +1313,7 @@ public class FrameEscuderia extends FormulaFrame {
                 escuderia.ficharPiloto(new PilotoOficial(pilotoLibre));
                 cargarTablaPilotosLibres();
                 cargarTablaPilotosOficiales();
+                actualizarLabelPresupuesto();
             }
         }
     }//GEN-LAST:event_jBtnFicharLibreComoOficialActionPerformed
@@ -1357,6 +1365,7 @@ public class FrameEscuderia extends FormulaFrame {
                     escuderia.ficharPiloto(new PilotoProbador((oficial.getPiloto())));
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
                     cargarTablaPilotosProbadores();
+                    actualizarLabelPresupuesto();
                 }
             }
         }
@@ -1374,6 +1383,7 @@ public class FrameEscuderia extends FormulaFrame {
                     escuderia.ficharPiloto(new PilotoProbador((oficial.getPiloto())));
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
                     cargarTablaPilotosProbadores();
+                    actualizarLabelPresupuesto();
                 }
             }
         }
@@ -1391,6 +1401,7 @@ public class FrameEscuderia extends FormulaFrame {
                     escuderia.ficharPiloto(new PilotoOficial((oficial.getPiloto())));
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
                     cargarTablaPilotosOficiales();
+                    actualizarLabelPresupuesto();
                 }
             }
         }
@@ -1408,6 +1419,7 @@ public class FrameEscuderia extends FormulaFrame {
                     escuderia.ficharPiloto(new PilotoOficial(oficial.getPiloto()));
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
                     cargarTablaPilotosOficiales();
+                    actualizarLabelPresupuesto();
                 }
             }
         }
@@ -1438,6 +1450,7 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaAjena);
                     cargarTablaPilotosOficiales();
                     cargarTablaPilotosProbadores();
+                    actualizarLabelPresupuesto();
                 }
             }
         }
@@ -1463,11 +1476,12 @@ public class FrameEscuderia extends FormulaFrame {
             }
             if (Escuderia.sonPilotosIntercambiables(pilotoPropio,pilotoAjeno)) {
                 if (escuderiaAjena.tienePresupuestoSuficiente(pilotoPropio.getSueldo()) && escuderia.tienePresupuestoSuficiente(pilotoAjeno.getSueldo())) {
-                        escuderia.intercambiarPiloto(pilotoPropio, pilotoAjeno);
+                    escuderia.intercambiarPiloto(pilotoPropio, pilotoAjeno);
                     escuderiaAjena.intercambiarPiloto(pilotoAjeno, pilotoPropio);
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaAjena);
                     cargarTablaPilotosOficiales();
                     cargarTablaPilotosProbadores();
+                    actualizarLabelPresupuesto();
                 }
             }
         }
@@ -1508,6 +1522,7 @@ public class FrameEscuderia extends FormulaFrame {
             }
             escuderia.entrenar(circuito, piloto, coche);
             cargarPanelEntrenar();
+            actualizarLabelPresupuesto();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1592,6 +1607,7 @@ public class FrameEscuderia extends FormulaFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1609,6 +1625,7 @@ public class FrameEscuderia extends FormulaFrame {
     private javax.swing.JLabel jLabelAero;
     private javax.swing.JLabel jLabelNeumaticos;
     private javax.swing.JLabel jLabelPotencia;
+    private javax.swing.JLabel jLabelPresupuesto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1674,6 +1691,7 @@ public class FrameEscuderia extends FormulaFrame {
         cargarPanelEntrenar();
         cargarPanelCarreras();
         configurarPanelParticipantes(new ArrayList<Participante>());
+        actualizarLabelPresupuesto();
     }
 
     private void limpiarDatosDeVentana() {
@@ -1869,5 +1887,9 @@ public class FrameEscuderia extends FormulaFrame {
         for (Participante participante : participantes) {
             jComboBoxCoches.removeItem(participante.getCoche());
         }
+    }
+
+    private void actualizarLabelPresupuesto() {
+        jLabelPresupuesto.setText(escuderia.getPresupuesto() + " €");
     }
 }

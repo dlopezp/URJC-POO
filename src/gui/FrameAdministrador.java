@@ -1174,7 +1174,7 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JTextField jTxtFieldPilotoNombre;
     private javax.swing.JTextField jTxtFieldPilotoPeso;
     // End of variables declaration//GEN-END:variables
-
+    
     private void cargarDatosEnVentana() {
         cargarPilotosEnTabla();
         cargarCircuitosEnTabla();
