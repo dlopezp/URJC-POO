@@ -1,8 +1,7 @@
 package formula;
 
-import java.io.Serializable;
 
-public class PilotoLibre extends PilotoBase implements Serializable {
+public class PilotoLibre extends PilotoBase {
     
     protected String nombre;
     protected String apellidos;
