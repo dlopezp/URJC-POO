@@ -50,6 +50,11 @@ public class FormulaFrame extends JFrame {
                     Logger.getLogger(FormulaFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
+            @Override
+            public void windowOpened(WindowEvent evt) {
+                comprobarMundialComenzado();
+            }
         });
     }
     
@@ -94,7 +99,7 @@ public class FormulaFrame extends JFrame {
         evt.getComponent().setBackground(Color.white);
     }
     
-    protected void volverAVentanaPrincpal() {
+    protected void volverAVentanaPrincipal() {
         try {
             guardarDatos();
         } catch (IOException | ClassNotFoundException ex) {
@@ -105,6 +110,17 @@ public class FormulaFrame extends JFrame {
     
     protected void mostrarVentanaDeError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    protected void comprobarMundialComenzado() {
+        if (mundial.estaComenzado()) {
+            mostrarAvisoMundialEmpezado();
+            volverAVentanaPrincipal();
+        }
+    }
+    
+    protected void mostrarAvisoMundialEmpezado() {
+        JOptionPane.showMessageDialog(null, "El Mundial ha comenzado, no se pueden realizar cambios", "Mundial comenzado", JOptionPane.INFORMATION_MESSAGE  );
     }
     
 }

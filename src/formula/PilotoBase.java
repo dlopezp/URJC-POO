@@ -3,8 +3,9 @@ package formula;
 import java.io.Serializable;
 
 /**
- * 
- * @author Daniel López Pérez
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
 public abstract class PilotoBase implements Serializable {
     

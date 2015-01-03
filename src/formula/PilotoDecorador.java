@@ -1,5 +1,10 @@
 package formula;
 
+/**
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
+ */
 
 public abstract class PilotoDecorador extends PilotoBase {
     

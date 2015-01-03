@@ -6,11 +6,13 @@ import gui.models.ClasificacionPilotosTableModel;
 import gui.models.ClasificadosTableModel;
 import formula.Carrera;
 import formula.Circuito;
+import gui.models.CarrerasTableModel;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HOME3
@@ -100,6 +102,12 @@ public class FrameDirector extends FormulaFrame {
         });
 
         jLGestionDeEscuderia.setText("DIRECTOR DEL MUNDIAL");
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -667,7 +675,7 @@ public class FrameDirector extends FormulaFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
-        volverAVentanaPrincpal();
+        volverAVentanaPrincipal();
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
     private void jBtnAniadirCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAniadirCarreraActionPerformed
@@ -703,6 +711,10 @@ public class FrameDirector extends FormulaFrame {
         activarBotones(true);
         configurarPaneles();
     }//GEN-LAST:event_jBtnComenzarMundialActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        comprobarMundialComenzado();
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
@@ -805,6 +817,17 @@ public class FrameDirector extends FormulaFrame {
 
     private Carrera carrera;
     
+    @Override
+    protected void comprobarMundialComenzado() {
+        int tabTarget;
+        if (jTabbedPane1.getTabCount() == 1) {
+            tabTarget = 0;
+        } else {
+            tabTarget = 1;
+        }
+        jTabbedPane1.setSelectedIndex(tabTarget);
+    }
+    
     private void cargarDatosEnVentana() {
         carrera = obtenerCarreraActual();
         cargarCircuitosEnTabla();
@@ -825,14 +848,7 @@ public class FrameDirector extends FormulaFrame {
     }
 
     private void cargarCarrerasEnTabla() {
-        Iterator<Carrera> iterador = mundial.getCarreras().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTableCarreras.getModel();
-        limpiarTabla(jTableCarreras);        
-        while (iterador.hasNext()) {
-            Carrera carrera = iterador.next();
-            Object[] fila = new Object[]{carrera.getCircuito().getNombre()};
-            modelo.addRow(fila);
-        }
+        jTableCarreras.setModel(new CarrerasTableModel(mundial.getCarreras()));
         jBtnAniadirCarrera.setEnabled(mundial.puedeAgregarCarreras());
     }
 
