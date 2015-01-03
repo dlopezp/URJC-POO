@@ -4,6 +4,9 @@ import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
+/**
+ * @author Eduardo Benito Fernández
+ */
 public class IsIntegerVerifier extends InputVerifier {
 
     @Override
