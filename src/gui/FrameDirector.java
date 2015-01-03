@@ -2,24 +2,10 @@ package gui;
 
 import formula.Carrera;
 import formula.Circuito;
-import formula.Mundial;
-import formula.Coche;
-import formula.Escuderia;
-import formula.PilotoLibre;
-import formula.PilotoOficial;
-import formula.PilotoProbador;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -85,13 +71,13 @@ public class FrameDirector extends FormulaFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableClasificados = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTableClasificacionPilotos = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTableClasificacionEscuderias = new javax.swing.JTable();
         jBtnAnterior = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,7 +162,7 @@ public class FrameDirector extends FormulaFrame {
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel2.setText("Carreras:");
+        jLabel2.setText("Carreras seleccionadas para el Mundial:");
 
         jTableCarreras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -418,7 +404,7 @@ public class FrameDirector extends FormulaFrame {
 
         jScrollPane4.setPreferredSize(new java.awt.Dimension(452, 100));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClasificados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -429,7 +415,7 @@ public class FrameDirector extends FormulaFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(jTableClasificados);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -456,7 +442,7 @@ public class FrameDirector extends FormulaFrame {
 
         jLabel19.setText("Clasificación del Mundial");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClasificacionPilotos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -467,9 +453,9 @@ public class FrameDirector extends FormulaFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(jTable3);
+        jScrollPane5.setViewportView(jTableClasificacionPilotos);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClasificacionEscuderias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -480,7 +466,7 @@ public class FrameDirector extends FormulaFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTable4);
+        jScrollPane6.setViewportView(jTableClasificacionEscuderias);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -619,7 +605,8 @@ public class FrameDirector extends FormulaFrame {
     private void jBtnEliminarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarCarreraActionPerformed
         Integer carreraIndice = jTableCarreras.getSelectedRow();
         if (carreraIndice != -1) {
-            mundial.getCarreras().remove(carreraIndice);
+            Carrera carrera = mundial.getCarrera(carreraIndice);
+            mundial.getCarreras().remove(carrera);
             cargarCarrerasEnTabla();
         }
     }//GEN-LAST:event_jBtnEliminarCarreraActionPerformed
@@ -730,11 +717,11 @@ public class FrameDirector extends FormulaFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable jTableCarreras;
     private javax.swing.JTable jTableCircuitos;
+    private javax.swing.JTable jTableClasificacionEscuderias;
+    private javax.swing.JTable jTableClasificacionPilotos;
+    private javax.swing.JTable jTableClasificados;
     private javax.swing.JTable jTableParticipantes;
     // End of variables declaration//GEN-END:variables
 
@@ -786,6 +773,7 @@ public class FrameDirector extends FormulaFrame {
         if (mundial.estaComenzado()) {
             if (carrera.estaFinalizada()) {
                 jPanelCard.add(jPanelPost);
+                cargarCarrera(carrera);
             } else {
                 jPanelCard.add(jPanelPre);
             }
@@ -810,12 +798,17 @@ public class FrameDirector extends FormulaFrame {
 
     private void cargarCarrera(Carrera carrera) {
         Circuito circuito = carrera.getCircuito();
+        jLabelNombreCarrera.setText(circuito.getNombre());
         jTableParticipantes.setModel(new ParticipantesTableModel(carrera.getParticipantes()));
         jLabelCurvas.setText(String.valueOf(circuito.getCurvas().length));
         jLabelDistanciaCurvas.setText(circuito.getDistanciaCurva().toString());
         jLabelRectas.setText(String.valueOf(circuito.getRectas().length));
         jLabelDistanciaRecta.setText(circuito.getDistanciaRecta().toString());
         jLabelDistanciaTotal.setText(circuito.getDistanciaTotal().toString());
+        
+        jTableClasificados.setModel(new ClasificadosTableModel(carrera.getClasificacionFinal()));
+        jTableClasificacionPilotos.setModel(new ClasificacionPilotosTableModel(mundial.getEscuderias()));
+        jTableClasificacionEscuderias.setModel(new ClasificacionEscuderiasTableModel(mundial.getEscuderias()));
     }
 
     private void activarBotones(boolean mundialComenzado) {

@@ -7,7 +7,10 @@ package gui;
 import formula.Circuito;
 import formula.Escuderia;
 import formula.Mundial;
+import formula.PilotoDecorador;
 import formula.PilotoLibre;
+import formula.PilotoOficial;
+import formula.PilotoProbador;
 import formula.Tramo;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -1442,7 +1445,17 @@ public class FrameAdministrador extends FormulaFrame {
     }
 
     private void borrarEscuderia() {
+        Escuderia escuderia = mundial.getEscuderia(jTableEscuderias.getSelectedRow());
+        ArrayList<PilotoOficial> pilotosOficiales = escuderia.getPilotosOficiales();
+        ArrayList<PilotoProbador> pilotosProbadores = escuderia.getPilotosProbadores();
+        for (PilotoOficial piloto : pilotosOficiales) {
+            mundial.añadirPiloto(piloto.getPiloto());
+        }
+        for (PilotoProbador piloto : pilotosProbadores) {
+            mundial.añadirPiloto(piloto.getPiloto());
+        }
         borrarFilaSeleccionadaDeTabla(jTableEscuderias, mundial.getEscuderias());
+        cargarPilotosEnTabla();
     }
 
     private void editarEscuderia(Escuderia escuderia) {

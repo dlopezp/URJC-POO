@@ -30,6 +30,7 @@ public class PilotoLibre extends PilotoBase implements Serializable {
         this.edad = edad;
         this.altura = altura;
         this.peso = peso;
+        this.puntos = 0;
         this.reflejos = getValorCaracteristicaEnLimite(reflejos);
         this.agresividad = getValorCaracteristicaEnLimite(agresividad);
         this.paciencia = getValorCaracteristicaEnLimite(paciencia);

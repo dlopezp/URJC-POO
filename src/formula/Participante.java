@@ -17,8 +17,8 @@ public class Participante implements Serializable {
     }
     
     public void sumarPuntos(Integer puntos){
-        this.escuderia.sumarPuntos(puntos);
-        this.piloto.sumarPuntos(puntos);
+        escuderia.sumarPuntos(puntos);
+        piloto.sumarPuntos(puntos);
     }
     
     public void sumarPremio(Integer premio) {
@@ -26,8 +26,11 @@ public class Participante implements Serializable {
     }
     
     public Double getTiempoPorVuelta(Circuito circuito){
-        Double tiempo = this.coche.getTiempoPorVuelta(circuito);
+        Double tiempo = coche.getTiempoPorVuelta(circuito);
         tiempo -= (0.1 * piloto.getValoraciónGlobal());
+        if (tiempo < 0) {
+            tiempo = 0.0;
+        }
         return tiempo;
     }
     

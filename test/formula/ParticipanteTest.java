@@ -100,8 +100,6 @@ public class ParticipanteTest {
    @Test 
    public void test_sumarPuntos(){
        int puntos = 10;
-       escuderia.setPuntos(0);
-       piloto.setPuntos(0);
        int valorEsperadoEscuderia = escuderia.getPuntos()+puntos;
        int valorEsperadoPiloto = piloto.getPuntos()+puntos;
        

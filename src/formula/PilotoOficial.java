@@ -21,7 +21,7 @@ public class PilotoOficial extends PilotoDecorador implements Comparable<PilotoO
     
     @Override
     public int compareTo(PilotoOficial piloto){
-        return getPuntos() - piloto.getPuntos();
+        return piloto.getPuntos() - getPuntos();
     }
     
 }

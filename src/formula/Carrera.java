@@ -49,16 +49,13 @@ public class Carrera implements Serializable {
             participante.correrCarrera(circuito);
             clasificados.add(new Clasificado(participante, participante.getTiempoPorVuelta(circuito)));
         }
-        asignarPuntos();
-        finalizada = true;
-    }
-
-    private void asignarPuntos() {
         Collections.sort(clasificados);
         for (int i = 0; i < clasificados.size(); i++) {
-            clasificados.get(i).sumarPuntos(PUNTUACION[i]);
-            clasificados.get(i).sumarPremio(PREMIOS[i]);
+            Integer puntos = (i < PUNTUACION.length) ? PUNTUACION[i] : 0;
+            Integer premio = (i < PREMIOS.length) ? PREMIOS[i] : 0;
+            clasificados.get(i).premiar(puntos, premio);
         }
+        finalizada = true;
     }
     
     public Circuito getCircuito() {

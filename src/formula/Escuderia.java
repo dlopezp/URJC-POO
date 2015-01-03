@@ -38,6 +38,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         this.año = año;
         this.presupuesto = presupuesto;
         this.dueño = dueño;
+        this.puntos = 0;
         pilotosOficiales = new ArrayList<PilotoOficial>();
         pilotosProbadores = new ArrayList<PilotoProbador>();
         coches = new ArrayList<Coche>();
@@ -186,7 +187,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
 
     @Override
     public int compareTo(Escuderia e){
-        return getPuntos()-e.getPuntos();
+        return e.getPuntos() - getPuntos();
     }
     
     @Override
