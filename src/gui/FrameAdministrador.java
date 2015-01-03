@@ -4,33 +4,25 @@ package gui;
  *
  * @author Eduardo Benito Fernández
  */
+import gui.verifiers.IsIntegerVerifier;
+import gui.verifiers.NotEmptyVerifier;
 import formula.Circuito;
 import formula.Escuderia;
-import formula.Mundial;
-import formula.PilotoDecorador;
 import formula.PilotoLibre;
 import formula.PilotoOficial;
 import formula.PilotoProbador;
 import formula.Tramo;
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import gui.models.CircuitoTableModel;
+import gui.models.EscuderiaTableModel;
+import gui.models.PilotoLibreTableModel;
 import java.io.IOException;
-import java.math.MathContext;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -1190,36 +1182,15 @@ public class FrameAdministrador extends FormulaFrame {
     }
 
     private void cargarPilotosEnTabla() {
-        Iterator<PilotoLibre> pilotosIterator = mundial.getPilotos().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTbPilotos.getModel();
-        limpiarTabla(jTbPilotos);
-        while (pilotosIterator.hasNext()) {
-            PilotoLibre piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTbPilotos.setModel(new PilotoLibreTableModel(mundial.getPilotos()));
     }
 
     private void cargarCircuitosEnTabla() {
-        Iterator<Circuito> circuitosIterator = mundial.getCircuitos().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTableCircuitos.getModel();
-        limpiarTabla(jTableCircuitos);
-        while (circuitosIterator.hasNext()) {
-            Circuito circuito = circuitosIterator.next();
-            Object[] fila = new Object[]{circuito.getNombre(), circuito.getDistanciaRecta(), circuito.getDistanciaCurva(), circuito.getDistanciaTotal()};
-            modelo.addRow(fila);
-        }
+        jTableCircuitos.setModel(new CircuitoTableModel(mundial.getCircuitos()));
     }
 
     private void cargarEscuderiasEnTabla() {
-        Iterator<Escuderia> escuderiasIterator = mundial.getEscuderias().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTableEscuderias.getModel();
-        limpiarTabla(jTableEscuderias);
-        while (escuderiasIterator.hasNext()) {
-            Escuderia escuderia = escuderiasIterator.next();
-            Object[] fila = new Object[]{escuderia.getNombre(), escuderia.getPais(), escuderia.getAño(), escuderia.getPresup()};
-            modelo.addRow(fila);
-        }
+        jTableEscuderias.setModel(new EscuderiaTableModel(mundial.getEscuderias()));
     }
 
     private void crearPiloto() {

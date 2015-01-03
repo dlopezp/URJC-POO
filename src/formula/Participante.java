@@ -34,8 +34,13 @@ public class Participante implements Serializable {
         return tiempo;
     }
     
-    void correrCarrera(Circuito circuito) {
+    public boolean puedeCorrerCarrera(Circuito circuito) {
+        return escuderia.tienePresupuestoSuficiente(piloto.getSueldo() + circuito.getCanon());
+    }
+    
+    public void correrCarrera(Circuito circuito) {
         escuderia.pagarSueldoAPiloto(piloto);
+        escuderia.pagarCanonCircuito(circuito);
     }
     
     public Escuderia getEscuderia() {
@@ -61,5 +66,7 @@ public class Participante implements Serializable {
     public void setCoche(Coche coche) {
         this.coche = coche;
     }
+
+    
 
 }

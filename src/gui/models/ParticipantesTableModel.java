@@ -1,26 +1,27 @@
-package gui;
+package gui.models;
 
-import formula.Carrera;
+import formula.Participante;
 import java.util.ArrayList;
 
 /**
  *
  * @author HOME3
  */
-public class CarrerasTableModel extends FormulaTableModel {
+public class ParticipantesTableModel extends FormulaTableModel {
     
-    protected String[] COLUMNAS_NOMBRES = {"Nombre"};
-    protected Class[] COLUMNAS_CLASES = {String.class};
+    protected String[] COLUMNAS_NOMBRES = {"Piloto", "Coche"};
+    protected Class[] COLUMNAS_CLASES = {String.class, String.class};
     
-    public CarrerasTableModel(ArrayList<Carrera> carreras) {
-        items = carreras;
+    public ParticipantesTableModel(ArrayList<Participante> participantes) {
+        items = participantes;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Carrera carrera = (Carrera) getElement(rowIndex);
+        Participante participante = (Participante) getElement(rowIndex);
         switch(columnIndex) {
-            case 0: return carrera.getCircuito().getNombre();
+            case 0: return participante.getPiloto();
+            case 1: return participante.getCoche();
             default: return null;
         }
     }
@@ -39,5 +40,5 @@ public class CarrerasTableModel extends FormulaTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         return COLUMNAS_CLASES[columnIndex];
     }
-
+    
 }

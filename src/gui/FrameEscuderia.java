@@ -1,27 +1,28 @@
 package gui;
 
+import gui.models.CarrerasTableModel;
+import gui.models.ParticipantesTableModel;
+import gui.verifiers.NotEmptyVerifier;
 import formula.Carrera;
 import formula.Circuito;
 import formula.Coche;
 import formula.Escuderia;
-import formula.Mundial;
 import formula.Participante;
 import formula.PilotoDecorador;
 import formula.PilotoLibre;
 import formula.PilotoOficial;
 import formula.PilotoProbador;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import gui.models.CircuitoReducidoTableModel;
+import gui.models.CocheTableModel;
+import gui.models.PilotoDecoradorTableModel;
+import gui.models.PilotoLibreReducidoTableModel;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -1681,14 +1682,7 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void cargarTablaCoches() {
-        Iterator<Coche> cochesIterator = escuderia.getCoches().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTableCoches.getModel();
-        limpiarTabla(jTableCoches);        
-        while (cochesIterator.hasNext()) {
-            Coche coche = cochesIterator.next();
-            Object[] fila = new Object[]{coche.getModelo(), coche.getVelocidadEnRecta(), coche.getVelocidadEnCurva()};
-            modelo.addRow(fila);
-        }
+        jTableCoches.setModel(new CocheTableModel(escuderia.getCoches()));
         bloquearFormularioCoches(!escuderia.puedeFabricarCoche());
     }
 
@@ -1746,9 +1740,7 @@ public class FrameEscuderia extends FormulaFrame {
         jSliderPotencia.setValue(0);
         jSliderAero.setValue(0);
         jSliderNeumaticos.setValue(0);
-    }
-
-    
+    }    
 
     private void bloquearFormularioCoches(Boolean bloquear) {
         jTextFieldModelo.setEnabled(!bloquear);
@@ -1759,39 +1751,18 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void cargarTablaPilotosOficiales() {
-        Iterator<PilotoOficial> pilotosIterator = escuderia.getPilotosOficiales().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTablePilotosOficiales.getModel();
-        limpiarTabla(jTablePilotosOficiales);        
-        while (pilotosIterator.hasNext()) {
-            PilotoOficial piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosOficiales.setModel(new PilotoDecoradorTableModel<>(escuderia.getPilotosOficiales()));
         jBtnDespedirPilotoOficial.setEnabled(escuderia.puedeDescartarPilotoOficial());
         jBtnFicharLibreComoOficial.setEnabled(escuderia.puedeFicharPilotoOficial());
     }
 
     private void cargarTablaPilotosProbadores() {
-        Iterator<PilotoProbador> pilotosIterator = escuderia.getPilotosProbadores().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTablePilotosProbadores.getModel();
-        limpiarTabla(jTablePilotosProbadores);        
-        while (pilotosIterator.hasNext()) {
-            PilotoProbador piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosProbadores.setModel(new PilotoDecoradorTableModel<>(escuderia.getPilotosProbadores()));
         jBtnFicharLibreComoProbador.setEnabled(escuderia.puedeFicharPilotoProbador());
     }
 
     private void cargarTablaPilotosLibres() {
-        Iterator<PilotoLibre> pilotosIterator = mundial.getPilotos().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTablePilotosLibres.getModel();
-        limpiarTabla(jTablePilotosLibres);        
-        while (pilotosIterator.hasNext()) {
-            PilotoLibre piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal(), piloto.getSueldo()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosLibres.setModel(new PilotoLibreReducidoTableModel(mundial.getPilotos()));
     }
 
     private void cargarComboEscuderias() {
@@ -1804,25 +1775,11 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void cargarPilotosEscuderiaEnFormularioIntercambiar(Escuderia escuderia) {
-        Iterator<PilotoOficial> iteradorOficial = escuderia.getPilotosOficiales().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTablePilotosOficialesIntercambiar.getModel();
-        limpiarTabla(jTablePilotosOficialesIntercambiar);        
-        while (iteradorOficial.hasNext()) {
-            PilotoOficial piloto = iteradorOficial.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosOficialesIntercambiar.setModel(new PilotoDecoradorTableModel<>(escuderia.getPilotosOficiales()));
         jBtnFicharOficialComoOficial.setEnabled(escuderia.puedeDescartarPilotoOficial());
         jBtnFicharOficialComoProbador.setEnabled(escuderia.puedeDescartarPilotoOficial());
         
-        Iterator<PilotoProbador> iteradorProbador = escuderia.getPilotosProbadores().iterator();
-        modelo = (DefaultTableModel) jTablePilotosProbadoresIntercambiar.getModel();
-        limpiarTabla(jTablePilotosProbadoresIntercambiar);        
-        while (iteradorProbador.hasNext()) {
-            PilotoProbador piloto = iteradorProbador.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosProbadoresIntercambiar.setModel(new PilotoDecoradorTableModel<>(escuderia.getPilotosProbadores()));
     }
 
     private void cargarPanelEntrenar() {
@@ -1833,47 +1790,19 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void cargarTablaCircuitosEntrenar() {
-        Iterator<Circuito> iterador = mundial.getCircuitos().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTableCircuitosEntrenar.getModel();
-        limpiarTabla(jTableCircuitosEntrenar);        
-        while (iterador.hasNext()) {
-            Circuito circuito = iterador.next();
-            Object[] fila = new Object[]{circuito.getNombre(), circuito.getCanon()};
-            modelo.addRow(fila);
-        }
+        jTableCircuitosEntrenar.setModel(new CircuitoReducidoTableModel(mundial.getCircuitos()));
     }
 
     private void cargarTablaCochesEntrenar() {
-        Iterator<Coche> cochesIterator = escuderia.getCoches().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTableCochesEntrenar.getModel();
-        limpiarTabla(jTableCochesEntrenar);        
-        while (cochesIterator.hasNext()) {
-            Coche coche = cochesIterator.next();
-            Object[] fila = new Object[]{coche.getModelo(), coche.getPotencia(), coche.getAerodinamica(), coche.getNeumaticos()};
-            modelo.addRow(fila);
-        }
+        jTableCochesEntrenar.setModel(new CocheTableModel(escuderia.getCoches()));
     }
 
     private void cargarTablaPilotosOficialesEntrenar() {
-        Iterator<PilotoOficial> pilotosIterator = escuderia.getPilotosOficiales().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTablePilotosOficialesEntrenar.getModel();
-        limpiarTabla(jTablePilotosOficialesEntrenar);        
-        while (pilotosIterator.hasNext()) {
-            PilotoOficial piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosOficialesEntrenar.setModel(new PilotoDecoradorTableModel<>(escuderia.getPilotosOficiales()));
     }
 
     private void cargarTablaPilotosProbadoresEntrenar() {
-        Iterator<PilotoProbador> pilotosIterator = escuderia.getPilotosProbadores().iterator();
-        DefaultTableModel modelo = (DefaultTableModel) jTablePilotosProbadoresEntrenar.getModel();
-        limpiarTabla(jTablePilotosProbadoresEntrenar);        
-        while (pilotosIterator.hasNext()) {
-            PilotoProbador piloto = pilotosIterator.next();
-            Object[] fila = new Object[]{piloto.getNombreCompleto(), piloto.getValoraciónGlobal()};
-            modelo.addRow(fila);
-        }
+        jTablePilotosProbadoresEntrenar.setModel(new PilotoDecoradorTableModel<>(escuderia.getPilotosProbadores()));
     }
 
     private void cargarCarrerasEnTabla() {

@@ -1,4 +1,4 @@
-package gui;
+package gui.models;
 
 import formula.Carrera;
 import formula.Clasificado;

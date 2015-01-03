@@ -1,4 +1,4 @@
-package gui;
+package gui.verifiers;
 
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;

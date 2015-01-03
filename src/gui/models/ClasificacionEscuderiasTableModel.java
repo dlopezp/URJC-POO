@@ -1,15 +1,14 @@
-package gui;
+package gui.models;
 
 import formula.Escuderia;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author riki
  */
-class ClasificacionEscuderiasTableModel extends FormulaTableModel {
+public class ClasificacionEscuderiasTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Nombre", "Puntos", "Presupuesto"};
     protected Class[] COLUMNAS_CLASES = {String.class, Integer.class, Integer.class};

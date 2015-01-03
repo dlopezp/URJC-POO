@@ -1,5 +1,9 @@
 package gui;
 
+import gui.models.ClasificacionEscuderiasTableModel;
+import gui.models.ParticipantesTableModel;
+import gui.models.ClasificacionPilotosTableModel;
+import gui.models.ClasificadosTableModel;
 import formula.Carrera;
 import formula.Circuito;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package gui;
+package gui.models;
 
 import java.util.ArrayList;
 import javax.swing.event.TableModelListener;

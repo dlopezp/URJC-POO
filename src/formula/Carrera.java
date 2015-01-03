@@ -46,8 +46,10 @@ public class Carrera implements Serializable {
     
     public void celebrar() {
         for (Participante participante : participantes) {
-            participante.correrCarrera(circuito);
-            clasificados.add(new Clasificado(participante, participante.getTiempoPorVuelta(circuito)));
+            if (participante.puedeCorrerCarrera(circuito)) {
+                participante.correrCarrera(circuito);
+                clasificados.add(new Clasificado(participante, participante.getTiempoPorVuelta(circuito)));
+            }
         }
         Collections.sort(clasificados);
         for (int i = 0; i < clasificados.size(); i++) {

@@ -1,4 +1,4 @@
-package gui;
+package gui.adapters;
 
 import java.io.File;
 import java.io.FileInputStream;

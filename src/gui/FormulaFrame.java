@@ -1,5 +1,6 @@
 package gui;
 
+import gui.adapters.MundialAdapter;
 import formula.Mundial;
 import java.awt.Color;
 import java.awt.event.FocusEvent;

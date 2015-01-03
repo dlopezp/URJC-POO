@@ -98,6 +98,10 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         this.presupuesto = this.presupuesto - piloto.getSueldo();
     }
     
+    public void pagarCanonCircuito(Circuito circuito) {
+        presupuesto -= circuito.getCanon();
+    }
+    
     public boolean puedeDescartarPilotoOficial(){
         return pilotosOficiales.size() > MINIMA_CANTIDAD_DE_PILOTOS_OFICIALES;
     }
