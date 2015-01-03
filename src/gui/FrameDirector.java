@@ -797,6 +797,9 @@ public class FrameDirector extends FormulaFrame {
                 encontrada = true;
             }
         }
+        if (carrera == null) {
+            // Mundial terminado
+        }
         return carrera;
     }
 

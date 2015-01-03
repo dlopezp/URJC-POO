@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -101,4 +102,9 @@ public class FormulaFrame extends JFrame {
         }
         FrameManager.getInstance().mostrarVentanaPrincipal(this);
     }
+    
+    protected void mostrarVentanaDeError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
+    }
+    
 }

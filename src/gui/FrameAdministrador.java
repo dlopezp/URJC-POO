@@ -1202,7 +1202,7 @@ public class FrameAdministrador extends FormulaFrame {
             limpiarFormularioNuevoPiloto();
             cargarPilotosEnTabla();
         } else {
-            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+            mostrarVentanaDeError("Hay campos con valores no válidos");
         }
     }
 
@@ -1331,7 +1331,7 @@ public class FrameAdministrador extends FormulaFrame {
             limpiarFormularioNuevoCircuito();
             cargarCircuitosEnTabla();
         } else {
-            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+            mostrarVentanaDeError("Hay campos con valores no válidos");
         }
     }
 
@@ -1450,7 +1450,7 @@ public class FrameAdministrador extends FormulaFrame {
             limpiarFormularioNuevaEscuderia();
             cargarEscuderiasEnTabla();
         } else {
-            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+            mostrarVentanaDeError("Hay campos con valores no válidos");
         }
     }
 

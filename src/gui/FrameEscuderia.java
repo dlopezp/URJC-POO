@@ -119,7 +119,7 @@ public class FrameEscuderia extends FormulaFrame {
         jLabel29 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTablePilotosProbadoresEntrenar = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jBtnEntrenar = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -946,10 +946,10 @@ public class FrameEscuderia extends FormulaFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Entrenar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnEntrenar.setText("Entrenar");
+        jBtnEntrenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtnEntrenarActionPerformed(evt);
             }
         });
 
@@ -965,7 +965,7 @@ public class FrameEscuderia extends FormulaFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jBtnEntrenar)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -975,7 +975,7 @@ public class FrameEscuderia extends FormulaFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(jBtnEntrenar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -1278,16 +1278,24 @@ public class FrameEscuderia extends FormulaFrame {
 
     private void jBtnFicharLibreComoProbadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFicharLibreComoProbadorActionPerformed
         Integer filaSeleccionada = jTablePilotosLibres.getSelectedRow();
-        if (filaSeleccionada != -1 && escuderia.puedeFicharPilotoProbador()) {
-            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
-            PilotoLibre pilotoLibre = pilotosLibres.get(filaSeleccionada);
-            if (escuderia.tienePresupuestoSuficiente(pilotoLibre.getSueldo())) {
-                pilotosLibres.remove(pilotoLibre);
-                escuderia.ficharPiloto(new PilotoProbador(pilotoLibre));
-                cargarTablaPilotosLibres();
-                cargarTablaPilotosProbadores();
-                actualizarLabelPresupuesto();
+        if (filaSeleccionada != -1) {
+            if (escuderia.puedeFicharPilotoProbador()) {
+                ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
+                PilotoLibre pilotoLibre = pilotosLibres.get(filaSeleccionada);
+                if (escuderia.tienePresupuestoSuficiente(pilotoLibre.getSueldo())) {
+                    pilotosLibres.remove(pilotoLibre);
+                    escuderia.ficharPiloto(new PilotoProbador(pilotoLibre));
+                    cargarTablaPilotosLibres();
+                    cargarTablaPilotosProbadores();
+                    actualizarLabelPresupuesto();
+                } else {
+                    mostrarVentanaDeError("No dispone de presupuesto suficiente");
+                }
+            } else {
+                mostrarVentanaDeError("No puede fichar mas pilotos probadores");
             }
+        } else {
+            mostrarVentanaDeError("Seleccione un piloto");
         }
     }//GEN-LAST:event_jBtnFicharLibreComoProbadorActionPerformed
 
@@ -1305,28 +1313,42 @@ public class FrameEscuderia extends FormulaFrame {
 
     private void jBtnFicharLibreComoOficialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFicharLibreComoOficialActionPerformed
         Integer filaSeleccionada = jTablePilotosLibres.getSelectedRow();
-        if (filaSeleccionada != -1 && escuderia.puedeFicharPilotoOficial()) {
-            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
-            PilotoLibre pilotoLibre = pilotosLibres.get(filaSeleccionada);
-            if (escuderia.tienePresupuestoSuficiente(pilotoLibre.getSueldo())) {
-                pilotosLibres.remove(pilotoLibre);
-                escuderia.ficharPiloto(new PilotoOficial(pilotoLibre));
-                cargarTablaPilotosLibres();
-                cargarTablaPilotosOficiales();
-                actualizarLabelPresupuesto();
+        if (filaSeleccionada != -1) {
+            if (escuderia.puedeFicharPilotoOficial()) {
+                ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
+                PilotoLibre pilotoLibre = pilotosLibres.get(filaSeleccionada);
+                if (escuderia.tienePresupuestoSuficiente(pilotoLibre.getSueldo())) {
+                    pilotosLibres.remove(pilotoLibre);
+                    escuderia.ficharPiloto(new PilotoOficial(pilotoLibre));
+                    cargarTablaPilotosLibres();
+                    cargarTablaPilotosOficiales();
+                    actualizarLabelPresupuesto();
+                } else {
+                    mostrarVentanaDeError("No dispone de presupuesto suficiente");
+                }
+            } else {
+                mostrarVentanaDeError("No puede fichar mas pilotos oficiales");
             }
+        } else {
+            mostrarVentanaDeError("Seleccione un piloto");
         }
     }//GEN-LAST:event_jBtnFicharLibreComoOficialActionPerformed
 
     private void jBtnDespedirPilotoOficialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDespedirPilotoOficialActionPerformed
         Integer filaSeleccionada = jTablePilotosOficiales.getSelectedRow();
-        if (filaSeleccionada != -1 && escuderia.puedeDescartarPilotoOficial()) {
-            PilotoOficial piloto = escuderia.getPilotosOficiales().get(filaSeleccionada);
-            escuderia.descartarPiloto(piloto);
-            ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
-            pilotosLibres.add(piloto.getPiloto());
-            cargarTablaPilotosLibres();
-            cargarTablaPilotosOficiales();
+        if (filaSeleccionada != -1) {
+            if (escuderia.puedeDescartarPilotoOficial()) {
+                PilotoOficial piloto = escuderia.getPilotosOficiales().get(filaSeleccionada);
+                escuderia.descartarPiloto(piloto);
+                ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
+                pilotosLibres.add(piloto.getPiloto());
+                cargarTablaPilotosLibres();
+                cargarTablaPilotosOficiales();
+            } else {
+                mostrarVentanaDeError("No puede descartar pilotos oficiales");
+            }
+        } else {
+            mostrarVentanaDeError("Seleccione un piloto");
         }
     }//GEN-LAST:event_jBtnDespedirPilotoOficialActionPerformed
 
@@ -1358,16 +1380,26 @@ public class FrameEscuderia extends FormulaFrame {
         Integer pilotoIndice = jTablePilotosOficialesIntercambiar.getSelectedRow();
         if (escuderiaIndice != -1 && pilotoIndice != -1) {
             Escuderia escuderiaSalida = mundial.getEscuderia(escuderiaIndice);
-            if (escuderia.puedeFicharPilotoProbador() && escuderiaSalida.puedeDescartarPilotoOficial()) {
-                PilotoOficial oficial = escuderiaSalida.getPilotosOficiales().get(pilotoIndice);
-                if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
-                    escuderiaSalida.descartarPiloto(oficial);
-                    escuderia.ficharPiloto(new PilotoProbador((oficial.getPiloto())));
-                    cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
-                    cargarTablaPilotosProbadores();
-                    actualizarLabelPresupuesto();
+            if (escuderia.puedeFicharPilotoProbador()) {
+                if (escuderiaSalida.puedeDescartarPilotoOficial()) {
+                    PilotoOficial oficial = escuderiaSalida.getPilotosOficiales().get(pilotoIndice);
+                    if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
+                        escuderiaSalida.descartarPiloto(oficial);
+                        escuderia.ficharPiloto(new PilotoProbador((oficial.getPiloto())));
+                        cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
+                        cargarTablaPilotosProbadores();
+                        actualizarLabelPresupuesto();
+                    } else {
+                        mostrarVentanaDeError("No tiene presupuesto suficiente");
+                    }
+                } else {
+                    mostrarVentanaDeError("La otra escudería no puede desprenderse de pilotos oficiales");
                 }
+            } else {
+                mostrarVentanaDeError("No puede fichar más pilotos probadores");
             }
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar una escudería y un piloto");
         }
     }//GEN-LAST:event_jBtnFicharOficialComoProbadorActionPerformed
 
@@ -1384,8 +1416,14 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
                     cargarTablaPilotosProbadores();
                     actualizarLabelPresupuesto();
+                } else {
+                    mostrarVentanaDeError("No tiene presupuesto suficiente");
                 }
+            } else {
+                mostrarVentanaDeError("No puede fichar más pilotos probadores");
             }
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar una escudería y un piloto");
         }
     }//GEN-LAST:event_jBtnFicharProbadorComoProbadorActionPerformed
 
@@ -1394,16 +1432,26 @@ public class FrameEscuderia extends FormulaFrame {
         Integer pilotoIndice = jTablePilotosOficialesIntercambiar.getSelectedRow();
         if (escuderiaIndice != -1 && pilotoIndice != -1) {
             Escuderia escuderiaSalida = mundial.getEscuderia(escuderiaIndice);
-            if (escuderia.puedeFicharPilotoOficial() && escuderiaSalida.puedeDescartarPilotoOficial()) {
-                PilotoOficial oficial = escuderiaSalida.getPilotosOficiales().get(pilotoIndice);
-                if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
-                    escuderiaSalida.descartarPiloto(oficial);
-                    escuderia.ficharPiloto(new PilotoOficial((oficial.getPiloto())));
-                    cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
-                    cargarTablaPilotosOficiales();
-                    actualizarLabelPresupuesto();
+            if (escuderia.puedeFicharPilotoOficial()) {
+                if (escuderiaSalida.puedeDescartarPilotoOficial()) {
+                    PilotoOficial oficial = escuderiaSalida.getPilotosOficiales().get(pilotoIndice);
+                    if (escuderia.tienePresupuestoSuficiente(oficial.getSueldo())) {
+                        escuderiaSalida.descartarPiloto(oficial);
+                        escuderia.ficharPiloto(new PilotoOficial((oficial.getPiloto())));
+                        cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
+                        cargarTablaPilotosOficiales();
+                        actualizarLabelPresupuesto();
+                    } else {
+                        mostrarVentanaDeError("No dispone de presupuesto suficiente");
+                    }
+                } else {
+                    mostrarVentanaDeError("La otra escudería no puede desprenderse de pilotos oficiales");
                 }
+            } else {
+                mostrarVentanaDeError("No puede fichar más pilotos oficiales");
             }
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar una escudería y un piloto");
         }
     }//GEN-LAST:event_jBtnFicharOficialComoOficialActionPerformed
 
@@ -1420,8 +1468,14 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
                     cargarTablaPilotosOficiales();
                     actualizarLabelPresupuesto();
+                } else {
+                    mostrarVentanaDeError("No tiene presupuesto suficiente");
                 }
+            } else {
+                mostrarVentanaDeError("No puede fichar más pilotos probadores");
             }
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar una escudería y un piloto");
         }
     }//GEN-LAST:event_jBtnFicharProbadorComoOficialActionPerformed
 
@@ -1451,8 +1505,14 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarTablaPilotosOficiales();
                     cargarTablaPilotosProbadores();
                     actualizarLabelPresupuesto();
+                } else {
+                    mostrarVentanaDeError("Alguna de las dos escuderías involucradas no dispone de suficiente presupuesto");
                 }
+            } else {
+                mostrarVentanaDeError("Debido a la valoración de los pilotos no se puede ejecutar el intercambio");
             }
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar los pilotos a intercambiar");
         }
     }//GEN-LAST:event_jBtnIntercambiarOficialActionPerformed
 
@@ -1482,8 +1542,14 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarTablaPilotosOficiales();
                     cargarTablaPilotosProbadores();
                     actualizarLabelPresupuesto();
+                } else {
+                    mostrarVentanaDeError("Alguna de las dos escuderías involucradas no dispone de suficiente presupuesto");
                 }
+            } else {
+                mostrarVentanaDeError("Debido a la valoración de los pilotos no se puede ejecutar el intercambio");
             }
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar los pilotos a intercambiar");
         }
     }//GEN-LAST:event_jBtnIntercambiarProbadorActionPerformed
 
@@ -1502,7 +1568,7 @@ public class FrameEscuderia extends FormulaFrame {
         jTablePilotosOficialesEntrenar.getSelectionModel().clearSelection();
     }//GEN-LAST:event_jTablePilotosProbadoresEntrenarFocusGained
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBtnEntrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrenarActionPerformed
         Integer circuitoIndice = jTableCircuitosEntrenar.getSelectedRow();
         Integer cocheIndice = jTableCochesEntrenar.getSelectedRow();
         Integer pilotoIndice = jTablePilotosOficialesEntrenar.getSelectedRow();
@@ -1523,8 +1589,10 @@ public class FrameEscuderia extends FormulaFrame {
             escuderia.entrenar(circuito, piloto, coche);
             cargarPanelEntrenar();
             actualizarLabelPresupuesto();
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar un circuito, un piloto y un coche");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnEntrenarActionPerformed
 
     private void jBtnAñadirParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAñadirParticipanteActionPerformed
         añadirParticipante();
@@ -1586,6 +1654,7 @@ public class FrameEscuderia extends FormulaFrame {
     private javax.swing.JButton jBtnDespedirPilotoProbador;
     private javax.swing.JButton jBtnEliminarCoche;
     private javax.swing.JButton jBtnEliminarParticipante;
+    private javax.swing.JButton jBtnEntrenar;
     private javax.swing.JButton jBtnEscuderiaVolver;
     private javax.swing.JButton jBtnFicharLibreComoOficial;
     private javax.swing.JButton jBtnFicharLibreComoProbador;
@@ -1596,7 +1665,6 @@ public class FrameEscuderia extends FormulaFrame {
     private javax.swing.JButton jBtnGuardarCoche;
     private javax.swing.JButton jBtnIntercambiarOficial;
     private javax.swing.JButton jBtnIntercambiarProbador;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBoxCoches;
     private javax.swing.JComboBox jComboBoxEscuderiaIntercambiar;
     private javax.swing.JComboBox jComboBoxOficiales;
@@ -1731,7 +1799,7 @@ public class FrameEscuderia extends FormulaFrame {
             limpiarFormularioNuevoCoche();
             cargarTablaCoches();
         } else {
-            JOptionPane.showMessageDialog(this, "Hay campos con valores no válidos", "Datosincorrectos", JOptionPane.ERROR_MESSAGE);
+            mostrarVentanaDeError("Hay campos con valores no válidos");
         }
     }
 
@@ -1874,6 +1942,8 @@ public class FrameEscuderia extends FormulaFrame {
             Carrera carrera = (Carrera) ((CarrerasTableModel)jTableCarreras.getModel()).getElement(carreraIndice);
             carrera.añadirParticipante(participante);
             configurarPanelParticipantes(carrera.getParticipantes(escuderia));
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar un piloto, un coche y una carrera");
         }
     }
 
@@ -1892,4 +1962,5 @@ public class FrameEscuderia extends FormulaFrame {
     private void actualizarLabelPresupuesto() {
         jLabelPresupuesto.setText(escuderia.getPresupuesto() + " €");
     }
+
 }
