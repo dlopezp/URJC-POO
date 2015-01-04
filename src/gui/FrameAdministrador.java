@@ -1,9 +1,5 @@
 package gui;
 
-/**
- *
- * @author Eduardo Benito Fernández
- */
 import gui.verifiers.IsIntegerVerifier;
 import gui.verifiers.NotEmptyVerifier;
 import formula.Circuito;
@@ -24,6 +20,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JSlider;
 
+/**
+ * @author Eduardo Benito Fernández
+ * @version 1.0
+ * @since 20-12-2014
+ */
 public class FrameAdministrador extends FormulaFrame {
 
     /**

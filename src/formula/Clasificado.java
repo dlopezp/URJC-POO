@@ -25,11 +25,12 @@ public class Clasificado implements Comparable<Clasificado>, Serializable {
     }
     
      /**
-     * Calcula la diferencia de tiempos entre dos clasificados
-     * Devuelve un número mayor que 0 si clasificado2 es mayor  que el objeto1,
-     * 0 si son iguales o -1 si objeto1 es mayor que clasificado.
+     * Obtiene un numero entero (-1,0,1)para establecer el orden posterior 
+     * en Collections
+     * Devuelve 1 si clasificado2 es mayor  que el objeto1,
+     * 0 si son iguales y -1 si objeto1 es mayor que clasificado.
      * @param clasificado2 de Clasificado.java
-     * @return tiempo de diferencia;
+     * @return posición antes(-1), igual(0) o después(1);
      */    
     @Override
     public int compareTo(Clasificado clasificado2){
