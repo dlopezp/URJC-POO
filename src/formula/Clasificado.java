@@ -33,7 +33,14 @@ public class Clasificado implements Comparable<Clasificado>, Serializable {
      */    
     @Override
     public int compareTo(Clasificado clasificado2){
-       return (int) ((getTiempoPorVuelta()*100) - (clasificado2.getTiempoPorVuelta()*100));
+        int comp=0;
+            if (getTiempoPorVuelta() < clasificado2.getTiempoPorVuelta()){
+                comp = -1;
+            }
+            else if (getTiempoPorVuelta() > clasificado2.getTiempoPorVuelta()){
+                comp = 1;
+            }
+       return comp;
     }
     
      /**
