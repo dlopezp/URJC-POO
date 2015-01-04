@@ -1,13 +1,13 @@
 package formula;
 
 import java.util.Set;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import static org.hamcrest.core.Is.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * @author Eduardo Benito Fernández
+ */
 public class EscuderiaTest {
     private String nombreEscuderia ="Ferrari";
     private String paisEscuderia = "Italia";
