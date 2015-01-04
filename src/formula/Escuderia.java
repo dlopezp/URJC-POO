@@ -98,7 +98,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     /**
      * Chequea si dos pilotos son Intercambiables o no.
      * Lo hace calculando si su valoración no excede del 10%.
-     * @param p1, p2 (PilotoDecorador).
+     * @param p1
+     * @param p2
      * @return TRUE si el margen < 10%, FALSE en caso contrario.
      */         
     public static boolean sonPilotosIntercambiables(PilotoDecorador p1, PilotoDecorador p2){
@@ -111,7 +112,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      * Siempre y cuando sean intercambiables, el piloto en Venta pasa a formar
      * parte de otra Escudería y el piloto en Compra es adquirido por la Escudería
      * en cuestión.
-     * @param pilotoVenta, pilotoCompra,(PilotoDecorador).
+     * @param pilotoVenta
+     * @param pilotoCompra
      */       
     public void intercambiarPiloto(PilotoDecorador pilotoVenta, PilotoDecorador pilotoCompra) {
         if (Escuderia.sonPilotosIntercambiables(pilotoVenta, pilotoCompra)) {
@@ -170,7 +172,9 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Realiza la acción de poner a Entrenar el Circuito, el piloto y el coche.
      * Realizando sobre estas tres clases los métodos correspondientes.
-     * @param circuito, piloto, coche.
+     * @param circuito
+     * @param piloto
+     * @param coche
      */                 
     public void entrenar(Circuito circuito, PilotoDecorador piloto, Coche coche){
         if (puedeEntrenar(circuito)){
@@ -181,7 +185,10 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }
      /**
      * Realiza la acción de crear un nuevo Coche en función de ciertos parámetros.
-     * @param modelo, potencia, aerodinamica, neumaticos. 
+     * @param modelo
+     * @param potencia 
+     * @param aerodinamica 
+     * @param neumaticos 
      */          
     public void fabricarCoche(String modelo, Double potencia, Double aerodinamica, Double neumaticos){
         if (puedeFabricarCoche()){
@@ -232,6 +239,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      * Comprueba si un PilotoOficial se encuentra ya en el Array de Pilotos Oficiales
      * de la Escudería.
      * @param piloto. 
+     * @return  
      */           
     public Boolean esPilotoOficial(PilotoOficial piloto) {
         return esPilotoOficial(piloto.getPiloto());
@@ -240,6 +248,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      * Comprueba si un PilotoDecorador se encuentra ya en el Array de Pilotos Oficiales
      * de la Escudería.
      * @param piloto. 
+     * @return  
      */           
     public Boolean esPilotoOficial(PilotoDecorador piloto) {
         return esPilotoOficial(piloto.getPiloto());
@@ -248,6 +257,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      * Comprueba si un PilotoLibre se encuentra ya en el Array de Pilotos Oficiales
      * de la Escudería.
      * @param piloto. 
+     * @return  
      */     
     public Boolean esPilotoOficial(PilotoLibre piloto) {
         Iterator<PilotoOficial> pilotos = pilotosOficiales.iterator();
@@ -313,6 +323,15 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         return comp;
     }
     
+    public void set(Escuderia escuderia) {
+        nombre = escuderia.getNombre();
+        pais = escuderia.getPais();
+        año = escuderia.getAño();
+        presupuesto = escuderia.getPresupuesto();
+        directivos = escuderia.getDirectivos();
+    }
+
+    
     @Override
     public String toString() {
         return nombre;
@@ -330,7 +349,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         return año;
     }
 
-    public Integer getPresup() {
+    public Integer getPresupuesto() {
         return presupuesto;
     }
 
@@ -348,10 +367,6 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
 
     public ArrayList<PilotoProbador> getPilotosProbadores() {
         return pilotosProbadores;
-    }
-    
-    public Integer getPresupuesto() {
-        return presupuesto;
     }
 
     public String[] getDirectivos() {

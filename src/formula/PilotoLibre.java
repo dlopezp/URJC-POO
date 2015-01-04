@@ -79,7 +79,17 @@ public class PilotoLibre extends PilotoBase {
         return nombre + " " + apellidos;
     }
     
-
+    public void set(PilotoLibre piloto) {
+        nombre = piloto.getNombre();
+        apellidos = piloto.getApellidos();
+        edad = piloto.getEdad();
+        altura = piloto.getAltura();
+        peso = piloto.getPeso();
+        reflejos = piloto.getReflejos();
+        agresividad = piloto.getAgresividad();
+        paciencia = piloto.getPaciencia();
+        valentia = piloto.getValentia();
+    }    
     
     public String getNombre() {
         return nombre;
@@ -160,4 +170,6 @@ public class PilotoLibre extends PilotoBase {
     public void setValentia(Double valentia) {
         this.valentia = getValorCaracteristicaEnLimite(valentia);
     }
+
+    
 }

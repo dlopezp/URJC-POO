@@ -1013,10 +1013,8 @@ public class FrameAdministrador extends FormulaFrame {
         if (evt.getClickCount() == 2) {
             int filaSeleccionada = this.jTbPilotos.getSelectedRow();
             if (filaSeleccionada != -1) {
-                ArrayList<PilotoLibre> pilotos = mundial.getPilotos();
-                PilotoLibre piloto = pilotos.get(filaSeleccionada);
-                pilotos.remove(filaSeleccionada);
-                editarPiloto(piloto);
+                pilotoEnEdicion = mundial.getPiloto(filaSeleccionada);
+                editarPiloto();
             }
         }
     }//GEN-LAST:event_jTbPilotosMouseClicked
@@ -1083,10 +1081,8 @@ public class FrameAdministrador extends FormulaFrame {
         if (evt.getClickCount() == 2) {
             int filaSeleccionada = jTableEscuderias.getSelectedRow();
             if (filaSeleccionada != -1) {
-                ArrayList<Escuderia> escuderias = mundial.getEscuderias();
-                Escuderia escuderia = escuderias.get(filaSeleccionada);
-                escuderias.remove(filaSeleccionada);
-                editarEscuderia(escuderia);
+                escuderiaEnEdicion = mundial.getEscuderia(filaSeleccionada);
+                editarEscuderia();
             }
         }
     }//GEN-LAST:event_jTableEscuderiasMouseClicked
@@ -1239,6 +1235,8 @@ public class FrameAdministrador extends FormulaFrame {
     // End of variables declaration//GEN-END:variables
     
     private Circuito circuitoEnEdicion = null;
+    private Escuderia escuderiaEnEdicion = null;
+    private PilotoLibre pilotoEnEdicion = null;
     
     private void cargarDatosEnVentana() {
         cargarPilotosEnTabla();
@@ -1261,9 +1259,15 @@ public class FrameAdministrador extends FormulaFrame {
     private void crearPiloto() {
         Boolean correcto = validarFormularioNuevoPiloto();
         if (correcto) {
-            ArrayList<PilotoLibre> pilotos = mundial.getPilotos();
             PilotoLibre piloto = obtenerPilotoLibreDesdeFormulario();
-            pilotos.add(piloto);
+            if (pilotoEnEdicion != null) {
+                pilotoEnEdicion.set(piloto);
+                pilotoEnEdicion = null;
+            } else {
+                ArrayList<PilotoLibre> pilotos = mundial.getPilotos();
+                pilotos.add(piloto);
+            }
+            
             limpiarFormularioNuevoPiloto();
             cargarPilotosEnTabla();
         } else {
@@ -1335,8 +1339,8 @@ public class FrameAdministrador extends FormulaFrame {
         return piloto;
     }
 
-    private void editarPiloto(PilotoLibre piloto) {
-        colocarDatosPilotoEnFormulario(piloto);
+    private void editarPiloto() {
+        colocarDatosPilotoEnFormulario(pilotoEnEdicion);
     }
 
     private void colocarDatosPilotoEnFormulario(PilotoLibre piloto) {
@@ -1498,15 +1502,15 @@ public class FrameAdministrador extends FormulaFrame {
         cargarPilotosEnTabla();
     }
 
-    private void editarEscuderia(Escuderia escuderia) {
-        colocarDatosEscuderiaEnFormulario(escuderia);
+    private void editarEscuderia() {
+        colocarDatosEscuderiaEnFormulario(escuderiaEnEdicion);
     }
 
     private void colocarDatosEscuderiaEnFormulario(Escuderia escuderia) {
         jTextFieldNombreEscuderia.setText(escuderia.getNombre());
         jTextFieldPaisEscuderia.setText(escuderia.getPais());
         jTextFieldAnioEscuderia.setText(escuderia.getAño().toString());
-        jTextFieldPresupuestoEscuderia.setText(escuderia.getPresup().toString());
+        jTextFieldPresupuestoEscuderia.setText(escuderia.getPresupuesto().toString());
         DefaultListModel modelo = (DefaultListModel) jListDirectivos.getModel();
         String[] directivos = escuderia.getDirectivos();
         for (String directivo : directivos) {
@@ -1517,9 +1521,14 @@ public class FrameAdministrador extends FormulaFrame {
     private void crearEscuderia() {
         Boolean correcto = validarFormularioNuevaEscuderia();
         if (correcto) {
-            ArrayList<Escuderia> escuderias = mundial.getEscuderias();
             Escuderia escuderia = obtenerEscuderiaDesdeFormulario();
-            escuderias.add(escuderia);
+            if (escuderiaEnEdicion != null) {
+                escuderiaEnEdicion.set(escuderia);
+                escuderiaEnEdicion = null;
+            } else {
+                ArrayList<Escuderia> escuderias = mundial.getEscuderias();
+                escuderias.add(escuderia);
+            }
             limpiarFormularioNuevaEscuderia();
             cargarEscuderiasEnTabla();
         } else {
