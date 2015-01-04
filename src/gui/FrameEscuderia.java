@@ -1295,6 +1295,7 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarTablaPilotosLibres();
                     cargarTablaPilotosProbadores();
                     actualizarLabelPresupuesto();
+                    cargarDatosEscuderiaIntercambio();
                 } else {
                     mostrarVentanaDeError("No dispone de presupuesto suficiente");
                 }
@@ -1315,6 +1316,7 @@ public class FrameEscuderia extends FormulaFrame {
             pilotosLibres.add(piloto.getPiloto());
             cargarTablaPilotosLibres();
             cargarTablaPilotosProbadores();
+            cargarDatosEscuderiaIntercambio();
         }
     }//GEN-LAST:event_jBtnDespedirPilotoProbadorActionPerformed
 
@@ -1330,6 +1332,7 @@ public class FrameEscuderia extends FormulaFrame {
                     cargarTablaPilotosLibres();
                     cargarTablaPilotosOficiales();
                     actualizarLabelPresupuesto();
+                    cargarDatosEscuderiaIntercambio();
                 } else {
                     mostrarVentanaDeError("No dispone de presupuesto suficiente");
                 }
@@ -1352,6 +1355,7 @@ public class FrameEscuderia extends FormulaFrame {
                 pilotosLibres.add(piloto.getPiloto());
                 cargarTablaPilotosLibres();
                 cargarTablaPilotosOficiales();
+                cargarDatosEscuderiaIntercambio();
             } else {
                 mostrarVentanaDeError("No puede descartar pilotos oficiales");
             }
@@ -1361,10 +1365,7 @@ public class FrameEscuderia extends FormulaFrame {
     }//GEN-LAST:event_jBtnDespedirPilotoOficialActionPerformed
 
     private void jComboBoxEscuderiaIntercambiarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxEscuderiaIntercambiarItemStateChanged
-        Integer escuderiaSeleccionada = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
-        if (escuderiaSeleccionada >= 0) {
-            cargarPilotosEscuderiaEnFormularioIntercambiar(mundial.getEscuderia(escuderiaSeleccionada));
-        }
+        cargarDatosEscuderiaIntercambio();
     }//GEN-LAST:event_jComboBoxEscuderiaIntercambiarItemStateChanged
 
     private void jTablePilotosOficialesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTablePilotosOficialesFocusGained
@@ -2024,6 +2025,13 @@ public class FrameEscuderia extends FormulaFrame {
             for (Participante participante : participantesAEliminar) {
                 carrera.eliminarParticipante(participante);
             }
+        }
+    }
+
+    private void cargarDatosEscuderiaIntercambio() {
+        Integer escuderiaSeleccionada = jComboBoxEscuderiaIntercambiar.getSelectedIndex() - 1;
+        if (escuderiaSeleccionada >= 0) {
+            cargarPilotosEscuderiaEnFormularioIntercambiar(mundial.getEscuderia(escuderiaSeleccionada));
         }
     }
 
