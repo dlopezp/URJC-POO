@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -1183,6 +1182,11 @@ public class FrameEscuderia extends FormulaFrame {
                 jComboBoxPrincipalItemStateChanged(evt);
             }
         });
+        jComboBoxPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPrincipalActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Presupuesto:");
 
@@ -1247,8 +1251,7 @@ public class FrameEscuderia extends FormulaFrame {
         if (escuderiaSeleccionada < 0) {
             limpiarDatosDeVentana();
         } else {
-            ArrayList<Escuderia> escuderias = mundial.getEscuderias();
-            cargarEscuderiaEnVentana(escuderias.get(escuderiaSeleccionada));
+            cargarEscuderiaEnVentana(mundial.getEscuderia(escuderiaSeleccionada));
         }
     }//GEN-LAST:event_jComboBoxPrincipalItemStateChanged
 
@@ -1607,6 +1610,10 @@ public class FrameEscuderia extends FormulaFrame {
         configurarPanelParticipantes(carrera.getParticipantes());
     }//GEN-LAST:event_jBtnEliminarParticipanteActionPerformed
 
+    private void jComboBoxPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPrincipalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1764,7 +1771,6 @@ public class FrameEscuderia extends FormulaFrame {
 
     private void limpiarDatosDeVentana() {
         this.escuderia = null;
-        limpiarTablaCoches();
     }
 
     private void cargarTablaCoches() {
@@ -1792,15 +1798,20 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void crearCoche() {
-        Boolean correcto = validarFormularioNuevoCoche();
-        if (correcto) {
-            Coche coche = obtenerCocheDesdeFormulario();
-            escuderia.fabricarCoche(coche);
-            limpiarFormularioNuevoCoche();
-            cargarTablaCoches();
+        if (escuderia != null) {
+            Boolean correcto = validarFormularioNuevoCoche();
+            if (correcto) {
+                Coche coche = obtenerCocheDesdeFormulario();
+                escuderia.fabricarCoche(coche);
+                limpiarFormularioNuevoCoche();
+                cargarTablaCoches();
+            } else {
+                mostrarVentanaDeError("Hay campos con valores no válidos");
+            }
         } else {
-            mostrarVentanaDeError("Hay campos con valores no válidos");
+            mostrarVentanaDeError("No tiene escudería seleccionada");
         }
+        
     }
 
     private Boolean validarFormularioNuevoCoche() {
