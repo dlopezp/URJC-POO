@@ -4,9 +4,7 @@ package formula;
  * @author Jaime de Mora
  * @version 1.0
  * @since 20-12-2014
- */
-
-    
+ */    
 
 import java.io.Serializable;
 
@@ -28,17 +26,24 @@ public class Clasificado implements Comparable<Clasificado>, Serializable {
      * Calcula la diferencia de tiempos entre dos clasificados
      * Devuelve un número mayor que 0 si clasificado2 es mayor  que el objeto1,
      * 0 si son iguales o -1 si objeto1 es mayor que clasificado.
-     * @param clasificado2 de Clasificado.java
+     * @param clasificado de Clasificado.java
      * @return tiempo de diferencia;
      */    
     @Override
-    public int compareTo(Clasificado clasificado2){
-       return (int) ((getTiempoPorVuelta()*100) - (clasificado2.getTiempoPorVuelta()*100));
+    public int compareTo(Clasificado clasificado){
+        Integer resultado = 0;
+        if (tiempoPorVuelta > clasificado.getTiempoPorVuelta()) {
+            resultado = 1;
+        } else if (tiempoPorVuelta < clasificado.getTiempoPorVuelta()) {
+            resultado = -1;
+        }
+        return resultado;
     }
     
      /**
      * Según los puntos obtenidos por un participante, otorga un premio concreto
-     * @param punto, premio;
+     * @param puntos
+     * @param premio
      */    
     public void premiar(Integer puntos, Integer premio) {
         this.puntos = puntos;
@@ -57,10 +62,10 @@ public class Clasificado implements Comparable<Clasificado>, Serializable {
         tiempo = tiempo.concat(minutos.toString());
         tiempo = tiempo.concat(":");
         Integer segundos = Double.valueOf(tiempoPorVuelta % 60).intValue();   
-        tiempo = tiempo.concat(segundos.toString());
+        tiempo = tiempo.concat(String.format("%02d", segundos));
         Double milisegundos = (tiempoPorVuelta - tiempoPorVuelta.intValue())*1000;
         tiempo = tiempo.concat(".");
-        tiempo = tiempo.concat(Integer.valueOf(milisegundos.intValue()).toString());
+        tiempo = tiempo.concat(String.format("%03d", milisegundos.intValue()));
         return tiempo;
     }
 

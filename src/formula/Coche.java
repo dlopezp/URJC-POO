@@ -101,10 +101,10 @@ public class Coche implements Serializable {
         Double tiempo = 0.0;
         Double distanciaRecta = circuito.getDistanciaRecta();
         Double velocidadRecta = getVelocidadEnRecta();
-        tiempo += velocidadRecta / distanciaRecta;
+        tiempo += (distanciaRecta / velocidadRecta);
         Double distanciaCurva = circuito.getDistanciaCurva();
         Double velocidadCurva = getVelocidadEnCurva();
-        tiempo += velocidadCurva / distanciaCurva;
+        tiempo += (distanciaCurva / velocidadCurva);
         //tiempo *= 3600;
         return tiempo;
     }

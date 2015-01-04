@@ -1509,10 +1509,12 @@ public class FrameAdministrador extends FormulaFrame {
 
     private void borrarCircuito() {
         borrarFilaSeleccionadaDeTabla(jTableCircuitos, mundial.getCircuitos());
+        cargarCircuitosEnTabla();
     }
 
     private void borrarPiloto() {
         borrarFilaSeleccionadaDeTabla(jTbPilotos, mundial.getPilotos());
+        cargarPilotosEnTabla();
     }
 
     private void borrarEscuderia() {
@@ -1527,6 +1529,7 @@ public class FrameAdministrador extends FormulaFrame {
         }
         borrarFilaSeleccionadaDeTabla(jTableEscuderias, mundial.getEscuderias());
         cargarPilotosEnTabla();
+        cargarEscuderiasEnTabla();
     }
 
     private void editarEscuderia() {

@@ -1130,9 +1130,9 @@ public class FrameEscuderia extends FormulaFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxCoches, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxOficiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxOficiales, 0, 208, Short.MAX_VALUE)
+                            .addComponent(jComboBoxCoches, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jBtnAñadirParticipante))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1163,7 +1163,7 @@ public class FrameEscuderia extends FormulaFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1606,12 +1606,18 @@ public class FrameEscuderia extends FormulaFrame {
     }//GEN-LAST:event_jBtnAñadirParticipanteActionPerformed
 
     private void jBtnEliminarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarParticipanteActionPerformed
-        CarrerasTableModel modeloCarrera = (CarrerasTableModel)jTableCarreras.getModel();
-        Carrera carrera = (Carrera) modeloCarrera.getElement(jTableCarreras.getSelectedRow());
-        ParticipantesTableModel modelo = (ParticipantesTableModel) jTableParticipantes.getModel();
-        Participante participante = (Participante) modelo.getElement(jTableParticipantes.getSelectedRow());
-        carrera.getParticipantes().remove(participante);
-        configurarPanelParticipantes(carrera.getParticipantes());
+        Integer participanteIndice = jTableParticipantes.getSelectedRow();
+        Integer carreraIndice = jTableCarreras.getSelectedRow();
+        if (participanteIndice != -1 && carreraIndice != -1) {
+            CarrerasTableModel modeloCarrera = (CarrerasTableModel)jTableCarreras.getModel();
+            Carrera carrera = (Carrera) modeloCarrera.getElement(carreraIndice);
+            ParticipantesTableModel modelo = (ParticipantesTableModel) jTableParticipantes.getModel();
+            Participante participante = (Participante) modelo.getElement(participanteIndice);
+            carrera.getParticipantes().remove(participante);
+            configurarPanelParticipantes(carrera.getParticipantes());
+        } else {
+            mostrarVentanaDeError("Necesita seleccionar una carrera y un participante");
+        }
     }//GEN-LAST:event_jBtnEliminarParticipanteActionPerformed
 
     private void jComboBoxPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPrincipalActionPerformed
@@ -1799,6 +1805,8 @@ public class FrameEscuderia extends FormulaFrame {
     private void eliminarCoche() {
         borrarFilaSeleccionadaDeTabla(jTableCoches, escuderia.getCoches());
         bloquearFormularioCoches(false);
+        eliminarParticipantesSinCoche();
+        cargarTablaCoches();
     }
 
     private void crearCoche() {
@@ -1977,6 +1985,23 @@ public class FrameEscuderia extends FormulaFrame {
     private void actualizarLabelPresupuesto() {
         NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
         jLabelPresupuesto.setText(formato.format(escuderia.getPresupuesto()));
+    }
+
+    private void eliminarParticipantesSinCoche() {
+        ArrayList<Coche> coches = escuderia.getCoches();
+        ArrayList<Carrera> carreras = mundial.getCarreras();
+        for (Carrera carrera : carreras) {
+            ArrayList<Participante> participantes = carrera.getParticipantes(escuderia);
+            ArrayList<Participante> participantesAEliminar = new ArrayList<>();
+            for (Participante participante : participantes) {
+                if (!coches.contains(participante.getCoche())) {
+                    participantesAEliminar.add(participante);
+                }
+            }
+            for (Participante participante : participantesAEliminar) {
+                carrera.eliminarParticipante(participante);
+            }
+        }
     }
 
 }

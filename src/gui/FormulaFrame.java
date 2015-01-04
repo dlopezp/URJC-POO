@@ -87,7 +87,6 @@ public class FormulaFrame extends JFrame {
         FormulaTableModel modelo = (FormulaTableModel) tabla.getModel();
         int filaSeleccionada = tabla.getSelectedRow();
         if (filaSeleccionada != -1) {
-            modelo.removeRow(filaSeleccionada);
             coleccion.remove(filaSeleccionada);
         }
     }

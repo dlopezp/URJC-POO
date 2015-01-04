@@ -48,12 +48,15 @@ public class Carrera implements Serializable {
      * Añade Participante a la Carrera
      * @param participante de Participante.java
      */
-    
     public void añadirParticipante(Participante participante) {
         participantes.add(participante);
     }
+    
+    public void eliminarParticipante(Participante participante) {
+        participantes.remove(participante);
+    }
 
-     /**
+    /**
      * Especifica si una Carrera ha finalizado o no
      * @return TRUE si está finalizada, FALSE en caso contrario;
      */
