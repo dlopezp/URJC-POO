@@ -1,4 +1,3 @@
-
 package formula;
 
 import java.io.Serializable;
@@ -7,6 +6,7 @@ import java.io.Serializable;
  *
  * @author jaimedemora
  */
+
 public class Tramo implements Serializable {
     Double distancia; 
 

@@ -2,12 +2,8 @@ package formula;
 
 import java.util.Set;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-import static org.junit.Assume.*;
 
 
 
@@ -42,7 +38,7 @@ public class ParticipanteTest {
     private Set<PilotoOficial> pilotosOficiales;
     private Set<Coche> coches;
     private Set<PilotoProbador> pilotosProbadores;
-    private String dueñoEscuderia = "Maurizio Arrivarrene";
+    private String[] directivos = {"Maurizio Arrivarrene", "Piero Ferrari"};
    
     // Datos Piloto Libre1
     private String nombrePiloto1 = "Jim";
@@ -91,14 +87,14 @@ public class ParticipanteTest {
     private PilotoLibre pilotoLibre4 = new PilotoLibre(nombrePiloto3, apellidosPiloto3, edadPiloto3, alturaPiloto3, pesoPiloto3, reflejosPiloto3, agresividadPiloto3, pacienciaPiloto3, valentiaPiloto3);
     
     
-    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, dueñoEscuderia);
+    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, directivos);
     
     
     Participante participante = new Participante(escuderia, piloto, coche);
     
     
-   @Test 
-   public void test_sumarPuntos(){
+    @Test 
+    public void test_sumarPuntos(){
        int puntos = 10;
        int valorEsperadoEscuderia = escuderia.getPuntos()+puntos;
        int valorEsperadoPiloto = piloto.getPuntos()+puntos;
@@ -106,8 +102,6 @@ public class ParticipanteTest {
        participante.sumarPuntos(puntos);
        assertThat(valorEsperadoEscuderia, is(escuderia.getPuntos()));
        assertThat(valorEsperadoPiloto, is(piloto.getPuntos()));
-       
-       
    } 
    
    
@@ -124,7 +118,6 @@ public class ParticipanteTest {
 
         Double tiempo = (this.coche.getTiempoPorVuelta(circuito)) - (0.1 * piloto.getValoraciónGlobal());
         assertTrue(tiempo>1000);
-
     }
     
     

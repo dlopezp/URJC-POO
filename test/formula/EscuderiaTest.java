@@ -16,7 +16,7 @@ public class EscuderiaTest {
     private Set<PilotoOficial> pilotosOficiales;
     private Set<Coche> coches;
     private Set<PilotoProbador> pilotosProbadores;
-    private String dueñoEscuderia = "Maurizio Arrivarrene";
+    private String[] directivos = {"Maurizio Arrivarrene", "Piero Ferrari"};
    
     // Datos Piloto Libre1
     private String nombrePiloto1 = "Jim";
@@ -65,7 +65,7 @@ public class EscuderiaTest {
     private PilotoLibre pilotoLibre4 = new PilotoLibre(nombrePiloto3, apellidosPiloto3, edadPiloto3, alturaPiloto3, pesoPiloto3, reflejosPiloto3, agresividadPiloto3, pacienciaPiloto3, valentiaPiloto3);
     
     
-    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, dueñoEscuderia);
+    private Escuderia escuderia = new Escuderia(nombreEscuderia, paisEscuderia, añoEscuderia, presupuestoEscuderia, directivos);
 
     @Test
     public void test_puedeFicharPilotoOficial() {

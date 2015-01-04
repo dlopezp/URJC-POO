@@ -4,9 +4,11 @@ import formula.Participante;
 import java.util.ArrayList;
 
 /**
- *
- * @author HOME3
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class ParticipantesTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Piloto", "Coche"};

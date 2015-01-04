@@ -3,8 +3,12 @@ package gui.adapters;
 
 import formula.Mundial;
 import java.io.IOException;
-import java.util.ArrayList;
 
+/**
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
+ */
 
 public class MundialAdapter extends FormulaAdapter<Mundial>{
     

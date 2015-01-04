@@ -25,9 +25,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- *
- * @author HOME3
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class FrameEscuderia extends FormulaFrame {
 
     /**

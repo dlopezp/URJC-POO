@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
- * @author HOME3
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public abstract class FormulaAdapter<T> {
     
     protected void save(ArrayList<T> elements, String file) throws IOException {

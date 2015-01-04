@@ -14,9 +14,11 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author HOME3
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class FrameDirector extends FormulaFrame {
     
     public FrameDirector() throws ClassNotFoundException, IOException {

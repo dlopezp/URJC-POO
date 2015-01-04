@@ -5,9 +5,11 @@ import formula.Clasificado;
 import java.util.ArrayList;
 
 /**
- *
- * @author riki
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class ClasificadosTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Nombre", "Escuderia", "Tiempo", "Puntos"};

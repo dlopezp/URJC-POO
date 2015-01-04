@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
- * @author riki
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class ClasificacionPilotosTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Nombre", "Puntos"};

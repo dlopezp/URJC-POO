@@ -4,9 +4,11 @@ import formula.Coche;
 import java.util.ArrayList;
 
 /**
- *
- * @author riki
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class CocheTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Modelo", "Potencia", "Aerodinámica", "Neumáticos", "Velocidad en Recta", "Velocidad en Curva"};

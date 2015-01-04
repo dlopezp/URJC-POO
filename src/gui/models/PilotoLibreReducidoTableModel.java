@@ -4,9 +4,11 @@ import formula.PilotoLibre;
 import java.util.ArrayList;
 
 /**
- *
- * @author riki
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  */
+
 public class PilotoLibreReducidoTableModel extends FormulaTableModel {
     
     protected String[] COLUMNAS_NOMBRES = {"Nombre", "Valoración Global", "Sueldo"};

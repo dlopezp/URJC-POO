@@ -5,10 +5,12 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 /**
- *
- * @author HOME3
+ * @author Daniel López
+ * @version 1.0
+ * @since 20-12-2014
  * @param <T>
  */
+
 public abstract class FormulaTableModel<T> implements TableModel {
     
     protected ArrayList listeners = new ArrayList();
