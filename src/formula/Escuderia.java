@@ -46,7 +46,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         coches = new ArrayList<Coche>();
     }    
      /**
-     * Calcula la si la Escudería puede fichar otro Piloto Oficial. 
+     * Calcula si la Escudería puede fichar otro Piloto Oficial. 
      * Será TRUE si no ha excedido el máximo número de Pilotos Oficiales.
      * @return TRUE si el número de Pilotos Oficiales < Num Maximo. FALSE en caso
      * contrario;
@@ -55,7 +55,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         return (pilotosOficiales.size() < MAXIMA_CANTIDAD_DE_PILOTOS_OFICIALES);
     }
      /**
-     * Calcula la si la Escudería puede fichar otro Piloto Probador. 
+     * Calcula si la Escudería puede fichar otro Piloto Probador. 
      * Será TRUE si no ha excedido el máximo número de Pilotos Probadores.
      * @return TRUE si el número de Pilotos Probadores < Num Maximo. FALSE en caso
      * contrario;
@@ -64,7 +64,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         return (pilotosProbadores.size() < MAXIMA_CANTIDAD_DE_PILOTOS_PROBADORES);
     }    
      /**
-     * Calcula la si la Escudería tiene presupuesto para gastar.
+     * Calcula si la Escudería tiene presupuesto para gastar.
      * @param gasto
      * @return TRUE si el presupuesto es >= gasto o FALSE en caso contrario. 
      */    
@@ -309,7 +309,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      * Compara con otra Escudería para poder establecer
      * un orden de almacenamiento en Collections.
      * @param e (Escudería).
-     * @return Diferencia de puntos entre las dos Escuderías.
+     * @return posicionamiento para clase Collection:antes -1, igual 0,después 1
      */ 
     @Override
     public int compareTo(Escuderia e){
