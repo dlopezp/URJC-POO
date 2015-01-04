@@ -290,8 +290,7 @@
                           <Component id="jBtnComenzarMundial" alignment="1" max="32767" attributes="0"/>
                           <Component id="jProgressBar1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jBtnAnterior" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jBtnSiguiente" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -309,10 +308,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelCard" min="-2" pref="381" max="-2" attributes="0"/>
                       <EmptySpace pref="7" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBtnSiguiente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBtnAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jBtnSiguiente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -866,12 +862,6 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jBtnAnterior">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Anterior"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

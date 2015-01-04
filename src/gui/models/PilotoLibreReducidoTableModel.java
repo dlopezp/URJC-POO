@@ -1,7 +1,9 @@
 package gui.models;
 
 import formula.PilotoLibre;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * @author Daniel López
@@ -21,10 +23,11 @@ public class PilotoLibreReducidoTableModel extends FormulaTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         PilotoLibre piloto = (PilotoLibre) getElement(rowIndex);
+        NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
         switch(columnIndex) {
             case 0: return piloto.getNombreCompleto();
             case 1: return piloto.getValoraciónGlobal();
-            case 2: return piloto.getSueldo() + " €";
+            case 2: return formato.format(piloto.getSueldo());
             default: return null;
         }
     }

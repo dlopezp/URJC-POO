@@ -17,7 +17,9 @@ import gui.models.CocheTableModel;
 import gui.models.PilotoDecoradorTableModel;
 import gui.models.PilotoLibreReducidoTableModel;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -1973,7 +1975,8 @@ public class FrameEscuderia extends FormulaFrame {
     }
 
     private void actualizarLabelPresupuesto() {
-        jLabelPresupuesto.setText(escuderia.getPresupuesto() + " €");
+        NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
+        jLabelPresupuesto.setText(formato.format(escuderia.getPresupuesto()));
     }
 
 }

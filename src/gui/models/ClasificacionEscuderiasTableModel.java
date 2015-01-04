@@ -1,8 +1,10 @@
 package gui.models;
 
 import formula.Escuderia;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 
 /**
  * @author Daniel López
@@ -23,10 +25,11 @@ public class ClasificacionEscuderiasTableModel extends FormulaTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Escuderia escuderia = (Escuderia) getElement(rowIndex);
+        NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
         switch(columnIndex) {
             case 0: return escuderia.getNombre();
             case 1: return escuderia.getPuntos();
-            case 2: return escuderia.getPresupuesto();
+            case 2: return formato.format(escuderia.getPresupuesto());
             default: return null;
         }
     }

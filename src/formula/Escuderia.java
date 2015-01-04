@@ -315,10 +315,10 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     public int compareTo(Escuderia e){
         int comp = 0;
         if (getPuntos() < e.getPuntos()){
-            comp = -1;
+            comp = 1;
         }
         else if (getPuntos() > e.getPuntos()){
-            comp = 1;
+            comp = -1;
         }
         return comp;
     }

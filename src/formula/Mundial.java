@@ -43,10 +43,26 @@ public class Mundial implements Serializable {
         return carreras.size() == MAXIMO_CARRERAS;
     }
      /**
-     * Pone el estado Comenzado = TRUE.
+     * Pone el estado Comenzado = TRUE y comprueba los participantes.
      */    
     public void comenzar() {
         this.comenzado = true;
+        for (Escuderia escuderia : escuderias) {
+            Integer participantesEsperados = Math.min(escuderia.getPilotosOficiales().size(), escuderia.getCoches().size());
+            for (Carrera carrera : carreras) {
+                ArrayList<Participante> participantes = carrera.getParticipantes(escuderia);
+                while (participantes.size() < participantesEsperados) {
+                    ArrayList<Coche> cochesLibres = (ArrayList<Coche>) escuderia.getCoches().clone();
+                    ArrayList<PilotoOficial> pilotosLibres = (ArrayList<PilotoOficial>) escuderia.getPilotosOficiales().clone();
+                    for (Participante participante : participantes) {
+                        cochesLibres.remove(participante.getCoche());
+                        pilotosLibres.remove(participante.getPiloto());
+                    }
+                    carrera.añadirParticipante(new Participante(escuderia, pilotosLibres.get(0), cochesLibres.get(0)));
+                    participantes = carrera.getParticipantes(escuderia);
+                }
+            }
+        }
     }
       /**
      * Calcula si el Mundial ha comenzado o no.

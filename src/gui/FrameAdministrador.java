@@ -170,14 +170,29 @@ public class FrameAdministrador extends FormulaFrame {
         jLabel8.setText("Nombre:");
 
         jTextFieldCircuitoNombre.setInputVerifier(new NotEmptyVerifier());
+        jTextFieldCircuitoNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldCircuitoNombreFocusLost(evt);
+            }
+        });
 
         jLabel11.setText("Aforo:");
 
         jTextFieldCircuitoAforo.setInputVerifier(new IsIntegerVerifier());
+        jTextFieldCircuitoAforo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldCircuitoAforoFocusLost(evt);
+            }
+        });
 
         jLabel13.setText("Canon:");
 
         jTextFieldCircuitoCanon.setInputVerifier(new IsIntegerVerifier());
+        jTextFieldCircuitoCanon.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldCircuitoCanonFocusLost(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -1110,6 +1125,18 @@ public class FrameAdministrador extends FormulaFrame {
     private void jTextFieldPresupuestoEscuderiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPresupuestoEscuderiaFocusLost
         marcarComoValido(evt);
     }//GEN-LAST:event_jTextFieldPresupuestoEscuderiaFocusLost
+
+    private void jTextFieldCircuitoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCircuitoNombreFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldCircuitoNombreFocusLost
+
+    private void jTextFieldCircuitoAforoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCircuitoAforoFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldCircuitoAforoFocusLost
+
+    private void jTextFieldCircuitoCanonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCircuitoCanonFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldCircuitoCanonFocusLost
 
     /**
      * @param args the command line arguments

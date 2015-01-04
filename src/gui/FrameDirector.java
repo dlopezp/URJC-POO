@@ -92,7 +92,6 @@ public class FrameDirector extends FormulaFrame {
         jTableClasificacionPilotosFin = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTableClasificacionEscuderiasFin = new javax.swing.JTable();
-        jBtnAnterior = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -606,9 +605,6 @@ public class FrameDirector extends FormulaFrame {
 
         jPanelCard.add(jPanelFin, "card4");
 
-        jBtnAnterior.setText("Anterior");
-        jBtnAnterior.setEnabled(false);
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -622,8 +618,7 @@ public class FrameDirector extends FormulaFrame {
                     .addComponent(jBtnComenzarMundial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jBtnAnterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBtnSiguiente)))
                 .addContainerGap())
         );
@@ -637,9 +632,7 @@ public class FrameDirector extends FormulaFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnSiguiente)
-                    .addComponent(jBtnAnterior))
+                .addComponent(jBtnSiguiente)
                 .addContainerGap())
         );
 
@@ -764,7 +757,6 @@ public class FrameDirector extends FormulaFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAniadirCarrera;
-    private javax.swing.JButton jBtnAnterior;
     private javax.swing.JButton jBtnComenzarMundial;
     private javax.swing.JButton jBtnEliminarCarrera;
     private javax.swing.JButton jBtnSiguiente;
@@ -873,11 +865,12 @@ public class FrameDirector extends FormulaFrame {
     private void configurarPaneles() {
         jPanelCard.removeAll();
         if (mundial.estaComenzado()) {
-            if (carrera.estaFinalizada()) {
+            if (carrera == null) {
+                jPanelCard.add(jPanelFin);
+            } else if (carrera.estaFinalizada()) {
                 jPanelCard.add(jPanelPost);
                 cargarCarrera(carrera);
-            } else if (carrera == null) {
-                jPanelCard.add(jPanelFin);
+                jProgressBar1.setValue(jProgressBar1.getValue() + 20);
             } else {
                 jPanelCard.add(jPanelPre);
             }
@@ -897,32 +890,34 @@ public class FrameDirector extends FormulaFrame {
                 encontrada = true;
             }
         }
+        if (!encontrada) {
+            return null;
+        }
         return carrera;
     }
 
     private void cargarCarrera(Carrera carrera) {
-        Circuito circuito = carrera.getCircuito();
-        jLabelNombreCarrera.setText(circuito.getNombre());
-        jTableParticipantes.setModel(new ParticipantesTableModel(carrera.getParticipantes()));
-        jLabelCurvas.setText(String.valueOf(circuito.getCurvas().length));
-        jLabelDistanciaCurvas.setText(circuito.getDistanciaCurva().toString());
-        jLabelRectas.setText(String.valueOf(circuito.getRectas().length));
-        jLabelDistanciaRecta.setText(circuito.getDistanciaRecta().toString());
-        jLabelDistanciaTotal.setText(circuito.getDistanciaTotal().toString());
-        
-        jTableClasificados.setModel(new ClasificadosTableModel(carrera.getClasificacionFinal()));
-        jTableClasificacionPilotos.setModel(new ClasificacionPilotosTableModel(mundial.getEscuderias()));
-        jTableClasificacionEscuderias.setModel(new ClasificacionEscuderiasTableModel(mundial.getEscuderias()));
-        
         if (carrera == null) {
             jTableClasificacionEscuderiasFin.setModel(new ClasificacionEscuderiasTableModel(mundial.getEscuderias()));
             jTableClasificacionPilotosFin.setModel(new ClasificacionPilotosTableModel(mundial.getEscuderias()));
+        } else {
+            Circuito circuito = carrera.getCircuito();
+            jLabelNombreCarrera.setText(circuito.getNombre());
+            jTableParticipantes.setModel(new ParticipantesTableModel(carrera.getParticipantes()));
+            jLabelCurvas.setText(String.valueOf(circuito.getCurvas().length));
+            jLabelDistanciaCurvas.setText(circuito.getDistanciaCurva().toString());
+            jLabelRectas.setText(String.valueOf(circuito.getRectas().length));
+            jLabelDistanciaRecta.setText(circuito.getDistanciaRecta().toString());
+            jLabelDistanciaTotal.setText(circuito.getDistanciaTotal().toString());
+
+            jTableClasificados.setModel(new ClasificadosTableModel(carrera.getClasificacionFinal()));
+            jTableClasificacionPilotos.setModel(new ClasificacionPilotosTableModel(mundial.getEscuderias()));
+            jTableClasificacionEscuderias.setModel(new ClasificacionEscuderiasTableModel(mundial.getEscuderias()));
         }
     }
 
     private void activarBotones(boolean mundialComenzado) {
         jBtnComenzarMundial.setEnabled(!mundialComenzado);
-        jBtnAnterior.setEnabled(mundialComenzado);
         jBtnSiguiente.setEnabled(mundialComenzado);
     }
 

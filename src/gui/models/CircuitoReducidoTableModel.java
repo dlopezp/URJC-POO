@@ -1,7 +1,9 @@
 package gui.models;
 
 import formula.Circuito;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * @author Daniel López
@@ -21,9 +23,10 @@ public class CircuitoReducidoTableModel extends FormulaTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Circuito circuito = (Circuito) getElement(rowIndex);
+        NumberFormat formato = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
         switch(columnIndex) {
             case 0: return circuito.getNombre();
-            case 1: return circuito.getCanon() + " €";
+            case 1: return formato.format(circuito.getCanon());
             default: return null;
         }
     }
