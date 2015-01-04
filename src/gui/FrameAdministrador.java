@@ -1,5 +1,6 @@
 package gui;
 
+import formula.Carrera;
 import gui.verifiers.IsIntegerVerifier;
 import gui.verifiers.NotEmptyVerifier;
 import formula.Circuito;
@@ -1510,6 +1511,7 @@ public class FrameAdministrador extends FormulaFrame {
 
     private void borrarCircuito() {
         borrarFilaSeleccionadaDeTabla(jTableCircuitos, mundial.getCircuitos());
+        eliminarCarrerasSinCircuito();
         cargarCircuitosEnTabla();
     }
 
@@ -1632,6 +1634,20 @@ public class FrameAdministrador extends FormulaFrame {
             directivos[i] = new String((String) modelo.get(i));
         }
         return directivos;
+    }
+
+    private void eliminarCarrerasSinCircuito() {
+        ArrayList<Carrera> carreras = mundial.getCarreras();
+        ArrayList<Carrera> carrerasAEliminar = new ArrayList<>();
+        ArrayList<Circuito> circuitos = mundial.getCircuitos();
+        for (Carrera carrera : carreras) {
+            if (!circuitos.contains(carrera.getCircuito())) {
+                carrerasAEliminar.add(carrera);
+            }
+        }
+        for (Carrera carrera : carrerasAEliminar) {
+            carreras.remove(carrera);
+        }
     }
 
 }
