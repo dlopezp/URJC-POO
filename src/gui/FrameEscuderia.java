@@ -1347,6 +1347,7 @@ public class FrameEscuderia extends FormulaFrame {
             if (escuderia.puedeDescartarPilotoOficial()) {
                 PilotoOficial piloto = escuderia.getPilotosOficiales().get(filaSeleccionada);
                 escuderia.descartarPiloto(piloto);
+                eliminarParticipantesSinPiloto(escuderia, piloto);
                 ArrayList<PilotoLibre> pilotosLibres = mundial.getPilotos();
                 pilotosLibres.add(piloto.getPiloto());
                 cargarTablaPilotosLibres();
@@ -1394,6 +1395,7 @@ public class FrameEscuderia extends FormulaFrame {
                         escuderiaSalida.descartarPiloto(oficial);
                         escuderia.ficharPiloto(new PilotoProbador((oficial.getPiloto())));
                         cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaSalida);
+                        eliminarParticipantesSinPiloto(escuderiaSalida, oficial);
                         cargarTablaPilotosProbadores();
                         actualizarLabelPresupuesto();
                     } else {
@@ -1509,6 +1511,8 @@ public class FrameEscuderia extends FormulaFrame {
                     escuderia.intercambiarPiloto(pilotoPropio, pilotoAjeno);
                     escuderiaAjena.intercambiarPiloto(pilotoAjeno, pilotoPropio);
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaAjena);
+                    eliminarParticipantesSinPiloto(escuderia, pilotoPropio);
+                    eliminarParticipantesSinPiloto(escuderiaAjena, pilotoAjeno);
                     cargarTablaPilotosOficiales();
                     cargarTablaPilotosProbadores();
                     actualizarLabelPresupuesto();
@@ -1546,6 +1550,8 @@ public class FrameEscuderia extends FormulaFrame {
                     escuderia.intercambiarPiloto(pilotoPropio, pilotoAjeno);
                     escuderiaAjena.intercambiarPiloto(pilotoAjeno, pilotoPropio);
                     cargarPilotosEscuderiaEnFormularioIntercambiar(escuderiaAjena);
+                    eliminarParticipantesSinPiloto(escuderia, pilotoPropio);
+                    eliminarParticipantesSinPiloto(escuderiaAjena, pilotoAjeno);
                     cargarTablaPilotosOficiales();
                     cargarTablaPilotosProbadores();
                     actualizarLabelPresupuesto();
@@ -1946,6 +1952,7 @@ public class FrameEscuderia extends FormulaFrame {
         cargarCarrerasEnTabla();
         cargarPilotosEnCombo();
         cargarCochesEnCombo();
+        cargarParticipantesEnTabla(new ArrayList<>());
     }
 
     private void cargarPilotosEnCombo() {
@@ -1995,6 +2002,22 @@ public class FrameEscuderia extends FormulaFrame {
             ArrayList<Participante> participantesAEliminar = new ArrayList<>();
             for (Participante participante : participantes) {
                 if (!coches.contains(participante.getCoche())) {
+                    participantesAEliminar.add(participante);
+                }
+            }
+            for (Participante participante : participantesAEliminar) {
+                carrera.eliminarParticipante(participante);
+            }
+        }
+    }
+
+    private void eliminarParticipantesSinPiloto(Escuderia escuderia, PilotoDecorador piloto) {
+        ArrayList<Carrera> carreras = mundial.getCarreras();
+        for (Carrera carrera : carreras) {
+            ArrayList<Participante> participantes = carrera.getParticipantes(escuderia);
+            ArrayList<Participante> participantesAEliminar = new ArrayList<>();
+            for (Participante participante : participantes) {
+                if (piloto.equals(participante.getPiloto())) {
                     participantesAEliminar.add(participante);
                 }
             }
