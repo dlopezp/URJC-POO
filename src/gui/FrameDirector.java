@@ -705,6 +705,7 @@ public class FrameDirector extends FormulaFrame {
         if (mundial.getCarreras().size() == 5) {
             mundial.comenzar();
             activarBotones(true);
+            carrera = obtenerCarreraActual();
             configurarPaneles();
         } else {
             mostrarVentanaDeError("El mundial necesita 5 carreras para comenzar");
