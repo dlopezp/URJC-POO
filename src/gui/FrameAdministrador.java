@@ -5,6 +5,7 @@ import gui.verifiers.IsIntegerVerifier;
 import gui.verifiers.NotEmptyVerifier;
 import formula.Circuito;
 import formula.Escuderia;
+import formula.Participante;
 import formula.PilotoLibre;
 import formula.PilotoOficial;
 import formula.PilotoProbador;
@@ -1531,6 +1532,7 @@ public class FrameAdministrador extends FormulaFrame {
             mundial.añadirPiloto(piloto.getPiloto());
         }
         borrarFilaSeleccionadaDeTabla(jTableEscuderias, mundial.getEscuderias());
+        borrarParticipantesSinEscuderia();
         cargarPilotosEnTabla();
         cargarEscuderiasEnTabla();
     }
@@ -1647,6 +1649,23 @@ public class FrameAdministrador extends FormulaFrame {
         }
         for (Carrera carrera : carrerasAEliminar) {
             carreras.remove(carrera);
+        }
+    }
+
+    private void borrarParticipantesSinEscuderia() {
+        ArrayList<Carrera> carreras = mundial.getCarreras();
+        for (Carrera carrera : carreras) {
+            ArrayList<Participante> participantes = carrera.getParticipantes();
+            ArrayList<Participante> participantesAEliminar = new ArrayList<>();
+            ArrayList<Escuderia> escuderias = mundial.getEscuderias();
+            for (Participante participante : participantes) {
+                if (!escuderias.contains(participante.getEscuderia())) {
+                    participantesAEliminar.add(participante);
+                }
+            }
+            for (Participante participante : participantesAEliminar) {
+                carrera.eliminarParticipante(participante);
+            }
         }
     }
 
