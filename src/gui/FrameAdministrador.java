@@ -1061,10 +1061,8 @@ public class FrameAdministrador extends FormulaFrame {
         if (evt.getClickCount() == 2) {
             int filaSeleccionada = jTableCircuitos.getSelectedRow();
             if (filaSeleccionada != -1) {
-                ArrayList<Circuito> circuitos = mundial.getCircuitos();
-                Circuito circuito = circuitos.get(filaSeleccionada);
-                circuitos.remove(filaSeleccionada);
-                editarCircuito(circuito);
+                circuitoEnEdicion = mundial.getCircuito(filaSeleccionada);
+                editarCircuito();
             }
         }
     }//GEN-LAST:event_jTableCircuitosMouseClicked
@@ -1240,6 +1238,8 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JTextField jTxtFieldPilotoPeso;
     // End of variables declaration//GEN-END:variables
     
+    private Circuito circuitoEnEdicion = null;
+    
     private void cargarDatosEnVentana() {
         cargarPilotosEnTabla();
         cargarCircuitosEnTabla();
@@ -1390,9 +1390,14 @@ public class FrameAdministrador extends FormulaFrame {
     private void crearCircuito() {
         Boolean correcto = validarFormularioNuevoCircuito();
         if (correcto) {
-            ArrayList<Circuito> circuitos = mundial.getCircuitos();
             Circuito circuito = obtenerCircuitoDesdeFormulario();
-            circuitos.add(circuito);
+            if (circuitoEnEdicion != null) {
+                circuitoEnEdicion.set(circuito);
+                circuitoEnEdicion = null;
+            } else {
+                ArrayList<Circuito> circuitos = mundial.getCircuitos();
+                circuitos.add(circuito);
+            }
             limpiarFormularioNuevoCircuito();
             cargarCircuitosEnTabla();
         } else {
@@ -1452,8 +1457,8 @@ public class FrameAdministrador extends FormulaFrame {
         modelo.removeAllElements();
     }
 
-    private void editarCircuito(Circuito circuito) {
-        colocarDatosCircuitoEnFormulario(circuito);
+    private void editarCircuito() {
+        colocarDatosCircuitoEnFormulario(circuitoEnEdicion);
     }
 
     private void colocarDatosCircuitoEnFormulario(Circuito circuito) {
@@ -1473,7 +1478,6 @@ public class FrameAdministrador extends FormulaFrame {
 
     private void borrarCircuito() {
         borrarFilaSeleccionadaDeTabla(jTableCircuitos, mundial.getCircuitos());
-
     }
 
     private void borrarPiloto() {

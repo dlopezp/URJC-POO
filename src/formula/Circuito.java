@@ -51,6 +51,14 @@ public class Circuito implements Serializable {
     public Object getDistanciaTotal() {
         return getDistanciaCurva() + getDistanciaRecta();
     }
+    
+    public void set(Circuito circuito) {
+        nombre = circuito.getNombre();
+        aforo = circuito.getAforo();
+        canon = circuito.getCanon();
+        rectas = circuito.getRectas();
+        curvas = circuito.getCurvas();
+    }
 
     public String getNombre() {
         return nombre;
@@ -71,5 +79,5 @@ public class Circuito implements Serializable {
     public Tramo[] getCurvas() {
         return curvas;
     }
-      
+
 }

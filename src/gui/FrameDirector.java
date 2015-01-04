@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Daniel López
+ * @author Jaime de Mora
  * @version 1.0
  * @since 20-12-2014
  */
