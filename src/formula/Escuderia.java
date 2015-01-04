@@ -20,7 +20,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     private ArrayList<PilotoOficial> pilotosOficiales;
     private ArrayList<Coche> coches;
     private ArrayList<PilotoProbador> pilotosProbadores;
-    private String dueño;
+    private String[] directivos;
 
     private static final Integer MINIMA_CANTIDAD_DE_PILOTOS_OFICIALES = 1;
     private static final Integer MAXIMA_CANTIDAD_DE_PILOTOS_OFICIALES = 2;
@@ -33,13 +33,13 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
             String pais,
             Integer año,
             Integer presupuesto,
-            String dueño
+            String[] directivos
     ) {
         this.nombre = nombre;
         this.pais = pais;
         this.año = año;
         this.presupuesto = presupuesto;
-        this.dueño = dueño;
+        this.directivos = directivos;
         this.puntos = 0;
         pilotosOficiales = new ArrayList<PilotoOficial>();
         pilotosProbadores = new ArrayList<PilotoProbador>();
@@ -354,8 +354,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
         return presupuesto;
     }
 
-    public String getDueño() {
-        return dueño;
+    public String[] getDirectivos() {
+        return directivos;
     }
 
 }

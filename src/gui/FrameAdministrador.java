@@ -15,6 +15,7 @@ import formula.Tramo;
 import gui.models.CircuitoTableModel;
 import gui.models.EscuderiaTableModel;
 import gui.models.PilotoLibreTableModel;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -82,8 +83,6 @@ public class FrameAdministrador extends FormulaFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jTextFieldNombreEscuderia = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jTextFieldDuenoEscuderia = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jTextFieldPaisEscuderia = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -91,6 +90,11 @@ public class FrameAdministrador extends FormulaFrame {
         jLabel20 = new javax.swing.JLabel();
         jTextFieldPresupuestoEscuderia = new javax.swing.JTextField();
         jBtnGuardarEscuderia = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jListDirectivos = new javax.swing.JList();
+        jTextFieldDirectivo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbPilotos = new javax.swing.JTable();
@@ -468,27 +472,55 @@ public class FrameAdministrador extends FormulaFrame {
         jLabel16.setText("Nombre:");
 
         jTextFieldNombreEscuderia.setInputVerifier(new NotEmptyVerifier());
-
-        jLabel17.setText("Dueño:");
-
-        jTextFieldDuenoEscuderia.setInputVerifier(new NotEmptyVerifier());
+        jTextFieldNombreEscuderia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldNombreEscuderiaFocusLost(evt);
+            }
+        });
 
         jLabel18.setText("País:");
 
         jTextFieldPaisEscuderia.setInputVerifier(new NotEmptyVerifier());
+        jTextFieldPaisEscuderia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPaisEscuderiaFocusLost(evt);
+            }
+        });
 
         jLabel19.setText("Año:");
 
         jTextFieldAnioEscuderia.setInputVerifier(new IsIntegerVerifier());
+        jTextFieldAnioEscuderia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldAnioEscuderiaFocusLost(evt);
+            }
+        });
 
         jLabel20.setText("Presupuesto:");
 
         jTextFieldPresupuestoEscuderia.setInputVerifier(new IsIntegerVerifier());
+        jTextFieldPresupuestoEscuderia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPresupuestoEscuderiaFocusLost(evt);
+            }
+        });
 
         jBtnGuardarEscuderia.setText("Guardar");
         jBtnGuardarEscuderia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnGuardarEscuderiaActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("Directivos:");
+
+        jListDirectivos.setModel(new DefaultListModel());
+        jScrollPane6.setViewportView(jListDirectivos);
+
+        jButton1.setText("Añadir Directivo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -499,31 +531,29 @@ public class FrameAdministrador extends FormulaFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNombreEscuderia)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel18))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldPaisEscuderia)
+                            .addComponent(jTextFieldAnioEscuderia)
+                            .addComponent(jTextFieldPresupuestoEscuderia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jTextFieldNombreEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldDuenoEscuderia))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jTextFieldPaisEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldAnioEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldPresupuestoEscuderia, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtnGuardarEscuderia)))
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBtnGuardarEscuderia, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jTextFieldDirectivo))))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -532,20 +562,35 @@ public class FrameAdministrador extends FormulaFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextFieldNombreEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(jTextFieldDuenoEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNombreEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jTextFieldPaisEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(jTextFieldAnioEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20)
-                    .addComponent(jTextFieldPresupuestoEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnGuardarEscuderia)
-                .addContainerGap())
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldPaisEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21)
+                        .addComponent(jTextFieldDirectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(jTextFieldAnioEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jTextFieldPresupuestoEscuderia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtnGuardarEscuderia))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 10, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -555,7 +600,7 @@ public class FrameAdministrador extends FormulaFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBtnBorrarEscuderia))
@@ -566,11 +611,11 @@ public class FrameAdministrador extends FormulaFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnBorrarEscuderia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1052,6 +1097,26 @@ public class FrameAdministrador extends FormulaFrame {
         crearEscuderia();
     }//GEN-LAST:event_jBtnGuardarEscuderiaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        añadirDirectivo();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldNombreEscuderiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNombreEscuderiaFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldNombreEscuderiaFocusLost
+
+    private void jTextFieldPaisEscuderiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPaisEscuderiaFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldPaisEscuderiaFocusLost
+
+    private void jTextFieldAnioEscuderiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldAnioEscuderiaFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldAnioEscuderiaFocusLost
+
+    private void jTextFieldPresupuestoEscuderiaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPresupuestoEscuderiaFocusLost
+        marcarComoValido(evt);
+    }//GEN-LAST:event_jTextFieldPresupuestoEscuderiaFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -1106,6 +1171,7 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JButton jBtnGuardarCircuito;
     private javax.swing.JButton jBtnGuardarEscuderia;
     private javax.swing.JButton jBtnVolver;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1114,11 +1180,11 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1133,6 +1199,7 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JLabel jLblReflejos;
     private javax.swing.JLabel jLblValentia;
     private javax.swing.JList jListCurvas;
+    private javax.swing.JList jListDirectivos;
     private javax.swing.JList jListRectas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1147,6 +1214,7 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSlider jSlAgresividad;
     private javax.swing.JSlider jSlNuevaCurva;
     private javax.swing.JSlider jSlNuevaRecta;
@@ -1161,7 +1229,7 @@ public class FrameAdministrador extends FormulaFrame {
     private javax.swing.JTextField jTextFieldCircuitoAforo;
     private javax.swing.JTextField jTextFieldCircuitoCanon;
     private javax.swing.JTextField jTextFieldCircuitoNombre;
-    private javax.swing.JTextField jTextFieldDuenoEscuderia;
+    private javax.swing.JTextField jTextFieldDirectivo;
     private javax.swing.JTextField jTextFieldNombreEscuderia;
     private javax.swing.JTextField jTextFieldPaisEscuderia;
     private javax.swing.JTextField jTextFieldPresupuestoEscuderia;
@@ -1432,10 +1500,14 @@ public class FrameAdministrador extends FormulaFrame {
 
     private void colocarDatosEscuderiaEnFormulario(Escuderia escuderia) {
         jTextFieldNombreEscuderia.setText(escuderia.getNombre());
-        jTextFieldDuenoEscuderia.setText(escuderia.getDueño());
         jTextFieldPaisEscuderia.setText(escuderia.getPais());
         jTextFieldAnioEscuderia.setText(escuderia.getAño().toString());
         jTextFieldPresupuestoEscuderia.setText(escuderia.getPresup().toString());
+        DefaultListModel modelo = (DefaultListModel) jListDirectivos.getModel();
+        String[] directivos = escuderia.getDirectivos();
+        for (String directivo : directivos) {
+            modelo.addElement(directivo);
+        }
     }
 
     private void crearEscuderia() {
@@ -1457,10 +1529,6 @@ public class FrameAdministrador extends FormulaFrame {
             correcto = false;
             marcarComoErroneo(jTextFieldNombreEscuderia);
         }
-        if (!jTextFieldDuenoEscuderia.getInputVerifier().verify(jTextFieldDuenoEscuderia)) {
-            correcto = false;
-            marcarComoErroneo(jTextFieldDuenoEscuderia);
-        }
         if (!jTextFieldPaisEscuderia.getInputVerifier().verify(jTextFieldPaisEscuderia)) {
             correcto = false;
             marcarComoErroneo(jTextFieldPaisEscuderia);
@@ -1473,25 +1541,53 @@ public class FrameAdministrador extends FormulaFrame {
             correcto = false;
             marcarComoErroneo(jTextFieldPresupuestoEscuderia);
         }
+        DefaultListModel modelo = (DefaultListModel) jListDirectivos.getModel();
+        Integer cantidadDirectivos = modelo.getSize();
+        if (cantidadDirectivos == 0) {
+            correcto = false;
+            jListDirectivos.setBackground(Color.red);
+        }
         return correcto;
     }
 
     private Escuderia obtenerEscuderiaDesdeFormulario() {
         String nombre = jTextFieldNombreEscuderia.getText();
-        String dueño = jTextFieldDuenoEscuderia.getText();
         String pais = jTextFieldPaisEscuderia.getText();
         Integer año = Integer.parseInt(jTextFieldAnioEscuderia.getText());
         Integer presupuesto = Integer.parseInt(jTextFieldPresupuestoEscuderia.getText());
-        Escuderia escuderia = new Escuderia(nombre, pais, año, presupuesto, dueño);
+        String[] directivos = getDirectivosDesdeLista();
+        Escuderia escuderia = new Escuderia(nombre, pais, año, presupuesto, directivos);
         return escuderia;
     }
 
     private void limpiarFormularioNuevaEscuderia() {
         jTextFieldNombreEscuderia.setText("");
-        jTextFieldDuenoEscuderia.setText("");
         jTextFieldPaisEscuderia.setText("");
         jTextFieldAnioEscuderia.setText("");
         jTextFieldPresupuestoEscuderia.setText("");
+        jTextFieldDirectivo.setText("");
+        DefaultListModel modelo = (DefaultListModel) jListDirectivos.getModel();
+        modelo.removeAllElements();
+    }
+
+    private void añadirDirectivo() {
+        String nuevoDirectivo = jTextFieldDirectivo.getText();
+        if (!nuevoDirectivo.equals("")) {
+            DefaultListModel modelo = (DefaultListModel) jListDirectivos.getModel();
+            modelo.addElement(nuevoDirectivo);
+            jTextFieldDirectivo.setText("");
+            jListDirectivos.setBackground(Color.WHITE);
+        }
+    }
+
+    private String[] getDirectivosDesdeLista() {
+        DefaultListModel modelo = (DefaultListModel) jListDirectivos.getModel();
+        Integer cantidadDirectivos = modelo.getSize();
+        String[] directivos = new String[cantidadDirectivos];
+        for (int i = 0; i < cantidadDirectivos; i++) {
+            directivos[i] = new String((String) modelo.get(i));
+        }
+        return directivos;
     }
 
 }

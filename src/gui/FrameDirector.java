@@ -707,9 +707,13 @@ public class FrameDirector extends FormulaFrame {
     }//GEN-LAST:event_jBtnSiguienteActionPerformed
 
     private void jBtnComenzarMundialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnComenzarMundialActionPerformed
-        mundial.comenzar();
-        activarBotones(true);
-        configurarPaneles();
+        if (mundial.getCarreras().size() == 5) {
+            mundial.comenzar();
+            activarBotones(true);
+            configurarPaneles();
+        } else {
+            mostrarVentanaDeError("El mundial necesita 5 carreras para comenzar");
+        }        
     }//GEN-LAST:event_jBtnComenzarMundialActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
@@ -820,12 +824,14 @@ public class FrameDirector extends FormulaFrame {
     @Override
     protected void comprobarMundialComenzado() {
         int tabTarget;
-        if (jTabbedPane1.getTabCount() == 1) {
-            tabTarget = 0;
-        } else {
-            tabTarget = 1;
+        if (mundial != null && mundial.estaComenzado()) {
+            if (jTabbedPane1.getTabCount() == 1) {
+                tabTarget = 0;
+            } else {
+                tabTarget = 1;
+            }
+            jTabbedPane1.setSelectedIndex(tabTarget);
         }
-        jTabbedPane1.setSelectedIndex(tabTarget);
     }
     
     private void cargarDatosEnVentana() {
