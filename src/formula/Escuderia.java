@@ -48,7 +48,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Calcula si la Escudería puede fichar otro Piloto Oficial. 
      * Será TRUE si no ha excedido el máximo número de Pilotos Oficiales.
-     * @return TRUE si el número de Pilotos Oficiales < Num Maximo. FALSE en caso
+     * @return Devuelve si la Escudería puede fichar un Piloto Oficial
      * contrario;
      */
     public boolean puedeFicharPilotoOficial() {
@@ -57,7 +57,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Calcula si la Escudería puede fichar otro Piloto Probador. 
      * Será TRUE si no ha excedido el máximo número de Pilotos Probadores.
-     * @return TRUE si el número de Pilotos Probadores < Num Maximo. FALSE en caso
+     * @return Devuelve si la Escudería puede fichar un Piloto Probador
      * contrario;
      */    
     public boolean puedeFicharPilotoProbador(){
@@ -65,8 +65,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }    
      /**
      * Calcula si la Escudería tiene presupuesto para gastar.
-     * @param gasto
-     * @return TRUE si el presupuesto es >= gasto o FALSE en caso contrario. 
+     * @param gasto Cantidad a comprobar
+     * @return Devuelve si la Escudería puede afrontar gasto
      */    
     public boolean tienePresupuestoSuficiente(Integer gasto){
         return (presupuesto >= gasto);
@@ -98,9 +98,9 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     /**
      * Chequea si dos pilotos son Intercambiables o no.
      * Lo hace calculando si su valoración no excede del 10%.
-     * @param p1
-     * @param p2
-     * @return TRUE si el margen < 10%, FALSE en caso contrario.
+     * @param p1 Piloto a comprobar
+     * @param p2 Piloto a comprobar
+     * @return Devuelve si los pilotos son intercambiables
      */         
     public static boolean sonPilotosIntercambiables(PilotoDecorador p1, PilotoDecorador p2){
         Double diferencia = Math.abs(p1.getValoraciónGlobal() - p2.getValoraciónGlobal());
@@ -112,8 +112,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      * Siempre y cuando sean intercambiables, el piloto en Venta pasa a formar
      * parte de otra Escudería y el piloto en Compra es adquirido por la Escudería
      * en cuestión.
-     * @param pilotoVenta
-     * @param pilotoCompra
+     * @param pilotoVenta Piloto de salida
+     * @param pilotoCompra Piloto de entrada
      */       
     public void intercambiarPiloto(PilotoDecorador pilotoVenta, PilotoDecorador pilotoCompra) {
         if (Escuderia.sonPilotosIntercambiables(pilotoVenta, pilotoCompra)) {
@@ -172,9 +172,9 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Realiza la acción de poner a Entrenar el Circuito, el piloto y el coche.
      * Realizando sobre estas tres clases los métodos correspondientes.
-     * @param circuito
-     * @param piloto
-     * @param coche
+     * @param circuito Circuito donde entrenar
+     * @param piloto Piloto que entrena
+     * @param coche Coche que entrena
      */                 
     public void entrenar(Circuito circuito, PilotoDecorador piloto, Coche coche){
         if (puedeEntrenar(circuito)){
@@ -185,10 +185,10 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }
      /**
      * Realiza la acción de crear un nuevo Coche en función de ciertos parámetros.
-     * @param modelo
-     * @param potencia 
-     * @param aerodinamica 
-     * @param neumaticos 
+     * @param modelo Modelo a fabricar
+     * @param potencia Potencia del coche
+     * @param aerodinamica Aerodinamica del coche
+     * @param neumaticos Neumaticos del coche
      */          
     public void fabricarCoche(String modelo, Double potencia, Double aerodinamica, Double neumaticos){
         if (puedeFabricarCoche()){
@@ -198,7 +198,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }
      /**
      * Añade dicho coche al listado de coches de la Escudería.
-     * @param coche. 
+     * @param coche Coche a añadir
      */         
     public void fabricarCoche(Coche coche) {
         if (puedeFabricarCoche()){
@@ -207,14 +207,14 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }
      /**
      * Elimina un coche del listado de coches de la Escudería.
-     * @param coche. 
+     * @param coche COche a destruir
      */            
     public void destruirCoche(Coche coche) {
         coches.remove(coche);
     }
      /**
      * Elimina un Piloto del listado de Pilotos Oficiales de la Escudería.
-     * @param piloto. 
+     * @param piloto Piloto a descartar
      */        
     public void descartarPiloto(PilotoOficial piloto){
         if (puedeDescartarPilotoOficial()) {
@@ -223,14 +223,14 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }
      /**
      * Elimina un Piloto del listado de Pilotos Probadores de la Escudería.
-     * @param piloto. 
+     * @param piloto Piloto a descartar
      */        
     public void descartarPiloto(PilotoProbador piloto){
         this.pilotosProbadores.remove(piloto);
     }
      /**
      * Suma los puntos correspondientes a la Escudería.
-     * @param puntos. 
+     * @param puntos Puntos a sumar 
      */       
     public void sumarPuntos(Integer puntos){
         this.puntos += puntos; 
@@ -238,8 +238,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Comprueba si un PilotoOficial se encuentra ya en el Array de Pilotos Oficiales
      * de la Escudería.
-     * @param piloto. 
-     * @return  
+     * @param piloto Piloto a comprobar 
+     * @return Si piloto es oficial
      */           
     public Boolean esPilotoOficial(PilotoOficial piloto) {
         return esPilotoOficial(piloto.getPiloto());
@@ -247,17 +247,17 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Comprueba si un PilotoDecorador se encuentra ya en el Array de Pilotos Oficiales
      * de la Escudería.
-     * @param piloto. 
-     * @return  
+     * @param piloto Piloto a comprobar 
+     * @return Si piloto es oficial
      */           
     public Boolean esPilotoOficial(PilotoDecorador piloto) {
         return esPilotoOficial(piloto.getPiloto());
     }
      /**
      * Comprueba si un PilotoLibre se encuentra ya en el Array de Pilotos Oficiales
-     * de la Escudería.
+     * de la Escudería Piloto a comprobar 
      * @param piloto. 
-     * @return  
+     * @return Si piloto es oficial
      */     
     public Boolean esPilotoOficial(PilotoLibre piloto) {
         Iterator<PilotoOficial> pilotos = pilotosOficiales.iterator();
@@ -271,7 +271,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Comprueba si un PilotoProbador se encuentra ya en el Array de Pilotos Probadores
      * de la Escudería.
-     * @param piloto. 
+     * @param piloto Piloto a comprobar 
+     * @return  Si piloto es probador
      */         
     public Boolean esPilotoProbador(PilotoProbador piloto) {
         return esPilotoProbador(piloto.getPiloto());
@@ -279,7 +280,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Comprueba si un PilotoDecorador se encuentra ya en el Array de Pilotos Probadores
      * de la Escudería.
-     * @param piloto. 
+     * @param piloto Piloto a comprobar 
+     * @return  Si piloto es probador
      */        
     public Boolean esPilotoProbador(PilotoDecorador piloto) {
         return esPilotoProbador(piloto.getPiloto());
@@ -287,7 +289,8 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
      /**
      * Comprueba si un PilotoLibre se encuentra ya en el Array de Pilotos Probadores
      * de la Escudería.
-     * @param piloto. 
+     * @param piloto Piloto a comprobar 
+     * @return  Si piloto es probador
      */        
     public Boolean esPilotoProbador(PilotoLibre piloto) {
         Iterator<PilotoProbador> pilotos = pilotosProbadores.iterator();
@@ -300,7 +303,7 @@ public class Escuderia implements Comparable<Escuderia>, Serializable {
     }
      /**
      * Suma el Premio de una Carrera al Presupuesto de la Escudería. 
-     * @param premio. 
+     * @param premio Premio a sumar
      */ 
     public void sumarPremio(Integer premio) {
         presupuesto += premio;

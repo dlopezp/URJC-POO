@@ -34,9 +34,6 @@ import javax.swing.event.ListSelectionListener;
 
 public class FrameEscuderia extends FormulaFrame {
 
-    /**
-     * Creates new form FrameEscuderia
-     */
     public FrameEscuderia() throws ClassNotFoundException, IOException {
         initComponents();
         cargarDatos();

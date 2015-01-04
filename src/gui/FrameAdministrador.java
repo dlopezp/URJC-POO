@@ -29,11 +29,6 @@ import javax.swing.JSlider;
  */
 public class FrameAdministrador extends FormulaFrame {
 
-    /**
-     * Creates new form FrameAdministradorBase
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.io.IOException
-     */
     public FrameAdministrador() throws ClassNotFoundException, IOException {
         initComponents();
         cargarDatos();

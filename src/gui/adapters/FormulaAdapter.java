@@ -85,8 +85,10 @@ public abstract class FormulaAdapter<T> {
     
     /**
      *
-     * @param file
-     * @return
+     * @param file Fichero a leer
+     * @return Un objeto T
+     * @throws java.lang.ClassNotFoundException Si no se encuentra la clase T
+     * @throws java.io.IOException Si ocurre un error en la lectura
      */
     protected T readOneObject(String file) throws ClassNotFoundException, IOException {
         File fichero = new File(file);

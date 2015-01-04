@@ -21,7 +21,7 @@ public class Participante implements Serializable {
     }
      /**
      * Realiza la acción de sumar los puntos correspondientes al Piloto y a la Esucdería. 
-     * @param puntos
+     * @param puntos Puntos a sumar
      */    
     public void sumarPuntos(Integer puntos){
         escuderia.sumarPuntos(puntos);
@@ -29,8 +29,7 @@ public class Participante implements Serializable {
     }
      /**
      * Suma el premio obtenido al Presupuesto de la Escudería.
-     * @param tramos[] de Tramo.java
-     * @return distancia total;
+     * @param premio Premio a sumar
      */    
     public void sumarPremio(Integer premio) {
         escuderia.sumarPremio(premio);

@@ -28,16 +28,14 @@ public class Mundial implements Serializable {
     }
      /**
      * Calcula si se pueden agregar más carreras al presente Mundial.
-     * @return TRUE si el número de carreras del Mundial < que el máximo de carreras
-     * y FALSE en caso contrario;
+     * @return Si se pueden agragar carreras
      */    
     public Boolean puedeAgregarCarreras() {
         return carreras.size() < MAXIMO_CARRERAS;
     }
      /**
      * Calcula si el número de Carreras es el permitido para Comenzar el Mundial. 
-     * @return TRUE si el número de carreras del Mundial < que el máximo de carreras
-     * y FALSE en caso contrario;
+     * @return Si el Mundial puede comenzar
      */        
     public Boolean puedeComenzar() {
         return carreras.size() == MAXIMO_CARRERAS;
@@ -83,21 +81,21 @@ public class Mundial implements Serializable {
     }
      /**
      * Realiza la acción de Añadir una nueva Escudería al Mundial.
-     * @param escudería. 
+     * @param escuderia Escuderia a añadir
      */        
     public void añadirEscuderia(Escuderia escuderia) {
         escuderias.add(escuderia);
     }
      /**
      * Realiza la acción de Añadir un nuevo Piloto al Mundial.
-     * @param piloto. 
+     * @param piloto Piloto a añadir
      */      
     public void añadirPiloto(PilotoLibre piloto) {
         pilotos.add(piloto);
     }
      /**
      * Realiza la acción de Añadir un nuevo Circuito al Mundial.
-     * @param escudería. 
+     * @param circuito Circuito a añadir
      */      
     public void añadirCircuito(Circuito circuito) {
         circuitos.add(circuito);

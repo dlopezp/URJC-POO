@@ -8,7 +8,7 @@ import javax.swing.table.TableModel;
  * @author Daniel López
  * @version 1.0
  * @since 20-12-2014
- * @param <T>
+ * @param <T> Generico
  */
 
 public abstract class FormulaTableModel<T> implements TableModel {

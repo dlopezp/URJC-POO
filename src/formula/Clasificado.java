@@ -42,8 +42,8 @@ public class Clasificado implements Comparable<Clasificado>, Serializable {
     
      /**
      * Según los puntos obtenidos por un participante, otorga un premio concreto
-     * @param puntos
-     * @param premio
+     * @param puntos Cantidad de puntos del premio
+     * @param premio Cantidad de dinero del premio
      */    
     public void premiar(Integer puntos, Integer premio) {
         this.puntos = puntos;

@@ -93,7 +93,7 @@ public class Coche implements Serializable {
      * Calcula el tiempo total en dar un Coche una Vuelta al Circuito introducido.     * 
      * Tiene en cuenta los parámetros de distancia en recta y en curva, la velocidad
      * en recta y curva del Coche y devuelve el tiempo total.
-     * @param Circuito de Circuito.java
+     * @param circuito Un objeto Circuito
      * @return tiempo;
      */
         
